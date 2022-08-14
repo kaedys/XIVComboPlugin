@@ -30,7 +30,9 @@ internal static class NIN
         Huraijin = 25876,
         PhantomKamaitachi = 25774,
         ForkedRaiju = 25777,
-        FleetingRaiju = 25778;
+        FleetingRaiju = 25778,
+        Bhavacakra = 7402,
+        HellfrogMedium = 7401;
 
     public static class Buffs
     {
@@ -61,11 +63,15 @@ internal static class NIN
             HakkeMujinsatsu = 52,
             ArmorCrush = 54,
             Huraijin = 60,
+            Shukiho1 = 62,
+            Bhavacakra = 68,
             TenChiJin = 70,
             Meisui = 72,
             EnhancedKassatsu = 76,
+            Shukiho2 = 78,
             Bunshin = 80,
             PhantomKamaitachi = 82,
+            Shukiho3 = 84,
             Raiju = 90;
     }
 }
@@ -85,22 +91,55 @@ internal class NinjaAeolianEdge : CustomCombo
                 if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
                     return OriginalHook(NIN.Ninjutsu);
             }
-            
+
             if (IsEnabled(CustomComboPreset.NinjaAeolianEdgeRaijuFeature))
             {
                 if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
+                {
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
                     return NIN.FleetingRaiju;
+                }
             }
             
             if (IsEnabled(CustomComboPreset.NinjaAeolianEdgeHutonFeature))
             {
                 if (level >= NIN.Levels.Huraijin && gauge.HutonTimer == 0)
-                    return NIN.Huraijin;
-
-                if (comboTime > 0)
                 {
-                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush && gauge.HutonTimer <= 30_000)
-                        return NIN.ArmorCrush;
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
+                    return NIN.Huraijin;
+                }
+
+                if (comboTime > 0 && lastComboMove == NIN.GustSlash && 
+                    level >= NIN.Levels.ArmorCrush && gauge.HutonTimer <= 30_000)
+                {
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && (gauge.Ninki > 95 || 
+                            level >= NIN.Levels.Shukiho2 && gauge.Ninki > 90 ||
+                            level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
+                    return NIN.ArmorCrush;
                 }
             }
 
@@ -109,13 +148,56 @@ internal class NinjaAeolianEdge : CustomCombo
                 if (comboTime > 0)
                 {
                     if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.AeolianEdge)
+                    {
+                        if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                        {
+                            if (level >= NIN.Levels.Shukiho1 && (gauge.Ninki > 95 || 
+                                level >= NIN.Levels.Shukiho2 && gauge.Ninki > 90 ||
+                                level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
+                            {
+                                if (level > NIN.Levels.Bhavacakra)
+                                    return NIN.Bhavacakra
+                                return NIN.HellfrogMedium
+                            }
+                        }
                         return NIN.AeolianEdge;
+                    }
 
                     if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
+                    {
+                        if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                        {
+                            if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                            {
+                                if (level > NIN.Levels.Bhavacakra)
+                                    return NIN.Bhavacakra
+                                return NIN.HellfrogMedium
+                            }
+                        }
                         return NIN.GustSlash;
+                    }
                 }
 
+                if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                {
+                    if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                    {
+                        if (level > NIN.Levels.Bhavacakra)
+                            return NIN.Bhavacakra
+                        return NIN.HellfrogMedium
+                    }
+                }
                 return NIN.SpinningEdge;
+            }
+
+            if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+            {
+                if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                {
+                    if (level > NIN.Levels.Bhavacakra)
+                        return NIN.Bhavacakra
+                    return NIN.HellfrogMedium
+                }
             }
         }
 
@@ -131,16 +213,27 @@ internal class NinjaArmorCrush : CustomCombo
     {
         if (actionID == NIN.ArmorCrush)
         {
-            if (IsEnabled(CustomComboPreset.NinjaArmorCrushRaijuFeature))
-            {
-                if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
-                    return NIN.ForkedRaiju;
-            }
-
             if (IsEnabled(CustomComboPreset.NinjaArmorCrushNinjutsuFeature))
             {
                 if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
                     return OriginalHook(NIN.Ninjutsu);
+            }
+
+            if (IsEnabled(CustomComboPreset.NinjaArmorCrushRaijuFeature))
+            {
+                if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
+                {
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
+                    return NIN.ForkedRaiju;
+                }
             }
 
             if (IsEnabled(CustomComboPreset.NinjaArmorCrushCombo))
@@ -148,13 +241,59 @@ internal class NinjaArmorCrush : CustomCombo
                 if (comboTime > 0)
                 {
                     if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
+                    {
+                        if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                        {
+                            if (level >= NIN.Levels.Shukiho1 && (gauge.Ninki > 95 || 
+                                level >= NIN.Levels.Shukiho2 && gauge.Ninki > 90 ||
+                                level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
+                            {
+                                if (level > NIN.Levels.Bhavacakra)
+                                    return NIN.Bhavacakra
+                                return NIN.HellfrogMedium
+                            }
+                        }
                         return NIN.ArmorCrush;
+                    }
 
                     if (lastComboMove == NIN.SpinningEdge && level >= NIN.Levels.GustSlash)
+                    {
+                        if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                        {
+                            if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                            {
+                                if (level > NIN.Levels.Bhavacakra)
+                                    return NIN.Bhavacakra
+                                return NIN.HellfrogMedium
+                            }
+                        }
                         return NIN.GustSlash;
+                    }
                 }
 
-                return NIN.SpinningEdge;
+                if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                {
+                    if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                    {
+                        if (level > NIN.Levels.Bhavacakra)
+                            return NIN.Bhavacakra
+                        return NIN.HellfrogMedium
+                    }
+                }
+
+               return NIN.SpinningEdge;
+            }
+
+            if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+            {
+                if (level >= NIN.Levels.Shukiho1 && (gauge.Ninki >= 95 || 
+                    level >= NIN.Levels.Shukiho2 && gauge.Ninki >= 90 ||
+                    level >= NIN.Levels.Shukiho3 && gauge.Ninki >= 85))
+                {
+                    if (level > NIN.Levels.Bhavacakra)
+                        return NIN.Bhavacakra
+                    return NIN.HellfrogMedium
+                }
             }
         }
 
@@ -170,19 +309,41 @@ internal class NinjaHuraijin : CustomCombo
     {
         if (actionID == NIN.Huraijin)
         {
-            if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
-            {
-                if (IsEnabled(CustomComboPreset.NinjaHuraijinForkedRaijuFeature))
-                    return NIN.ForkedRaiju;
-
-                if (IsEnabled(CustomComboPreset.NinjaHuraijinFleetingRaijuFeature))
-                    return NIN.FleetingRaiju;
-            }
-
             if (IsEnabled(CustomComboPreset.NinjaHuraijinNinjutsuFeature))
             {
                 if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
                     return OriginalHook(NIN.Ninjutsu);
+            }
+
+            if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
+            {
+                if (IsEnabled(CustomComboPreset.NinjaHuraijinForkedRaijuFeature))
+                {
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
+                    return NIN.ForkedRaiju;
+                }
+
+                if (IsEnabled(CustomComboPreset.NinjaHuraijinFleetingRaijuFeature))
+                {
+                    if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                    {
+                        if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                        {
+                            if (level > NIN.Levels.Bhavacakra)
+                                return NIN.Bhavacakra
+                            return NIN.HellfrogMedium
+                        }
+                    }
+                    return NIN.FleetingRaiju;
+                }
             }
 
             if (IsEnabled(CustomComboPreset.NinjaHuraijinArmorCrushCombo))
@@ -192,7 +353,30 @@ internal class NinjaHuraijin : CustomCombo
                 if (comboTime > 0 && gauge.HutonTimer > 0)
                 {
                     if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
+                    {
+                        if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+                        {
+                            if (level >= NIN.Levels.Shukiho1 && (gauge.Ninki > 95 || 
+                                level >= NIN.Levels.Shukiho2 && gauge.Ninki > 90 ||
+                                level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
+                            {
+                                if (level > NIN.Levels.Bhavacakra)
+                                    return NIN.Bhavacakra
+                                return NIN.HellfrogMedium
+                            }
+                        }
                         return NIN.ArmorCrush;
+                    }
+                }
+            }
+
+            if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+            {
+                if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                {
+                    if (level > NIN.Levels.Bhavacakra)
+                        return NIN.Bhavacakra
+                    return NIN.HellfrogMedium
                 }
             }
         }
@@ -213,6 +397,14 @@ internal class NinjaHakkeMujinsatsu : CustomCombo
             {
                 if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
                     return OriginalHook(NIN.Ninjutsu);
+            }
+
+            if (IsEnabled(CustomComboPreset.NinjaNinkiOvercapFeature))
+            {
+                if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
+                {
+                    return NIN.HellfrogMedium
+                }
             }
 
             if (IsEnabled(CustomComboPreset.NinjaHakkeMujinsatsuCombo))
