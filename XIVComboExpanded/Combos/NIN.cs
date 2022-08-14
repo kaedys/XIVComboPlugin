@@ -101,8 +101,8 @@ internal class NinjaAeolianEdge : CustomCombo
                         if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.FleetingRaiju;
@@ -118,8 +118,8 @@ internal class NinjaAeolianEdge : CustomCombo
                         if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.Huraijin;
@@ -135,8 +135,8 @@ internal class NinjaAeolianEdge : CustomCombo
                             level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.ArmorCrush;
@@ -156,8 +156,8 @@ internal class NinjaAeolianEdge : CustomCombo
                                 level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
                             {
                                 if (level > NIN.Levels.Bhavacakra)
-                                    return NIN.Bhavacakra
-                                return NIN.HellfrogMedium
+                                    return NIN.Bhavacakra;
+                                return NIN.HellfrogMedium;
                             }
                         }
                         return NIN.AeolianEdge;
@@ -170,8 +170,8 @@ internal class NinjaAeolianEdge : CustomCombo
                             if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                             {
                                 if (level > NIN.Levels.Bhavacakra)
-                                    return NIN.Bhavacakra
-                                return NIN.HellfrogMedium
+                                    return NIN.Bhavacakra;
+                                return NIN.HellfrogMedium;
                             }
                         }
                         return NIN.GustSlash;
@@ -183,8 +183,8 @@ internal class NinjaAeolianEdge : CustomCombo
                     if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                     {
                         if (level > NIN.Levels.Bhavacakra)
-                            return NIN.Bhavacakra
-                        return NIN.HellfrogMedium
+                            return NIN.Bhavacakra;
+                        return NIN.HellfrogMedium;
                     }
                 }
                 return NIN.SpinningEdge;
@@ -195,8 +195,8 @@ internal class NinjaAeolianEdge : CustomCombo
                 if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                 {
                     if (level > NIN.Levels.Bhavacakra)
-                        return NIN.Bhavacakra
-                    return NIN.HellfrogMedium
+                        return NIN.Bhavacakra;
+                    return NIN.HellfrogMedium;
                 }
             }
         }
@@ -228,8 +228,8 @@ internal class NinjaArmorCrush : CustomCombo
                         if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.ForkedRaiju;
@@ -249,8 +249,8 @@ internal class NinjaArmorCrush : CustomCombo
                                 level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
                             {
                                 if (level > NIN.Levels.Bhavacakra)
-                                    return NIN.Bhavacakra
-                                return NIN.HellfrogMedium
+                                    return NIN.Bhavacakra;
+                                return NIN.HellfrogMedium;
                             }
                         }
                         return NIN.ArmorCrush;
@@ -263,8 +263,8 @@ internal class NinjaArmorCrush : CustomCombo
                             if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                             {
                                 if (level > NIN.Levels.Bhavacakra)
-                                    return NIN.Bhavacakra
-                                return NIN.HellfrogMedium
+                                    return NIN.Bhavacakra;
+                                return NIN.HellfrogMedium;
                             }
                         }
                         return NIN.GustSlash;
@@ -276,8 +276,8 @@ internal class NinjaArmorCrush : CustomCombo
                     if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                     {
                         if (level > NIN.Levels.Bhavacakra)
-                            return NIN.Bhavacakra
-                        return NIN.HellfrogMedium
+                            return NIN.Bhavacakra;
+                        return NIN.HellfrogMedium;
                     }
                 }
 
@@ -291,8 +291,8 @@ internal class NinjaArmorCrush : CustomCombo
                     level >= NIN.Levels.Shukiho3 && gauge.Ninki >= 85))
                 {
                     if (level > NIN.Levels.Bhavacakra)
-                        return NIN.Bhavacakra
-                    return NIN.HellfrogMedium
+                        return NIN.Bhavacakra;
+                    return NIN.HellfrogMedium;
                 }
             }
         }
@@ -324,8 +324,8 @@ internal class NinjaHuraijin : CustomCombo
                         if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.ForkedRaiju;
@@ -338,8 +338,8 @@ internal class NinjaHuraijin : CustomCombo
                         if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                         {
                             if (level > NIN.Levels.Bhavacakra)
-                                return NIN.Bhavacakra
-                            return NIN.HellfrogMedium
+                                return NIN.Bhavacakra;
+                            return NIN.HellfrogMedium;
                         }
                     }
                     return NIN.FleetingRaiju;
@@ -361,8 +361,8 @@ internal class NinjaHuraijin : CustomCombo
                                 level >= NIN.Levels.Shukiho3 && gauge.Ninki > 85))
                             {
                                 if (level > NIN.Levels.Bhavacakra)
-                                    return NIN.Bhavacakra
-                                return NIN.HellfrogMedium
+                                    return NIN.Bhavacakra;
+                                return NIN.HellfrogMedium;
                             }
                         }
                         return NIN.ArmorCrush;
@@ -375,8 +375,8 @@ internal class NinjaHuraijin : CustomCombo
                 if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                 {
                     if (level > NIN.Levels.Bhavacakra)
-                        return NIN.Bhavacakra
-                    return NIN.HellfrogMedium
+                        return NIN.Bhavacakra;
+                    return NIN.HellfrogMedium;
                 }
             }
         }
@@ -403,7 +403,7 @@ internal class NinjaHakkeMujinsatsu : CustomCombo
             {
                 if (level >= NIN.Levels.Shukiho1 && gauge.Ninki > 95)
                 {
-                    return NIN.HellfrogMedium
+                    return NIN.HellfrogMedium;
                 }
             }
 
