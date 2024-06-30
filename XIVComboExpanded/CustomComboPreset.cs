@@ -953,8 +953,8 @@ public enum CustomComboPreset
     [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
     SamuraiKyutenGurenFeature = 3415,
 
-    [CustomComboInfo("Kyuten to Shoha II", "Replace Hissatsu: Kyuten with Shoha II when Meditation is full.", SAM.JobID)]
-    SamuraiKyutenShoha2Feature = 3412,
+    //[CustomComboInfo("Kyuten to Shoha II", "Replace Hissatsu: Kyuten with Shoha II when Meditation is full.", SAM.JobID)]
+    //SamuraiKyutenShoha2Feature = 3412,
 
     [CustomComboInfo("Ikishoten Namikiri Feature", "Replace Ikishoten with Ogi Namikiri and then Kaeshi Namikiri when available.", SAM.JobID)]
     SamuraiIkishotenNamikiriFeature = 3411,

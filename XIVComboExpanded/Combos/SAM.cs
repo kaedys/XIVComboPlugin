@@ -328,12 +328,6 @@ internal class SamuraiKyuten : CustomCombo
         {
             var gauge = GetJobGauge<SAMGauge>();
 
-            if (IsEnabled(CustomComboPreset.SamuraiKyutenShoha2Feature))
-            {
-                if (level >= SAM.Levels.Shoha2 && gauge.MeditationStacks >= 3)
-                    return SAM.Shoha2;
-            }
-
             if (IsEnabled(CustomComboPreset.SamuraiKyutenGurenFeature))
             {
                 if (level >= SAM.Levels.HissatsuGuren && IsOffCooldown(SAM.HissatsuGuren))
