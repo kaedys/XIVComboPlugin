@@ -318,6 +318,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Devilment Feature", "Replace Devilment with Starfall Dance when active.", DNC.JobID)]
     DancerDevilmentFeature = 3807,
 
+    [CustomComboInfo("Last Dance Feature", "Replace Standard Step by Last Dance if available.", DNC.JobID)]
+    DancerLastDanceFeature = 3813,
+
+    [ParentCombo(DancerLastDanceFeature)]
+    [CustomComboInfo("Finishing Move Priority", "Priorize Finishing Move over Last Dance when replacing Standard Step.", DNC.JobID)]
+    DancerFinishingMovePriorityFeature = 3814,
+
     #endregion
     // ====================================================================================
     #region DARK KNIGHT
