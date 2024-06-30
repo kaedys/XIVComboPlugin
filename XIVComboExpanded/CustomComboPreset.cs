@@ -675,7 +675,11 @@ public enum CustomComboPreset
     // ====================================================================================
     #region PICTOMANCER
 
+    [CustomComboInfo("Subtractive Single-Target Combo", "Replace Fire in Red and its combo chain with Blizzard in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    PictomancerSubtractiveSTCombo = 4201,
 
+    [CustomComboInfo("Subtractive AoE Combo", "Replace Fire II in Red and its combo chain with Blizzard II in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    PictomancerSubtractiveAoECombo = 4202,
 
     #endregion
     // ====================================================================================

@@ -1,5 +1,7 @@
 ﻿
 using Dalamud.Game.ClientState.JobGauge.Types;
+using FFXIVClientStructs.FFXIV.Client.Game.Gauge;
+using System;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -53,10 +55,16 @@ internal static class PCT
     public static class Buffs
     {
         public const ushort
-            SubstractivePallete = 3674,
+            SubstractivePalette = 3674,
             Chroma2Ready = 3675,
             Chroma3Ready = 3676,
-            RainbowReady = 3679;
+            RainbowReady = 3679,
+            HammerReady = 3680,
+            StarPrismReady = 3681,
+            Installation = 3688,
+            ArtisticInstallation = 3689,
+            SubstractivePaletteReady = 3690,
+            InvertedColors = 3691;
     }
 
     public static class Debuffs
@@ -111,6 +119,59 @@ internal static class PCT
             StarPrism2 = 100;
     }
 
+    internal class PictomancerSubtractiveSTCombo : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerSubtractiveSTCombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (!HasEffect(PCT.Buffs.SubstractivePalette))
+            {
+                if (actionID == PCT.BlizzardCyan)
+                {
+                    if (HasEffect(PCT.Buffs.Chroma2Ready))
+                    {
+                        return PCT.AeroGreen;
+                    }
+                    else if (HasEffect(PCT.Buffs.Chroma3Ready))
+                    {
+                        return PCT.WaterBlue;
+                    }
+
+                    return PCT.FireRed;
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    internal class PictomancerSubtractiveAoECombo : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerSubtractiveAoECombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (!HasEffect(PCT.Buffs.SubstractivePalette))
+            {
+                if (actionID == PCT.ExtraBlizzardCyan)
+                {
+                    if (HasEffect(PCT.Buffs.Chroma2Ready))
+                    {
+                        return PCT.ExtraAeroGreen;
+                    }
+                    else if (HasEffect(PCT.Buffs.Chroma3Ready))
+                    {
+                        return PCT.ExtraWaterBlue;
+                    }
+
+                    return PCT.ExtraFireRed;
+                }
+            }
+
+            return actionID;
+        }
+    }
 
 
 }
