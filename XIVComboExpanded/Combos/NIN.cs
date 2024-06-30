@@ -30,7 +30,8 @@ internal static class NIN
         Huraijin = 25876,
         PhantomKamaitachi = 25774,
         ForkedRaiju = 25777,
-        FleetingRaiju = 25778;
+        FleetingRaiju = 25778,
+        Dokumori = 36957;
 
     public static class Buffs
     {
@@ -61,6 +62,7 @@ internal static class NIN
             HakkeMujinsatsu = 52,
             ArmorCrush = 54,
             Huraijin = 60,
+            Dokumori = 66,
             TenChiJin = 70,
             Meisui = 72,
             EnhancedKassatsu = 76,
@@ -265,7 +267,12 @@ internal class NinjaHide : CustomCombo
             if (IsEnabled(CustomComboPreset.NinjaHideMugFeature))
             {
                 if (level >= NIN.Levels.Mug && InCombat())
-                    return NIN.Mug;
+                {
+                    if (level >= NIN.Levels.Dokumori)
+                        return NIN.Dokumori;
+                }
+
+                return NIN.Mug;
             }
         }
 
