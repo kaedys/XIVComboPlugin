@@ -63,7 +63,7 @@ internal partial class CustomComboCache : IDisposable
     /// <returns>Status object or null.</returns>
     internal Status? GetStatus(uint statusID, IGameObject? obj, uint? sourceID)
     {
-        var key = (statusID, obj?.ObjectIndex, sourceID);
+        var key = (statusID, obj?.EntityId, sourceID);
         if (this.statusCache.TryGetValue(key, out var found))
             return found;
 

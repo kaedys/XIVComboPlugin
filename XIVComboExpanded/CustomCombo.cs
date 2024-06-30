@@ -297,7 +297,7 @@ internal abstract partial class CustomCombo
     /// <param name="effectID">Status effect ID.</param>
     /// <returns>Status object or null.</returns>
     protected static Status? FindEffect(ushort effectID)
-        => FindEffect(effectID, LocalPlayer, LocalPlayer?.ObjectIndex);
+        => FindEffect(effectID, LocalPlayer, LocalPlayer?.EntityId);
 
     /// <summary>
     /// Find if an effect on the target exists.
@@ -315,7 +315,7 @@ internal abstract partial class CustomCombo
     /// <param name="effectID">Status effect ID.</param>
     /// <returns>Status object or null.</returns>
     protected static Status? FindTargetEffect(ushort effectID)
-        => FindEffect(effectID, CurrentTarget, LocalPlayer?.ObjectIndex);
+        => FindEffect(effectID, CurrentTarget, LocalPlayer?.EntityId);
 
     /// <summary>
     /// Find if an effect on the player exists.
