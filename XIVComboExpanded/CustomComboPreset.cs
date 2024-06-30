@@ -663,6 +663,12 @@ public enum CustomComboPreset
 
     #endregion
     // ====================================================================================
+    #region PICTOMANCER
+
+
+
+    #endregion
+    // ====================================================================================
     #region REAPER
 
     [CustomComboInfo("Slice Combo", "Replace Infernal Slice with its combo chain.", RPR.JobID)]
@@ -1032,6 +1038,12 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Demi Carbuncle Feature", "Change Summon Bahamut into Summon Carbuncle when no pet has been summoned.", SMN.JobID)]
     SummonerDemiCarbuncleFeature = 2716,
+
+    #endregion
+    // ====================================================================================
+    #region VIPER
+
+    
 
     #endregion
     // ====================================================================================
