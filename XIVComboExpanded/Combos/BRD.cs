@@ -355,7 +355,7 @@ internal class BardBarrage : CustomCombo
     {
         if (actionID == BRD.Barrage)
         {
-            if (level >= BRD.Levels.StraightShot && HasEffect(BRD.Buffs.HawksEye) && !HasEffect(BRD.Buffs.ShadowbiteReady))
+            if (level >= BRD.Levels.StraightShot && HasEffect(BRD.Buffs.HawksEye))
                 // Refulgent Arrow
                 return OriginalHook(BRD.StraightShot);
         }
