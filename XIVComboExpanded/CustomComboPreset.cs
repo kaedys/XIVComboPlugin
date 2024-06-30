@@ -50,6 +50,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Any", "This should not be displayed. This always returns true when used with IsEnabled.", NIN.JobID)]
     NinAny = AdvAny + NIN.JobID,
 
+    [CustomComboInfo("Any", "This should not be displayed. This always returns true when used with IsEnabled.", PCT.JobID)]
+    PctAny = AdvAny + PCT.JobID,
+
     [CustomComboInfo("Any", "This should not be displayed. This always returns true when used with IsEnabled.", PLD.JobID)]
     PldAny = AdvAny + PLD.JobID,
 
@@ -660,6 +663,52 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Shields on your Feet Feature", "Replace Shield Bash with Low Blow when available.", PLD.JobID)]
     PaladinShieldBashFeature = 1910,
+
+    #endregion
+    // ====================================================================================
+    #region PICTOMANCER
+
+    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
+    PictomancerHolyCometCombo = 4201,
+
+    [CustomComboInfo("Subtractive/Comet Combo", "Replace Subtractive Palette with Comet in Black when usable.", PCT.JobID)]
+    PictomancerSubtractiveCometCombo = 4213,
+
+    [SecretCustomCombo]
+    [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire in Red II, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]
+    PictomancerHolyAutoCombo = 4202,
+
+    [CustomComboInfo("Subtractive Single-Target Combo", "Replace Fire in Red and its combo chain with Blizzard in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    PictomancerSubtractiveSTCombo = 4203,
+
+    [CustomComboInfo("Subtractive AoE Combo", "Replace Fire II in Red and its combo chain with Blizzard II in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    PictomancerSubtractiveAoECombo = 4204,
+
+    [SecretCustomCombo]
+    [CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire in Red II, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
+    PictomancerSubtractiveAutoCombo = 4205,
+
+    [CustomComboInfo("Blizzard/Subtractive Combo", "Replace Blizzard in Cyan and Blizzard II in Cyan with Subtractive Palette when it isn't currently active.", PCT.JobID)]
+    PictomancerBlizzardSubtractiveCombo = 4212,
+
+    [CustomComboInfo("Creature Motif/Muse Combo", "Replace Creature Motif (Pom Motif etc) with Living Muse (Pom Muse etc) when the Creature Canvas is painted.", PCT.JobID)]
+    PictomancerCreatureMotifCombo = 4206,
+
+    [CustomComboInfo("Creature Motif/Mog of the Ages Combo", "Also replace Creature Motif (Pom Motif etc) with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
+    PictomancerCreatureMogCombo = 4207,
+
+    [CustomComboInfo("Weapon Motif/Muse Combo", "Replace Hammer Motif with Striking Muse when the Weapon Canvas is painted.", PCT.JobID)]
+    PictomancerWeaponMotifCombo = 4208,
+
+    [ParentCombo(PictomancerWeaponMotifCombo)]
+    [CustomComboInfo("Weapon Motif/Hammer Combo", "Also replace Hammer Motif with Hammer Brush and its combo chain when they are usable.", PCT.JobID)]
+    PictomancerWeaponHammerCombo = 4209,
+
+    [CustomComboInfo("Landscape Motif/Muse Combo", "Replace Starry Sky Motif with Starry Muse when the Landscape Canvas is painted.", PCT.JobID)]
+    PictomancerLandscapeMotifCombo = 4210,
+
+    [CustomComboInfo("Landscape Motif/Star Prism Combo", "Replace Starry Motif with Star Prism when it is usable.", PCT.JobID)]
+    PictomancerLandscapePrismCombo = 4211,
 
     #endregion
     // ====================================================================================
