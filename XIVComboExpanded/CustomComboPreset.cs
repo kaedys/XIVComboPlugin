@@ -1111,6 +1111,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Afflatus Feature", "Replace Cure 2 with Afflatus Solace and Medica with Afflatus Rapture when a Lily is available.", WHM.JobID)]
     WhiteMageAfflatusFeature = 2404,
 
+    [CustomComboInfo("Glare4 Feature", "Replace Glare 3 with Glare 4 when a stack is available.", WHM.JobID)]
+    WhiteMageGlare4Feature = 2407,
+
     #endregion
     // ====================================================================================
     #region DOH
