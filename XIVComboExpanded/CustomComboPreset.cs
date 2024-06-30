@@ -639,8 +639,8 @@ public enum CustomComboPreset
     PaladinRoyalAuthorityFightOrFlightFeature = 1915,
 
     [ParentCombo(PaladinRoyalAuthorityCombo)]
-    [CustomComboInfo("Royal Authority Atonement Feature", "Replace Royal Authority with Atonement when under the effect of Sword Oath.", PLD.JobID)]
-    PaladinRoyalAuthorityAtonementFeature = 1903,
+    [CustomComboInfo("Royal Authority Atonement Feature", "Replace Royal Authority with Atonement, Supplication & Sepulchre when under the effect of the corresponding buffs.", PLD.JobID)]
+    PaladinRoyalAuthorityAtonementComboFeature = 1903,
 
     [CustomComboInfo("Prominence Combo", "Replace Prominence with its combo chain.", PLD.JobID)]
     PaladinProminenceCombo = 1904,
