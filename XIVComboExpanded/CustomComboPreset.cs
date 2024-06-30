@@ -417,6 +417,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Burst Strike Continuation", "Replace Burst Strike with Continuation moves when appropriate.", GNB.JobID)]
     GunbreakerBurstStrikeCont = 3703,
 
+    [CustomComboInfo("Fated Circle Continuation", "Replace Burst Strike with Continuation moves when appropriate.", GNB.JobID)]
+    GunbreakerFatedCircleCont = 3714,
+
     [SecretCustomCombo]
     [CustomComboInfo("Sonic Shock Feature", "Replace Bow Shock and Sonic Break with one or the other depending on which is on cooldown.", GNB.JobID)]
     GunbreakerBowShockSonicBreakFeature = 3704,
