@@ -571,9 +571,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Aeolian Edge Combo", "Replace Aeolian Edge with its combo chain.", NIN.JobID)]
     NinjaAeolianEdgeCombo = 3002,
 
-    [SecretCustomCombo]
-    [CustomComboInfo("Aeolian Edge / Huton Feature", "Replaces Aeolian Edge with Armor Crush when Huton has less than 30 seconds remaining and Huraijin when missing.", NIN.JobID)]
-    NinjaAeolianEdgeHutonFeature = 3019,
+    //[SecretCustomCombo]
+    //[CustomComboInfo("Auto-Refill Kazematoi / Huton Feature", "Replaces Aeolian Edge with Armor Crush when you don't have any Kazematoi left.", NIN.JobID)]
+    //NinjaKazematoiFeature = 3019,
 
     [CustomComboInfo("Aeolian Edge / Ninjutsu Feature", "Replace Aeolian Edge with Ninjutsu if any Mudra are used.", NIN.JobID)]
     NinjaAeolianNinjutsuFeature = 3008,
@@ -590,19 +590,19 @@ public enum CustomComboPreset
     [CustomComboInfo("Armor Crush / Raiju Feature", "Replace the Armor Crush combo with Forked Raiju when available.", NIN.JobID)]
     NinjaArmorCrushRaijuFeature = 3012,
 
-    [CustomComboInfo("Huraijin / Armor Crush Combo", "Replace Huraijin with Armor Crush after using Gust Slash when Huton is missing.", NIN.JobID)]
-    NinjaHuraijinArmorCrushCombo = 3010,
+    //[CustomComboInfo("Huraijin / Armor Crush Combo", "Replace Huraijin with Armor Crush after using Gust Slash when Huton is missing.", NIN.JobID)]
+    //NinjaHuraijinArmorCrushCombo = 3010,
 
-    [CustomComboInfo("Huraijin / Ninjutsu Feature", "Replace Huraijin with Ninjutsu if any Mudra are used.", NIN.JobID)]
-    NinjaHuraijinNinjutsuFeature = 3009,
+    //[CustomComboInfo("Huraijin / Ninjutsu Feature", "Replace Huraijin with Ninjutsu if any Mudra are used.", NIN.JobID)]
+    //NinjaHuraijinNinjutsuFeature = 3009,
 
-    [ConflictingCombos(NinjaHuraijinFleetingRaijuFeature)]
-    [CustomComboInfo("Huraijin / Forked Raiju Feature", "Replace Huraijin with Forked Raiju when available.", NIN.JobID)]
-    NinjaHuraijinForkedRaijuFeature = 3011,
+    //[ConflictingCombos(NinjaHuraijinFleetingRaijuFeature)]
+    //[CustomComboInfo("Huraijin / Forked Raiju Feature", "Replace Huraijin with Forked Raiju when available.", NIN.JobID)]
+    //NinjaHuraijinForkedRaijuFeature = 3011,
 
-    [ConflictingCombos(NinjaHuraijinForkedRaijuFeature)]
-    [CustomComboInfo("Huraijin / Fleeting Raiju Option", "Replace Huraijin with Fleeting Raiju when available.", NIN.JobID)]
-    NinjaHuraijinFleetingRaijuFeature = 3014,
+    //[ConflictingCombos(NinjaHuraijinForkedRaijuFeature)]
+    //[CustomComboInfo("Huraijin / Fleeting Raiju Option", "Replace Huraijin with Fleeting Raiju when available.", NIN.JobID)]
+    //NinjaHuraijinFleetingRaijuFeature = 3014,
 
     [CustomComboInfo("Hakke Mujinsatsu Combo", "Replace Hakke Mujinsatsu with its combo chain.", NIN.JobID)]
     NinjaHakkeMujinsatsuCombo = 3003,

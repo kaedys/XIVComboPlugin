@@ -41,7 +41,8 @@ internal static class NIN
             Suiton = 507,
             Hidden = 614,
             Bunshin = 1954,
-            RaijuReady = 2690;
+            RaijuReady = 2690,
+            Higi = 3850;
     }
 
     public static class Debuffs
@@ -94,17 +95,15 @@ internal class NinjaAeolianEdge : CustomCombo
                     return NIN.FleetingRaiju;
             }
 
-            if (IsEnabled(CustomComboPreset.NinjaAeolianEdgeHutonFeature))
-            {
-                if (level >= NIN.Levels.Huraijin && gauge.HutonTimer == 0)
-                    return NIN.Huraijin;
-
-                if (comboTime > 0)
-                {
-                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush && gauge.HutonTimer <= 30_000)
-                        return NIN.ArmorCrush;
-                }
-            }
+            //if (IsEnabled(CustomComboPreset.NinjaKazematoiFeature))
+            //{
+            //    if (comboTime > 0)
+            //    {
+            //        // TODO: Gauge-related placeholder for Kazematoi
+            //        if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush && true)
+            //            return NIN.ArmorCrush;
+            //    }
+            //}
 
             if (IsEnabled(CustomComboPreset.NinjaAeolianEdgeCombo))
             {
@@ -164,44 +163,44 @@ internal class NinjaArmorCrush : CustomCombo
     }
 }
 
-internal class NinjaHuraijin : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinAny;
+//internal class NinjaHuraijin : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.NinAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == NIN.Huraijin)
-        {
-            if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
-            {
-                if (IsEnabled(CustomComboPreset.NinjaHuraijinForkedRaijuFeature))
-                    return NIN.ForkedRaiju;
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == NIN.Huraijin)
+//        {
+//            if (level >= NIN.Levels.Raiju && HasEffect(NIN.Buffs.RaijuReady))
+//            {
+//                if (IsEnabled(CustomComboPreset.NinjaHuraijinForkedRaijuFeature))
+//                    return NIN.ForkedRaiju;
 
-                if (IsEnabled(CustomComboPreset.NinjaHuraijinFleetingRaijuFeature))
-                    return NIN.FleetingRaiju;
-            }
+//                if (IsEnabled(CustomComboPreset.NinjaHuraijinFleetingRaijuFeature))
+//                    return NIN.FleetingRaiju;
+//            }
 
-            if (IsEnabled(CustomComboPreset.NinjaHuraijinNinjutsuFeature))
-            {
-                if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
-                    return OriginalHook(NIN.Ninjutsu);
-            }
+//            if (IsEnabled(CustomComboPreset.NinjaHuraijinNinjutsuFeature))
+//            {
+//                if (level >= NIN.Levels.Ninjitsu && HasEffect(NIN.Buffs.Mudra))
+//                    return OriginalHook(NIN.Ninjutsu);
+//            }
 
-            if (IsEnabled(CustomComboPreset.NinjaHuraijinArmorCrushCombo))
-            {
-                var gauge = GetJobGauge<NINGauge>();
+//            if (IsEnabled(CustomComboPreset.NinjaHuraijinArmorCrushCombo))
+//            {
+//                var gauge = GetJobGauge<NINGauge>();
 
-                if (comboTime > 0 && gauge.HutonTimer > 0)
-                {
-                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
-                        return NIN.ArmorCrush;
-                }
-            }
-        }
+//                if (comboTime > 0 && gauge.HutonTimer > 0)
+//                {
+//                    if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush)
+//                        return NIN.ArmorCrush;
+//                }
+//            }
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
 internal class NinjaHakkeMujinsatsu : CustomCombo
 {
