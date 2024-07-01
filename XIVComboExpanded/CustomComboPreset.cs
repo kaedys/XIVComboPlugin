@@ -87,6 +87,16 @@ public enum CustomComboPreset
     [CustomComboInfo("Swift Raise Feature", "Replace Ascend, Ressurection, Egeiro, Raise, Verraise, and Angel Whisper with Swiftcast when it is off cooldown (and Dualcast isn't up).", ADV.JobID)]
     AdvSwiftcastFeature = 1000,
 
+    [ParentCombo(AdvSwiftcastFeature)]
+    [ConflictingCombos(AdvVerRaiseToVerCureFeature)]
+    [CustomComboInfo("Disable for VerRaise", "Doesn't apply this feature to RDM's VerRaise.", ADV.JobID)]
+    AdvDisableVerRaiseFeature = 1002,
+
+    [ParentCombo(AdvSwiftcastFeature)]
+    [ConflictingCombos(AdvDisableVerRaiseFeature)]
+    [CustomComboInfo("Replace VerRaise by Vercure instead", "Do those puny dead bodies really deserve you wasting 2 GCDs?", ADV.JobID)]
+    AdvVerRaiseToVerCureFeature = 1003,
+
     [CustomComboInfo("Variant Raise Feature", "Replace Ascend, Ressurection, Egeiro, Raise, Verraise, and Angel Whisper with Variant Raise II when in a variant dungeon.", ADV.JobID)]
     AdvVariantRaiseFeature = 1001,
 
@@ -365,12 +375,6 @@ public enum CustomComboPreset
     //[CustomComboInfo("Jump + Mirage Dive", "Replace (High) Jump with Mirage Dive when Dive Ready.", DRG.JobID)]
     //DragoonJumpFeature = 2201,
 
-    [CustomComboInfo("Coerthan Torment Combo", "Replace Coerthan Torment with its combo chain.", DRG.JobID)]
-    DragoonCoerthanTormentCombo = 2202,
-
-    [CustomComboInfo("Coerthan Torment Wyrmwind Feature", "Replace Coerthan Torment with Wyrmwind Thrust when you have two Firstminds' Focus.", DRG.JobID)]
-    DragoonCoerthanWyrmwindFeature = 2207,
-
     [CustomComboInfo("Chaos Thrust Combo", "Replace Chaos Thrust with its combo chain.", DRG.JobID)]
     DragoonChaosThrustCombo = 2203,
 
@@ -384,6 +388,12 @@ public enum CustomComboPreset
     [ParentCombo(DragoonFullThrustCombo)]
     [CustomComboInfo("Full Thrust Vorpal Thrust Option", "Replace Full Thrust with its combo chain starting instead at Vorpal Thrust, not True Thrust, while no combo is ongoing.", DRG.JobID)]
     DragoonFullThrustComboOption = 2210,
+
+    [CustomComboInfo("Coerthan Torment Combo", "Replace Coerthan Torment with its combo chain.", DRG.JobID)]
+    DragoonCoerthanTormentCombo = 2202,
+
+    [CustomComboInfo("Coerthan Torment Wyrmwind Feature", "Replace Coerthan Torment with Wyrmwind Thrust when you have two Firstminds' Focus.", DRG.JobID)]
+    DragoonCoerthanWyrmwindFeature = 2207,
 
     //[CustomComboInfo("Double Drakesbane Option", "Replace both Wheeling Thrust and Fang and Claw with Drakesbane when you have Draconian Fire.", DRG.JobID)]
     //DragoonDrakesbaneFeature = 2205,
