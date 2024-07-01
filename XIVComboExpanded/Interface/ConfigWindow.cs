@@ -65,6 +65,11 @@ internal class ConfigWindow : Window
     /// <inheritdoc/>
     public override void Draw()
     {
+        ImGui.Text("DAWNTRAIL EDITION");
+        ImGui.Text("This version of XIVCombo has been updated for Dawntrail (7.0).");
+        ImGui.Text("Because of the massive amount of changes, some combos have been removed, reworked, added. ");
+        ImGui.Text("New combos will be added at a later date.");
+        ImGui.Separator();
         ImGui.Text("This window allows you to enable and disable custom combos to your liking.");
 
         var showSecrets = Service.Configuration.EnableSecretCombos;

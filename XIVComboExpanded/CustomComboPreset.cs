@@ -1068,6 +1068,8 @@ public enum CustomComboPreset
     #region VIPER
 
     
+    [CustomComboInfo("Viper exists!", "No combos planned for now as the job is already combo-heavy. Stay tuned!", VPR.JobID)]
+    ViperDoingNothing = 4100,
 
     #endregion
     // ====================================================================================
