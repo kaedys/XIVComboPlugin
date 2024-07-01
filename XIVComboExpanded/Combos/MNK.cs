@@ -141,149 +141,149 @@ internal class MonkAoECombo : CustomCombo
     }
 }
 
-internal class MonkHowlingFistEnlightenment : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkHowlingFistMeditationFeature;
+//internal class MonkHowlingFistEnlightenment : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkHowlingFistMeditationFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.HowlingFist || actionID == MNK.Enlightenment)
-        {
-            var gauge = GetJobGauge<MNKGauge>();
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.HowlingFist || actionID == MNK.Enlightenment)
+//        {
+//            var gauge = GetJobGauge<MNKGauge>();
 
-            if (level >= MNK.Levels.Meditation && gauge.Chakra < 5)
-                return MNK.Meditation;
-        }
+//            if (level >= MNK.Levels.Meditation && gauge.Chakra < 5)
+//                return MNK.Meditation;
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
-internal class MonkDragonKick : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+//internal class MonkDragonKick : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.DragonKick)
-        {
-            var gauge = GetJobGauge<MNKGauge>();
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.DragonKick)
+//        {
+//            var gauge = GetJobGauge<MNKGauge>();
 
-            if (IsEnabled(CustomComboPreset.MonkDragonKickMeditationFeature))
-            {
-                if (level >= MNK.Levels.Meditation && gauge.Chakra < 5 && !InCombat())
-                    return MNK.Meditation;
-            }
+//            if (IsEnabled(CustomComboPreset.MonkDragonKickMeditationFeature))
+//            {
+//                if (level >= MNK.Levels.Meditation && gauge.Chakra < 5 && !InCombat())
+//                    return MNK.Meditation;
+//            }
 
-            if (IsEnabled(CustomComboPreset.MonkDragonKickBalanceFeature))
-            {
-                if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
-                    return OriginalHook(MNK.MasterfulBlitz);
-            }
+//            if (IsEnabled(CustomComboPreset.MonkDragonKickBalanceFeature))
+//            {
+//                if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
+//                    return OriginalHook(MNK.MasterfulBlitz);
+//            }
 
-            if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
-            {
-                if (level < MNK.Levels.DragonKick)
-                    return MNK.Bootshine;
+//            if (IsEnabled(CustomComboPreset.MonkBootshineFeature))
+//            {
+//                if (level < MNK.Levels.DragonKick)
+//                    return MNK.Bootshine;
 
-                if (HasEffect(MNK.Buffs.LeadenFist) && (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.PerfectBalance) || HasEffect(MNK.Buffs.FormlessFist)))
-                    return MNK.Bootshine;
-            }
-        }
+//                if (HasEffect(MNK.Buffs.LeadenFist) && (HasEffect(MNK.Buffs.OpoOpoForm) || HasEffect(MNK.Buffs.PerfectBalance) || HasEffect(MNK.Buffs.FormlessFist)))
+//                    return MNK.Bootshine;
+//            }
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
-internal class MonkTwinSnakes : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+//internal class MonkTwinSnakes : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.TwinSnakes)
-        {
-            if (IsEnabled(CustomComboPreset.MonkTwinSnakesFeature))
-            {
-                if (level < MNK.Levels.TwinSnakes)
-                    return MNK.TrueStrike;
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.TwinSnakes)
+//        {
+//            if (IsEnabled(CustomComboPreset.MonkTwinSnakesFeature))
+//            {
+//                if (level < MNK.Levels.TwinSnakes)
+//                    return MNK.TrueStrike;
 
-                if (IsEnabled(CustomComboPreset.MonkFormlessSnakesOption))
-                {
-                    if (level >= MNK.Levels.FormShift && HasEffect(MNK.Buffs.FormlessFist))
-                        return MNK.TwinSnakes;
-                }
+//                if (IsEnabled(CustomComboPreset.MonkFormlessSnakesOption))
+//                {
+//                    if (level >= MNK.Levels.FormShift && HasEffect(MNK.Buffs.FormlessFist))
+//                        return MNK.TwinSnakes;
+//                }
 
-                if (FindEffect(MNK.Buffs.DisciplinedFist)?.RemainingTime > 6.0)
-                    return MNK.TrueStrike;
-            }
-        }
+//                if (FindEffect(MNK.Buffs.DisciplinedFist)?.RemainingTime > 6.0)
+//                    return MNK.TrueStrike;
+//            }
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
-internal class MonkTrueStrike : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkTrueStrikeFeature;
+//internal class MonkTrueStrike : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkTrueStrikeFeature;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.TrueStrike && level >= MNK.Levels.TwinSnakes)
-        {
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.TrueStrike && level >= MNK.Levels.TwinSnakes)
+//        {
 
-            if (IsEnabled(CustomComboPreset.MonkFormlessStrikeOption))
-            {
-                if (level >= MNK.Levels.FormShift && HasEffect(MNK.Buffs.FormlessFist))
-                    return MNK.TrueStrike;
-            }
+//            if (IsEnabled(CustomComboPreset.MonkFormlessStrikeOption))
+//            {
+//                if (level >= MNK.Levels.FormShift && HasEffect(MNK.Buffs.FormlessFist))
+//                    return MNK.TrueStrike;
+//            }
 
-            var buff = FindEffect(MNK.Buffs.DisciplinedFist);
-            if (buff == null || buff.RemainingTime <= 6.0)
-                return MNK.TwinSnakes;
-        }
+//            var buff = FindEffect(MNK.Buffs.DisciplinedFist);
+//            if (buff == null || buff.RemainingTime <= 6.0)
+//                return MNK.TwinSnakes;
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
-internal class MonkDemolish : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+//internal class MonkDemolish : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.Demolish)
-        {
-            if (IsEnabled(CustomComboPreset.MonkDemolishFeature))
-            {
-                if (level < MNK.Levels.Demolish || FindTargetEffect(MNK.Debuffs.Demolish)?.RemainingTime > 6.0)
-                    return MNK.SnapPunch;
-            }
-        }
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.Demolish)
+//        {
+//            if (IsEnabled(CustomComboPreset.MonkDemolishFeature))
+//            {
+//                if (level < MNK.Levels.Demolish || FindTargetEffect(MNK.Debuffs.Demolish)?.RemainingTime > 6.0)
+//                    return MNK.SnapPunch;
+//            }
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
-internal class MonkSnapPunch : CustomCombo
-{
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
+//internal class MonkSnapPunch : CustomCombo
+//{
+//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MnkAny;
 
-    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    {
-        if (actionID == MNK.SnapPunch)
-        {
-            if (IsEnabled(CustomComboPreset.MonkSnapPunchFeature))
-            {
-                if (level < MNK.Levels.SnapPunch || FindTargetEffect(MNK.Debuffs.Demolish) == null || FindTargetEffect(MNK.Debuffs.Demolish)?.RemainingTime < 6.0)
-                    return MNK.Demolish;
-            }
-        }
+//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+//    {
+//        if (actionID == MNK.SnapPunch)
+//        {
+//            if (IsEnabled(CustomComboPreset.MonkSnapPunchFeature))
+//            {
+//                if (level < MNK.Levels.SnapPunch || FindTargetEffect(MNK.Debuffs.Demolish) == null || FindTargetEffect(MNK.Debuffs.Demolish)?.RemainingTime < 6.0)
+//                    return MNK.Demolish;
+//            }
+//        }
 
-        return actionID;
-    }
-}
+//        return actionID;
+//    }
+//}
 
 internal class MonkPerfectBalance : CustomCombo
 {
