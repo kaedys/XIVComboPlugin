@@ -1018,45 +1018,44 @@ public enum CustomComboPreset
     // ====================================================================================
     #region SUMMONER
 
-    [CustomComboInfo("ED Fester Feature", "Change Fester into Energy Drain when out of Aetherflow stacks.", SMN.JobID)]
-    SummonerEDFesterFeature = 2701,
-
-    [CustomComboInfo("ES Painflare Feature", "Change Painflare into Energy Syphon when out of Aetherflow stacks.", SMN.JobID)]
-    SummonerESPainflareFeature = 2702,
-
     [CustomComboInfo("Ruin Feature", "Change Ruin into Gemburst when attuned.", SMN.JobID)]
     SummonerRuinFeature = 2703,
-
-    [CustomComboInfo("Titan's Favor Ruin Feature", "Change Ruin into Mountain Buster (oGCD) when available.", SMN.JobID)]
-    SummonerRuinTitansFavorFeature = 2713,
-
-    [CustomComboInfo("Further Ruin Feature", "Change Ruin into Ruin4 when available and appropriate.", SMN.JobID)]
-    SummonerFurtherRuinFeature = 2705,
 
     [CustomComboInfo("Outburst Feature", "Change Outburst into Precious Brilliance when attuned.", SMN.JobID)]
     SummonerOutburstFeature = 2704,
 
+    [CustomComboInfo("Titan's Favor Ruin Feature", "Change Ruin into Mountain Buster (oGCD) when available.", SMN.JobID)]
+    SummonerRuinTitansFavorFeature = 2713,
+
     [CustomComboInfo("Titan's Favor Outburst Feature", "Change Outburst into Mountain Buster (oGCD) when available.", SMN.JobID)]
     SummonerOutburstTitansFavorFeature = 2714,
 
-    [CustomComboInfo("Further Outburst Feature", "Change Outburst into Ruin4 when available and appropriate.", SMN.JobID)]
-    SummonerFurtherOutburstFeature = 2706,
-
-    [CustomComboInfo("Shiny Titan's Favor Feature", "Change Gemshine and Precious Brilliance into Mountain Buster (oGCD) when available.", SMN.JobID)]
+    [CustomComboInfo("Gems Titan's Favor Feature", "Change Gemshine and Precious Brilliance into Mountain Buster (oGCD) when available.", SMN.JobID)]
     SummonerShinyTitansFavorFeature = 2707,
 
-    [CustomComboInfo("Further Shiny Feature", "Change Gemshine and Precious Brilliance into Ruin4 when available and appropriate.", SMN.JobID)]
+    [CustomComboInfo("Ruin 4 to Ruin Feature", "Change Ruin into Ruin4 when available and appropriate.", SMN.JobID)]
+    SummonerFurtherRuinFeature = 2705,
+
+    [CustomComboInfo("Ruin 4 to Outburst Feature", "Change Outburst into Ruin4 when available and appropriate.", SMN.JobID)]
+    SummonerFurtherOutburstFeature = 2706,
+
+    [CustomComboInfo("Gems Ruin 4 Feature", "Change Gemshine and Precious Brilliance into Ruin 4 when available and appropriate.", SMN.JobID)]
     SummonerFurtherShinyFeature = 2708,
 
-    [CustomComboInfo("Shiny Enkindle Feature", "Change Gemshine and Precious Brilliance to Enkindle when Bahamut or Phoenix are summoned.", SMN.JobID)]
+    [CustomComboInfo("Gems Enkindle Feature", "Change Gemshine and Precious Brilliance to Enkindle when Bahamut, Phoenix or Summon Solar Bahamut are summoned.", SMN.JobID)]
     SummonerShinyEnkindleFeature = 2709,
 
-    [CustomComboInfo("Demi Enkindle Feature", "Change Summon Bahamut and Summon Phoenix into Enkindle when Bahamut or Phoenix are summoned.", SMN.JobID)]
+    [CustomComboInfo("Demi Enkindle Feature", "Change Summon Bahamut and Summon Phoenix and Summon Solar Bahamut into Enkindle when Bahamut or Phoenix are summoned.", SMN.JobID)]
     SummonerDemiEnkindleFeature = 2710,
 
-    [CustomComboInfo("Searing Demi Feature", "Change Summon Bahamut and Summon Phoenix into Searing Light when Bahamut is ready to be summoned, Searing Light is off cooldown, and you are in combat.", SMN.JobID)]
+    [CustomComboInfo("Searing Demi Feature", "Change Summon Bahamut, Summon Phoenix and Summon Solar Bahamut into Searing Light when any of them is ready to be summoned, Searing Light is off cooldown, and you are in combat.", SMN.JobID)]
     SummonerDemiSearingLightFeature = 2715,
 
+    [CustomComboInfo("ED Fester/Necrosis Feature", "Change Fester/Necrosis into Energy Drain when out of Aetherflow stacks.", SMN.JobID)]
+    SummonerEDFesterFeature = 2701,
+
+    [CustomComboInfo("ES Painflare Feature", "Change Painflare into Energy Syphon when out of Aetherflow stacks.", SMN.JobID)]
+    SummonerESPainflareFeature = 2702,
     [CustomComboInfo("Radiant Carbuncle Feature", "Change Radiant Aegis into Summon Carbuncle when no pet has been summoned.", SMN.JobID)]
     SummonerRadiantCarbuncleFeature = 2711,
 
@@ -1067,7 +1066,6 @@ public enum CustomComboPreset
     // ====================================================================================
     #region VIPER
 
-    
     [CustomComboInfo("Viper exists!", "No combos planned for now as the job is already combo-heavy. Stay tuned!", VPR.JobID)]
     ViperDoingNothing = 4100,
 
