@@ -1,7 +1,8 @@
 ﻿
+using System;
+
 using Dalamud.Game.ClientState.JobGauge.Types;
 using FFXIVClientStructs.FFXIV.Client.Game.Gauge;
-using System;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -50,7 +51,10 @@ internal static class PCT
         RainbowDrip = 34688,
         CreatureMotif = 34689,
         WeaponMotif = 34690,
-        LandscapeMotif = 34691;
+        LandscapeMotif = 34691,
+        AnimalMotif2 = 35347,
+        WeaponMotif2 = 35348,
+        LandscapeMotif2 = 35349;
 
     public static class Buffs
     {
@@ -119,6 +123,44 @@ internal static class PCT
             StarPrism2 = 100;
     }
 
+    //internal class PictomancerHolyCometCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerHolyCometCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        var gauge = GetJobGauge<PCTGauge>();
+    //        if (actionID == PCT.MiracleWhite && gauge.Black > 0)
+    //        {
+    //            {
+    //                return PCT.CometBlack;
+    //            }
+    //            return actionID;
+    //    }
+    //}
+
+    //internal class PictomancerHolyAutoCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerHolyAutoCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        var gauge = GetJobGauge<PCTGauge>();
+    //        if (actionID == PCT.FireRed || actionID == PCT.ExtraFireRed)
+    //        {
+    //            if (gauge.Paint.Count() == 5)
+    //            {
+    //                {
+    //                    if (gauge.Paint.Black > 0) return PCT.CometBlack;
+    //                    else return PCT.MiracleWhite;
+    //                }
+    //            }
+    //        }
+
+    //        return actionID;
+    //    }
+    //}
+
     internal class PictomancerSubtractiveSTCombo : CustomCombo
     {
         protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerSubtractiveSTCombo;
@@ -173,5 +215,91 @@ internal static class PCT
         }
     }
 
+    //internal class PictomancerSubtractiveAutoCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerSubtractiveAutoCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        var gauge = GetJobGauge<PCTGauge>();
+    //        if (actionID == PCT.FireRed || actionID == PCT.ExtraFireRed)
+    //        {
+    //            if (HasEffect(PCT.Buffs.Chroma3Ready) && !(HasEffect(PCT.Buffs.SubstractivePalette)) && gauge.PalleteGauge == 100)
+    //            {
+    //                return PCT.SubstractivePalette;
+    //            }
+    //        }
+
+    //        return actionID;
+    //    }
+    //}
+
+    //internal class PictomancerCreatureMotifCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerCreatureMotifCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        return actionID;
+    //    }
+    //}
+
+    //internal class PictomancerCreatureMogCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerCreatureMogCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        return actionID;
+    //    }
+    //}
+
+    //internal class PictomancerWeaponMotifCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerWeaponMotifCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        return actionID;
+    //    }
+    //}
+
+    internal class PictomancerWeaponHammerCombo : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerWeaponHammerCombo;
+
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == PCT.WeaponMotif || actionID == PCT.WeaponMotif2)
+            {
+                if (HasEffect(PCT.Buffs.HammerReady))
+                {
+                    return OriginalHook(PCT.HammerStamp);
+                }
+            }
+
+            return actionID;
+        }
+    }
+
+    //internal class PictomancerLandscapeMotifCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerLandscapeMotifCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        return actionID;
+    //    }
+    //}
+
+    //internal class PictomancerLandscapePrismCombo : CustomCombo
+    //{
+    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerLandscapePrismCombo;
+
+    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    //    {
+    //        return actionID;
+    //    }
+    //}
 
 }
