@@ -54,7 +54,6 @@ internal static class DNC
             FourfoldFanDance = 2699,
             LastDanceReady = 3867,
             FinishingMoveReady = 3868;
-
     }
 
     public static class Debuffs

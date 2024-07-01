@@ -384,36 +384,3 @@ internal class BlackScathe : CustomCombo
         return actionID;
     }
 }
-
-//internal class BlackThunder : CustomCombo
-//{
-//    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BlackThunderFeature;
-
-//    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-//    {
-//        if (actionID == BLM.Thunder3 || actionID == BLM.Thunder4)
-//        {
-//            if (IsEnabled(CustomComboPreset.BlackThunderDelayOption) && this.IsThunderCastRecently(lastComboMove))
-//                return actionID;
-
-//            if (level >= BLM.Levels.EnhancedSharpcast2)
-//            {
-//                if (HasCharges(BLM.Sharpcast) && !HasEffect(BLM.Buffs.Sharpcast))
-//                    return BLM.Sharpcast;
-//            }
-//            else if (level >= BLM.Levels.Sharpcast)
-//            {
-//                if (IsOffCooldown(BLM.Sharpcast))
-//                    return BLM.Sharpcast;
-//            }
-//        }
-
-//        return actionID;
-//    }
-
-//    private bool IsThunderCastRecently(uint lastComboMove)
-//    {
-//        bool isGcdOnCooldown = IsOnCooldown(BLM.Thunder3); // shared with Thunder4
-//        return isGcdOnCooldown && (lastComboMove == BLM.Thunder3 || lastComboMove == BLM.Thunder4);
-//    }
-}

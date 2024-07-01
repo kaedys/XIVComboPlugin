@@ -67,8 +67,9 @@ internal class ConfigWindow : Window
     {
         ImGui.Text("DAWNTRAIL EDITION");
         ImGui.Text("This version of XIVCombo has been updated for Dawntrail (7.0).");
-        ImGui.Text("Because of the massive amount of changes, some combos have been removed, reworked, added. ");
+        ImGui.Text("Because of the massive amount of changes, some combos have been removed, reworked, added.");
         ImGui.Text("New combos will be added at a later date.");
+        ImGui.Text("If you encounter any problems, please open an issue on github.");
         ImGui.Separator();
         ImGui.Text("This window allows you to enable and disable custom combos to your liking.");
 

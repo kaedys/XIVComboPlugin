@@ -185,9 +185,11 @@ internal static class AST
 
 //        return actionID;
 //    }
-//}
+#pragma warning disable SA1005 // Single line comments should begin with single space
+                              //}
 
 internal class AstrologianBenefic2 : CustomCombo
+#pragma warning restore SA1005 // Single line comments should begin with single space
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.AstrologianBeneficSyncFeature;
 
