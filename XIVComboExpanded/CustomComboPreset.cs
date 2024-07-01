@@ -362,8 +362,8 @@ public enum CustomComboPreset
     // ====================================================================================
     #region DRAGOON
 
-    [CustomComboInfo("Jump + Mirage Dive", "Replace (High) Jump with Mirage Dive when Dive Ready.", DRG.JobID)]
-    DragoonJumpFeature = 2201,
+    //[CustomComboInfo("Jump + Mirage Dive", "Replace (High) Jump with Mirage Dive when Dive Ready.", DRG.JobID)]
+    //DragoonJumpFeature = 2201,
 
     [CustomComboInfo("Coerthan Torment Combo", "Replace Coerthan Torment with its combo chain.", DRG.JobID)]
     DragoonCoerthanTormentCombo = 2202,
@@ -385,8 +385,8 @@ public enum CustomComboPreset
     [CustomComboInfo("Full Thrust Vorpal Thrust Option", "Replace Full Thrust with its combo chain starting instead at Vorpal Thrust, not True Thrust, while no combo is ongoing.", DRG.JobID)]
     DragoonFullThrustComboOption = 2210,
 
-    [CustomComboInfo("Wheeling Thrust / Fang and Claw Option", "Replace Chaos Thrust with Wheeling Thrust and Full Thrust with Fang and Claw when you have either Enhanced Fang and Claw or Wheeling Thrust.", DRG.JobID)]
-    DragoonFangThrustFeature = 2205,
+    //[CustomComboInfo("Double Drakesbane Option", "Replace both Wheeling Thrust and Fang and Claw with Drakesbane when you have Draconian Fire.", DRG.JobID)]
+    //DragoonDrakesbaneFeature = 2205,
 
     [ConflictingCombos(DragoonStardiverDragonfireDiveFeature)]
     [CustomComboInfo("Stardiver to Nastrond", "Replace Stardiver with Nastrond when Nastrond is off-cooldown, and Geirskogul outside of Life of the Dragon.", DRG.JobID)]
@@ -396,15 +396,15 @@ public enum CustomComboPreset
     [CustomComboInfo("Stardiver to Dragonfire Dive", "Replace Stardiver with Dragonfire Dive when the latter is off cooldown (and you have more than 7.5s of LotD left), or outside of Life of the Dragon.", DRG.JobID)]
     DragoonStardiverDragonfireDiveFeature = 2208,
 
-    [SecretCustomCombo]
-    [ConflictingCombos(DragoonStardiverDragonfireDiveFeature, DragoonStardiverNastrondFeature)]
-    [CustomComboInfo("Dive Dive Dive!", "Replace Spineshatter Dive, Dragonfire Dive, and Stardiver with whichever is available.", DRG.JobID)]
-    DragoonDiveFeature = 2211,
+    //[SecretCustomCombo]
+    //[ConflictingCombos(DragoonStardiverDragonfireDiveFeature, DragoonStardiverNastrondFeature)]
+    //[CustomComboInfo("Dive Dive Dive!", "Replace Spineshatter Dive, Dragonfire Dive, and Stardiver with whichever is available.", DRG.JobID)]
+    //DragoonDiveFeature = 2211,
 
     [CustomComboInfo("Geirskogul to Wyrmwind Thrust", "Replace Geirskogul with Wyrmwind Thrust when available and Geirskogul or Nastrond are on cooldown.", DRG.JobID)]
     DragoonGeirskogulWyrmwindFeature = 2212,
 
-    [CustomComboInfo("Lance Charge to Dragon Sight and Battle Litany", "Replace Lance Charge with Dragon Sight and Battle Litany when available and Lance Charge is on cooldown.", DRG.JobID)]
+    [CustomComboInfo("Lance Charge to Battle Litany", "Replace Lance Charge Battle Litany when available and Lance Charge is on cooldown.", DRG.JobID)]
     DragoonLanceChargeFeature = 2213,
 
     #endregion
