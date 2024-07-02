@@ -19,9 +19,11 @@ internal static class DRG
         WheelingThrust = 3556,
         FangAndClaw = 3554,
         RaidenThrust = 16479,
-        Drakesbane = 36952,
         BarrageThrust = 36954,
         ExplosiveThrust = 36955,
+        Drakesbane = 36952,
+        BarrageThrust2 = 36954,
+        ExplosiveThrust2 = 36955,
         // AoE
         DoomSpike = 86,
         SonicThrust = 7397,
@@ -138,7 +140,7 @@ internal class DragoonChaosThrust : CustomCombo
             {
                 if (comboTime > 0)
                 {
-                    if (lastComboMove == DRG.ChaosThrust && level >= DRG.Levels.WheelingThrust)
+                    if ((lastComboMove == DRG.ChaosThrust && lastComboMove == DRG.ChaoticSpring) && level >= DRG.Levels.WheelingThrust)
                         // Wheeling
                         return OriginalHook(DRG.WheelingThrust);
 
@@ -177,7 +179,7 @@ internal class DragoonFullThrust : CustomCombo
             {
                 if (comboTime > 0)
                 {
-                    if (lastComboMove == DRG.FullThrust && level >= DRG.Levels.FangAndClaw)
+                    if ((lastComboMove == DRG.FullThrust || lastComboMove == DRG.HeavensThrust) && level >= DRG.Levels.FangAndClaw)
                         // Claw
                         return OriginalHook(DRG.FangAndClaw);
 
