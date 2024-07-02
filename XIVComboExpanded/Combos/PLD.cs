@@ -31,6 +31,7 @@ internal static class PLD
         BladeOfValor = 25750,
         Supplication = 36918,
         Sepulchre = 36919,
+        Imperator = 36921,
         BladeOfHonor = 36922;
 
     public static class Buffs
@@ -43,7 +44,8 @@ internal static class PLD
             ConfiteorReady = 3019,
             SupplicationReady = 3827,
             SepulchreReady = 3828,
-            GoringBladeReady = 3847;
+            GoringBladeReady = 3847,
+            BladeOfHonorReady = 3831;
     }
 
     public static class Debuffs
@@ -284,7 +286,7 @@ internal class PaladinRequiescat : PaladinCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == PLD.Requiescat)
+        if (actionID == PLD.Requiescat || actionID == PLD.Imperator)
         {
             if (IsEnabled(CustomComboPreset.PaladinRequiescatCombo))
             {
@@ -317,7 +319,7 @@ internal class PaladinRequiescat : PaladinCombo
                     if (original != PLD.Confiteor)
                         return original;
 
-                    if (HasEffect(PLD.Buffs.ConfiteorReady))
+                    if (HasEffect(PLD.Buffs.ConfiteorReady) || HasEffect(PLD.Buffs.BladeOfHonorReady))
                         return PLD.Confiteor;
                 }
 
