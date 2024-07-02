@@ -19,9 +19,9 @@ internal static class DRG
         WheelingThrust = 3556,
         FangAndClaw = 3554,
         RaidenThrust = 16479,
-        BarrageThrust = 36901,
-        ExplosiveThrust = 36903,
         Drakesbane = 36952,
+        BarrageThrust = 36954,
+        ExplosiveThrust = 36955,
         // AoE
         DoomSpike = 86,
         SonicThrust = 7397,
