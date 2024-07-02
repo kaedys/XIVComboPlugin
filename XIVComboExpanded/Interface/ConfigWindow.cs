@@ -118,7 +118,7 @@ internal class ConfigWindow : Window
 
         ImGui.PopStyleVar();
 
-        if (ImGui.Button("Support me on Ko-Fi ♥"))
+        if (ImGui.Button("You can support me on Ko-Fi ♥"))
         {
             Process.Start(new ProcessStartInfo { FileName = "https://ko-fi.com/khayle", UseShellExecute = true });
         }
