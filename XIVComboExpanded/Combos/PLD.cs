@@ -319,8 +319,11 @@ internal class PaladinRequiescat : PaladinCombo
                     if (original != PLD.Confiteor)
                         return original;
 
-                    if (HasEffect(PLD.Buffs.ConfiteorReady) || HasEffect(PLD.Buffs.BladeOfHonorReady))
-                        return PLD.Confiteor;
+                    if (HasEffect(PLD.Buffs.BladeOfHonorReady))
+                        return OriginalHook(PLD.Imperator);
+
+                    if (HasEffect(PLD.Buffs.ConfiteorReady))
+                        return OriginalHook(PLD.Confiteor);
                 }
 
                 if (level >= PLD.Levels.Requiescat && HasEffect(PLD.Buffs.Requiescat))
