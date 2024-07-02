@@ -15,6 +15,7 @@ internal static class SAM
         Yukikaze = 7480,
         Gekko = 7481,
         Kasha = 7482,
+        Gyofu = 36963,
         // AoE
         Fuga = 7483,
         Mangetsu = 7484,
@@ -89,7 +90,7 @@ internal class SamuraiYukikaze : CustomCombo
 
             if (comboTime > 0)
             {
-                if (lastComboMove == SAM.Hakaze && level >= SAM.Levels.Yukikaze)
+                if ((lastComboMove == SAM.Hakaze || lastComboMove == SAM.Gyofu ) && level >= SAM.Levels.Yukikaze)
                     return SAM.Yukikaze;
             }
 
@@ -116,7 +117,7 @@ internal class SamuraiGekko : CustomCombo
                 if (lastComboMove == SAM.Jinpu && level >= SAM.Levels.Gekko)
                     return SAM.Gekko;
 
-                if (lastComboMove == SAM.Hakaze && level >= SAM.Levels.Jinpu)
+                if ((lastComboMove == SAM.Hakaze || lastComboMove == SAM.Gyofu) && level >= SAM.Levels.Jinpu)
                     return SAM.Jinpu;
             }
 
@@ -146,7 +147,7 @@ internal class SamuraiKasha : CustomCombo
                 if (lastComboMove == SAM.Shifu && level >= SAM.Levels.Kasha)
                     return SAM.Kasha;
 
-                if (lastComboMove == SAM.Hakaze && level >= SAM.Levels.Shifu)
+                if ((lastComboMove == SAM.Hakaze || lastComboMove == SAM.Gyofu) && level >= SAM.Levels.Shifu)
                     return SAM.Shifu;
             }
 
