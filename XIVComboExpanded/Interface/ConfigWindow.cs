@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 
@@ -116,6 +117,11 @@ internal class ConfigWindow : Window
         }
 
         ImGui.PopStyleVar();
+
+        if (ImGui.Button("Support me on Ko-Fi ♥"))
+        {
+            Process.Start(new ProcessStartInfo { FileName = "https://ko-fi.com/khayle", UseShellExecute = true });
+        }
 
         ImGui.EndChild();
     }
