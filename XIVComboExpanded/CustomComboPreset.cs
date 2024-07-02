@@ -357,9 +357,6 @@ public enum CustomComboPreset
     // ====================================================================================
     #region DRAGOON
 
-    //[CustomComboInfo("Jump + Mirage Dive", "Replace (High) Jump with Mirage Dive when Dive Ready.", DRG.JobID)]
-    //DragoonJumpFeature = 2201,
-
     [CustomComboInfo("Chaos Thrust Combo", "Replace Chaos Thrust with its combo chain.", DRG.JobID)]
     DragoonChaosThrustCombo = 2203,
 
@@ -380,9 +377,6 @@ public enum CustomComboPreset
     [CustomComboInfo("Coerthan Torment Wyrmwind Feature", "Replace Coerthan Torment with Wyrmwind Thrust when you have two Firstminds' Focus.", DRG.JobID)]
     DragoonCoerthanWyrmwindFeature = 2207,
 
-    //[CustomComboInfo("Double Drakesbane Option", "Replace both Wheeling Thrust and Fang and Claw with Drakesbane when you have Draconian Fire.", DRG.JobID)]
-    //DragoonDrakesbaneFeature = 2205,
-
     [ConflictingCombos(DragoonStardiverDragonfireDiveFeature)]
     [CustomComboInfo("Stardiver to Nastrond", "Replace Stardiver with Nastrond when Nastrond is off-cooldown, and Geirskogul outside of Life of the Dragon.", DRG.JobID)]
     DragoonStardiverNastrondFeature = 2206,
@@ -390,11 +384,6 @@ public enum CustomComboPreset
     [ConflictingCombos(DragoonStardiverNastrondFeature)]
     [CustomComboInfo("Stardiver to Dragonfire Dive", "Replace Stardiver with Dragonfire Dive when the latter is off cooldown (and you have more than 7.5s of LotD left), or outside of Life of the Dragon.", DRG.JobID)]
     DragoonStardiverDragonfireDiveFeature = 2208,
-
-    //[SecretCustomCombo]
-    //[ConflictingCombos(DragoonStardiverDragonfireDiveFeature, DragoonStardiverNastrondFeature)]
-    //[CustomComboInfo("Dive Dive Dive!", "Replace Spineshatter Dive, Dragonfire Dive, and Stardiver with whichever is available.", DRG.JobID)]
-    //DragoonDiveFeature = 2211,
 
     [CustomComboInfo("Geirskogul to Wyrmwind Thrust", "Replace Geirskogul with Wyrmwind Thrust when available and Geirskogul or Nastrond are on cooldown.", DRG.JobID)]
     DragoonGeirskogulWyrmwindFeature = 2212,

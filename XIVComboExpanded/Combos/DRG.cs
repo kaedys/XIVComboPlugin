@@ -145,11 +145,11 @@ internal class DragoonChaosThrust : CustomCombo
                         return OriginalHook(DRG.ChaosThrust);
 
                     if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.Disembowel)
-                        return DRG.Disembowel;
+                        return OriginalHook(DRG.Disembowel);
                 }
 
                 if (IsEnabled(CustomComboPreset.DragoonChaosThrustComboOption))
-                    return DRG.Disembowel;
+                    return OriginalHook(DRG.Disembowel);
 
                 // Vorpal Thrust
                 return OriginalHook(DRG.TrueThrust);
@@ -184,11 +184,11 @@ internal class DragoonFullThrust : CustomCombo
                         return OriginalHook(DRG.FullThrust);
 
                     if ((lastComboMove == DRG.TrueThrust || lastComboMove == DRG.RaidenThrust) && level >= DRG.Levels.VorpalThrust)
-                        return DRG.VorpalThrust;
+                        return OriginalHook(DRG.VorpalThrust);
                 }
 
                 if (IsEnabled(CustomComboPreset.DragoonFullThrustComboOption))
-                    return DRG.VorpalThrust;
+                    return OriginalHook(DRG.VorpalThrust);
 
                 // Vorpal Thrust
                 return OriginalHook(DRG.TrueThrust);
