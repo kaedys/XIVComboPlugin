@@ -659,18 +659,18 @@ public enum CustomComboPreset
     // ====================================================================================
     #region PICTOMANCER
 
-    [CustomComboInfo("Subtractive Single-Target Combo", "Replace Fire in Red and its combo chain with Blizzard in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    [CustomComboInfo("Subtractive Single-Target Combo", "Replace Blizzard in Cyan and its combo chain with Fire in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveSTCombo = 4201,
 
-    [CustomComboInfo("Subtractive AoE Combo", "Replace Fire II in Red and its combo chain with Blizzard II in Cyan and its combo chain when Subtractive Palette is active.", PCT.JobID)]
+    [CustomComboInfo("Subtractive AoE Combo", "Replace Blizzard II in Cyan and its combo chain with Fire II in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveAoECombo = 4202,
 
     //[SecretCustomCombo]
     //[CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
     //PictomancerSubtractiveAutoCombo = 4205,
 
-    //[CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
-    //PictomancerHolyCometCombo = 4203,
+    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
+    PictomancerHolyCometCombo = 4203,
 
     //[SecretCustomCombo]
     //[CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]

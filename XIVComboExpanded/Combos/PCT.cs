@@ -123,21 +123,18 @@ internal static class PCT
             StarPrism2 = 100;
     }
 
-    //internal class PictomancerHolyCometCombo : CustomCombo
-    //{
-    //    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerHolyCometCombo;
+    internal class PictomancerHolyCometCombo : CustomCombo
+    {
+        protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.PictomancerHolyCometCombo;
 
-    //    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-    //    {
-    //        var gauge = GetJobGauge<PCTGauge>();
-    //        if (actionID == PCT.MiracleWhite && gauge.Black > 0)
-    //        {
-    //            {
-    //                return PCT.CometBlack;
-    //            }
-    //            return actionID;
-    //    }
-    //}
+        protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+        {
+            if (actionID == PCT.MiracleWhite && HasEffect(PCT.Buffs.InvertedColors))
+                return PCT.CometBlack;
+
+            return actionID;
+        }
+    }
 
     //internal class PictomancerHolyAutoCombo : CustomCombo
     //{
