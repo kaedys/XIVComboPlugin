@@ -185,7 +185,7 @@ internal class MachinistHeatBlastAutoCrossbow : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == MCH.HeatBlast || actionID == MCH.AutoCrossbow)
+        if (actionID == MCH.HeatBlast || actionID == MCH.BlazingShot || actionID == MCH.AutoCrossbow)
         {
             var gauge = GetJobGauge<MCHGauge>();
 
