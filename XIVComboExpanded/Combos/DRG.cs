@@ -140,7 +140,7 @@ internal class DragoonChaosThrust : CustomCombo
             {
                 if (comboTime > 0)
                 {
-                    if ((lastComboMove == DRG.ChaosThrust && lastComboMove == DRG.ChaoticSpring) && level >= DRG.Levels.WheelingThrust)
+                    if ((lastComboMove == DRG.ChaosThrust || lastComboMove == DRG.ChaoticSpring) && level >= DRG.Levels.WheelingThrust)
                         // Wheeling
                         return OriginalHook(DRG.WheelingThrust);
 
