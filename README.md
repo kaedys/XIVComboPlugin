@@ -5,6 +5,9 @@
 This plugin condenses combos and mutually exclusive abilities onto a single button. 
 Thanks to Meli for the initial start, and obviously goat for making any of this possible.
 
+## [Dawntrail Status](https://github.com/MKhayle/XIVComboExpanded/discussions/250)
+Every job should be working correctly at lvl 90 and below. Nothing is guaranteed above 90 and some features can break. Please report issues here!
+
 ## Note 
 This fork was initially [daemitus](https://github.com/daemitus)' work. I have been maintaining it in his stead since he stopped playing the game. 
 To ensure a seamless transition, the repository URL remains the same thanks to daemitus' cooperation.
