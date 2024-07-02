@@ -168,13 +168,13 @@ internal class DarkCarveAndSpitAbyssalDrain : CustomCombo
             if (IsEnabled(CustomComboPreset.DarkBloodWeaponFeature))
             {
                 if (actionID == DRK.AbyssalDrain && level < DRK.Levels.AbyssalDrain)
-                    return DRK.BloodWeapon;
+                    return OriginalHook(DRK.BloodWeapon);
 
                 if (actionID == DRK.CarveAndSpit && level < DRK.Levels.CarveAndSpit)
-                    return DRK.BloodWeapon;
+                    return OriginalHook(DRK.BloodWeapon);
 
                 if (level >= DRK.Levels.BloodWeapon && IsOffCooldown(DRK.BloodWeapon))
-                    return DRK.BloodWeapon;
+                    return OriginalHook(DRK.BloodWeapon);
             }
         }
 
