@@ -93,7 +93,7 @@ internal class SamuraiYukikaze : CustomCombo
                     return SAM.Yukikaze;
             }
 
-            return SAM.Hakaze;
+            return OriginalHook(SAM.Hakaze);
         }
 
         return actionID;
@@ -123,7 +123,7 @@ internal class SamuraiGekko : CustomCombo
             if (IsEnabled(CustomComboPreset.SamuraiGekkoOption))
                 return SAM.Jinpu;
 
-            return SAM.Hakaze;
+            return OriginalHook(SAM.Hakaze);
         }
 
         return actionID;
@@ -153,7 +153,7 @@ internal class SamuraiKasha : CustomCombo
             if (IsEnabled(CustomComboPreset.SamuraiKashaOption))
                 return SAM.Shifu;
 
-            return SAM.Hakaze;
+            return OriginalHook(SAM.Hakaze);
         }
 
         return actionID;
