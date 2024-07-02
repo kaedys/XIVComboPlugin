@@ -1,6 +1,7 @@
-# XIVCombo Expanded
+# XIVCombo Expanded [![Build](https://github.com/MKhayle/XIVComboPlugin/actions/workflows/build.yml/badge.svg)](https://github.com/daemitus/XIVComboPlugin/actions/workflows/build.yml) 
 
-[![Build](https://github.com/MKhayle/XIVComboPlugin/actions/workflows/build.yml/badge.svg)](https://github.com/daemitus/XIVComboPlugin/actions/workflows/build.yml) [![Kofi](https://img.shields.io/badge/Kofi-F16061.svg?logo=ko-fi&logoColor=white)](![Kofi](https://img.shields.io/badge/Kofi-F16061.svg?logo=ko-fi&logoColor=white))
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/R6R2F1EYP)
 
 This plugin condenses combos and mutually exclusive abilities onto a single button. 
 Thanks to Meli for the initial start, and obviously goat for making any of this possible.
