@@ -168,19 +168,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Blizzard 1/3 Feature", "Replace Blizzard 1 with Blizzard 3 when unlocked and becomes Paradox when available.", BLM.JobID)]
     BlackBlizzardFeature = 2505,
 
-    [ParentCombo(BlackBlizzardFeature)]
-    [CustomComboInfo("Paradox only during Umbral Ice", "Only replace Blizzard with Paradox during Umbral Ice.", BLM.JobID)]
-    BlackBlizzardParadoxOption = 2521,
-
     [CustomComboInfo("Freeze/Flare Feature", "Freeze and Flare become whichever action you can currently use.", BLM.JobID)]
     BlackFreezeFlareFeature = 2506,
 
     [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare in Astral Fire when only 1 Umbral Heart is active, less than 3000 mp, or during Enhanced Flare.", BLM.JobID)]
     BlackFire2Feature = 2508,
-
-    [ParentCombo(BlackFire2Feature)]
-    [CustomComboInfo("Fire 2 Triplecast Option", "Shorten rotation when Triplecast is active to make both Flare casts instant.", BLM.JobID)]
-    BlackFire2TriplecastOption = 2523,
 
     [CustomComboInfo("Ice 2 Feature", "(High) Blizzard 2 becomes Freeze in Umbral Ice.", BLM.JobID)]
     BlackBlizzard2Feature = 2509,
@@ -193,13 +185,6 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Scathe/Xenoglossy Feature", "Scathe becomes Xenoglossy when available.", BLM.JobID)]
     BlackScatheFeature = 2507,
-
-    //[CustomComboInfo("Thunder 3/4 to Sharpcast", "Thunder 3 and Thunder 4 become Sharpcast when available.", BLM.JobID)]
-    //BlackThunderFeature = 2519,
-
-    //[ParentCombo(BlackThunderFeature)]
-    //[CustomComboInfo("Delay replacement after casting Thunder", "Delay changing Thunder into Sharpcast immediately after casting Thunder.", BLM.JobID)]
-    //BlackThunderDelayOption = 2520,
 
     #endregion
     // ====================================================================================

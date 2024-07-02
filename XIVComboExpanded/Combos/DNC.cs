@@ -320,7 +320,7 @@ internal class DancerLastDanceFeature : CustomCombo
     {
         if (actionID == DNC.StandardStep)
         {
-            if (level >= DNC.Levels.LastDance)
+            if (level >= DNC.Levels.LastDance && HasEffect(DNC.Buffs.LastDanceReady))
             {
                 if (IsEnabled(CustomComboPreset.DancerFinishingMovePriorityFeature) && HasEffect(DNC.Buffs.FinishingMoveReady) && level >= DNC.Levels.FinishingMove)
                 {
