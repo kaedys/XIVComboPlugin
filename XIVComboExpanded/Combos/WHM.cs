@@ -169,11 +169,11 @@ internal class WhiteMageMedica : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == WHM.Medica &&
-        (IsEnabled(CustomComboPreset.WhiteMageAfflatusMedicaPlusFeature) &&
-            (actionID == WHM.Medica2 || actionID == WHM.Medica3)
+        if (actionID == WHM.Medica ||
+            (IsEnabled(CustomComboPreset.WhiteMageAfflatusMedicaPlusFeature) &&
+                (actionID == WHM.Medica2 || actionID == WHM.Medica3)
+                )
             )
-        )
         {
             var gauge = GetJobGauge<WHMGauge>();
 
