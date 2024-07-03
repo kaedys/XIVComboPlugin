@@ -828,11 +828,15 @@ public enum CustomComboPreset
     // ====================================================================================
     #region RED MAGE
 
-    [CustomComboInfo("Verstone/Verfire Feature", "Replace Verstone/Verfire with Jolt/Scorch when no proc is available.", RDM.JobID)]
+    [CustomComboInfo("Verstone/Verfire Feature", "Replace Verstone/Verfire with Jolt when no proc is available.", RDM.JobID)]
     RedMageVerprocFeature = 3504,
 
     [CustomComboInfo("Verstone/Verfire Plus Feature", "Replace Verstone/Verfire with Veraero/Verthunder when various instant-cast effects are active.", RDM.JobID)]
     RedMageVerprocPlusFeature = 3505,
+
+    [ParentCombo(RedMageVerprocPlusFeature)]
+    [CustomComboInfo("Deprioritize Grand Impact", "After using Acceleration, prioritize using Veraero/Verthunder over Grand Impact if both buffs are active.", RDM.JobID)]
+    RedMageGrandImpactDeprioritize = 3517,
 
     [CustomComboInfo("Verstone/Verfire Plus Opener Feature (Stone)", "Replace Verstone with Veraero when out of combat.", RDM.JobID)]
     RedMageVerprocOpenerStoneFeature = 3506,
@@ -863,6 +867,9 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Melee Capstone Combo", "Replace Redoublement and Moulinet with Scorch and Resolution when available.", RDM.JobID)]
     RedMageMeleeCapstoneCombo = 3503,
+
+    [CustomComboInfo("Acceleration into Grand Impact", "Replace Acceleration with Grand Impact when available.", RDM.JobID)]
+    RedMageAccelerationGrandImpactFeature = 3518,
 
     [CustomComboInfo("Acceleration into Swiftcast", "Replace Acceleration with Swiftcast when on cooldown or synced.", RDM.JobID)]
     RedMageAccelerationSwiftcastFeature = 3509,

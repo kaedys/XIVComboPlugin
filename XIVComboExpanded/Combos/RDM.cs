@@ -36,7 +36,10 @@ internal static class RDM
         Scorch = 16530,
         Verthunder3 = 25855,
         Veraero3 = 25856,
-        Resolution = 25858;
+        Resolution = 25858,
+        ViceOfThorns = 37005,
+        GrandImpact = 37006,
+        Prefulgence = 37007;
 
     public static class Buffs
     {
@@ -46,7 +49,10 @@ internal static class RDM
             VerstoneReady = 1235,
             Acceleration = 1238,
             Dualcast = 1249,
-            LostChainspell = 2560;
+            LostChainspell = 2560,
+            ThornedFlourish = 3876,
+            GrandImpactReady = 3877,
+            PrefulgenceReady = 3878;
     }
 
     public static class Debuffs
@@ -78,7 +84,10 @@ internal static class RDM
             Scorch = 80,
             Veraero3 = 82,
             Verthunder3 = 82,
-            Resolution = 90;
+            Resolution = 90,
+            ViceOfThorns = 92,
+            GrandImpact = 96,
+            Prefulgence = 100;
     }
 }
 
@@ -272,8 +281,12 @@ internal class RedMageVerstoneVerfire : CustomCombo
                 }
             }
 
+
             if (IsEnabled(CustomComboPreset.RedMageVerprocPlusFeature))
             {
+                if (!IsEnabled(CustomComboPreset.RedMageGrandImpactDeprioritize) && HasEffect(RDM.Buffs.GrandImpactReady))
+                    return RDM.GrandImpact;
+
                 if (level >= RDM.Levels.Veraero && (HasEffect(RDM.Buffs.Dualcast) || HasEffect(RDM.Buffs.Acceleration) || HasEffect(RDM.Buffs.Swiftcast) || HasEffect(RDM.Buffs.LostChainspell)))
                     // Veraero3
                     return OriginalHook(RDM.Veraero);
@@ -288,6 +301,9 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageVerprocFeature))
             {
+                if (HasEffect(RDM.Buffs.GrandImpactReady))
+                    return RDM.GrandImpact;
+
                 if (HasEffect(RDM.Buffs.VerstoneReady))
                     return RDM.Verstone;
 
@@ -320,6 +336,9 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageVerprocPlusFeature))
             {
+                if (!IsEnabled(CustomComboPreset.RedMageGrandImpactDeprioritize) && HasEffect(RDM.Buffs.GrandImpactReady))
+                    return RDM.GrandImpact;
+
                 if (level >= RDM.Levels.Verthunder && (HasEffect(RDM.Buffs.Dualcast) || HasEffect(RDM.Buffs.Acceleration) || HasEffect(RDM.Buffs.Swiftcast) || HasEffect(RDM.Buffs.LostChainspell)))
                     // Verthunder3
                     return OriginalHook(RDM.Verthunder);
@@ -334,6 +353,9 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageVerprocFeature))
             {
+                if (HasEffect(RDM.Buffs.GrandImpactReady))
+                    return RDM.GrandImpact;
+
                 if (HasEffect(RDM.Buffs.VerfireReady))
                     return RDM.Verfire;
 
@@ -356,6 +378,9 @@ internal class RedMageAcceleration : CustomCombo
         {
             if (level >= RDM.Levels.Acceleration)
             {
+                if (IsEnabled(CustomComboPreset.RedMageAccelerationGrandImpactFeature) && HasEffect(RDM.Buffs.GrandImpactReady))
+                    return RDM.GrandImpact;
+
                 if (IsEnabled(CustomComboPreset.RedMageAccelerationSwiftcastOption))
                 {
                     if (IsOffCooldown(RDM.Acceleration) && IsOffCooldown(ADV.Swiftcast))
