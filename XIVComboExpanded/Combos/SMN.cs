@@ -61,7 +61,8 @@ internal static class SMN
             SearingLight = 2703,
             IfritsFavor = 2724,
             GarudasFavor = 2725,
-            TitansFavor = 2853;
+            TitansFavor = 2853,
+            LuxSolarisReady = 3874;
     }
 
     public static class Debuffs
@@ -273,7 +274,7 @@ internal class SummonerDemiFeature : CustomCombo
     }
 }
 
-internal class SummonerRadiantCarbundleFeature : CustomCombo
+internal class SummonerRadiantCarbuncleFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerRadiantCarbuncleFeature;
 
@@ -285,6 +286,21 @@ internal class SummonerRadiantCarbundleFeature : CustomCombo
 
             if (level >= SMN.Levels.SummonCarbuncle && !HasPetPresent())
                 return SMN.SummonCarbuncle;
+        }
+
+        return actionID;
+    }
+}
+internal class SummonerLuxSolarisFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerLuxSolarisFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == SMN.SummonBahamut)
+        {
+            if (HasEffect(SMN.Buffs.LuxSolarisReady))
+                return SMN.LuxSolaris;
         }
 
         return actionID;
