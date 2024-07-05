@@ -408,7 +408,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Burst Strike Continuation", "Replace Burst Strike with Continuation moves when appropriate.", GNB.JobID)]
     GunbreakerBurstStrikeCont = 3703,
 
-    [CustomComboInfo("Fated Circle Continuation", "Replace Burst Strike with Continuation moves when appropriate.", GNB.JobID)]
+    [CustomComboInfo("Fated Circle Continuation", "Replace Fated Circle with Continuation moves when appropriate.", GNB.JobID)]
     GunbreakerFatedCircleCont = 3714,
 
     [SecretCustomCombo]

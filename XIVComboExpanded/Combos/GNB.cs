@@ -201,6 +201,11 @@ internal class GunbreakerDemonSlaughter : CustomCombo
     {
         if (actionID == GNB.DemonSlaughter)
         {
+            if (HasEffect(GNB.Buffs.ReadyToFated) && IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont))
+            {
+                return GNB.FatedBrand;
+            }
+
             if (comboTime > 0 && lastComboMove == GNB.DemonSlice && level >= GNB.Levels.DemonSlaughter)
             {
                 if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature))
