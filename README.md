@@ -19,7 +19,8 @@ XIVCombo is a plugin to allow for "one-button" combo chains, as well as implemen
 For some jobs, this frees a massive amount of hotbar space (looking at you, DRG). For most, it removes a lot of mindless tedium associated with having to press various buttons that have little logical reason to be separate.
 
 ## Installation
-* Type `/xlplugins` in-game to access the plugin installer and updater. Any releases on this github page have been removed to facilitate proper installation going forward.
+* Place `https://github.com/daemitus/MyDalamudPlugins/raw/master/pluginmaster.json` in your /xlsettings 3rd party repo list to access this plugin.
+* Type `/xlplugins` in-game to access the plugin installer and updater.
 ## In-game usage
 * Type `/pcombo` to pull up a GUI for editing active combo replacements.
 * Drag the named ability from your ability list onto your hotbar to use.
@@ -36,4 +37,3 @@ For some jobs, this frees a massive amount of hotbar space (looking at you, DRG)
 ## Full list of supported combos
 There used to be a list here, but it got annoying to update. You should install it and check out what's available!
 
-Place `https://github.com/daemitus/MyDalamudPlugins/raw/master/pluginmaster.json` in your /xlsettings 3rd party repo list to access this plugin.
