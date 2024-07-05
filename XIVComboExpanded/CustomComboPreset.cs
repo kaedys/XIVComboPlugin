@@ -971,6 +971,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Shinten to Senei", "Replace Hissatsu: Shinten with Senei when available.", SAM.JobID)]
     SamuraiShintenSeneiFeature = 3414,
 
+    [CustomComboInfo("Shinten to Zanshin", "Replace Hissatsu: Shinten with Zanshin when available.", SAM.JobID)]
+    SamuraiShintenZanshinFeature = 3420,
+    
     [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
     SamuraiShintenShohaFeature = 3413,
 

@@ -34,7 +34,8 @@ internal static class SAM
         Ikishoten = 16482,
         //Shoha2 = 25779,
         OgiNamikiri = 25781,
-        KaeshiNamikiri = 25782;
+        KaeshiNamikiri = 25782,
+        Zanshin = 36964;
 
     public static class Buffs
     {
@@ -295,6 +296,12 @@ internal class SamuraiShinten : CustomCombo
                     if (level >= SAM.Levels.HissatsuGuren && level < SAM.Levels.HissatsuSenei && IsOffCooldown(SAM.HissatsuGuren))
                         return SAM.HissatsuGuren;
                 }
+            }
+
+            if (IsEnabled(CustomComboPreset.SamuraiShintenZanshinFeature))
+            {
+                if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
+                    return SAM.Zanshin;
             }
         }
 
