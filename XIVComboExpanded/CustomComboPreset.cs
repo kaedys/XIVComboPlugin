@@ -965,17 +965,17 @@ public enum CustomComboPreset
     [CustomComboInfo("Iaijutsu to Shoha", "Replace Iaijutsu with Shoha when meditation is 3.", SAM.JobID)]
     SamuraiIaijutsuShohaFeature = 3410,
 
-    [CustomComboInfo("Senei to Guren Level Sync", "Replace Hissatsu: Senei with Guren when level synced below 72.", SAM.JobID)]
-    SamuraiSeneiGurenFeature = 3418,
+    [CustomComboInfo("Shinten to Zanshin", "Replace Hissatsu: Shinten with Zanshin when available.", SAM.JobID)]
+    SamuraiShintenZanshinFeature = 3420,
+
+    [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
+    SamuraiShintenShohaFeature = 3413,
 
     [CustomComboInfo("Shinten to Senei", "Replace Hissatsu: Shinten with Senei when available.", SAM.JobID)]
     SamuraiShintenSeneiFeature = 3414,
 
-    [CustomComboInfo("Shinten to Zanshin", "Replace Hissatsu: Shinten with Zanshin when available.", SAM.JobID)]
-    SamuraiShintenZanshinFeature = 3420,
-    
-    [CustomComboInfo("Shinten to Shoha", "Replace Hissatsu: Shinten with Shoha when Meditation is full.", SAM.JobID)]
-    SamuraiShintenShohaFeature = 3413,
+    [CustomComboInfo("Senei to Guren Level Sync", "Replace Hissatsu: Senei with Guren when level synced below 72.", SAM.JobID)]
+    SamuraiSeneiGurenFeature = 3418,
 
     [CustomComboInfo("Kyuten to Guren", "Replace Hissatsu: Kyuten with Guren when available.", SAM.JobID)]
     SamuraiKyutenGurenFeature = 3415,
