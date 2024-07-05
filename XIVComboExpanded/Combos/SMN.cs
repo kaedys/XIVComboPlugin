@@ -288,12 +288,19 @@ internal class SummonerRadiantCarbuncleFeature : CustomCombo
                 return SMN.SummonCarbuncle;
         }
 
+        if (IsEnabled(CustomComboPreset.SummonerRadiantLuxSolarisFeature))
+        {
+            if (HasEffect(SMN.Buffs.LuxSolarisReady))
+                return SMN.LuxSolaris;
+        }
+
         return actionID;
     }
 }
+
 internal class SummonerLuxSolarisFeature : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerLuxSolarisFeature;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.SummonerSummonLuxSolarisFeature;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {

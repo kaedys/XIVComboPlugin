@@ -1070,11 +1070,16 @@ public enum CustomComboPreset
     [CustomComboInfo("Radiant Carbuncle Feature", "Change Radiant Aegis into Summon Carbuncle when no pet has been summoned.", SMN.JobID)]
     SummonerRadiantCarbuncleFeature = 2711,
 
+    [ParentCombo(SummonerRadiantCarbuncleFeature)]
+    [CustomComboInfo("Radiant Lux Solaris Feature", "Change Radiant Aegis to Lux Solaris when you have Refulgent Lux ready.", SMN.JobID)]
+    SummonerRadiantLuxSolarisFeature = 2718,
+
     [CustomComboInfo("Demi Carbuncle Feature", "Change Summon Bahamut into Summon Carbuncle when no pet has been summoned.", SMN.JobID)]
     SummonerDemiCarbuncleFeature = 2716,
 
-    [CustomComboInfo("Lux Solaris Feature", "Change Summon Bahamut to Lux Solaris when you have Refulgent Lux ready.", SMN.JobID)]
-    SummonerLuxSolarisFeature = 2717,
+    [CustomComboInfo("Summon Lux Solaris Feature", "Change Summon Bahamut to Lux Solaris when you have Refulgent Lux ready.", SMN.JobID)]
+    SummonerSummonLuxSolarisFeature = 2717,
+
 
     #endregion
     // ====================================================================================
