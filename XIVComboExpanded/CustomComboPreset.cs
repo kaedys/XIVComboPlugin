@@ -865,7 +865,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Melee Mana Stacks Feature", "Replace Redoublement and Moulinet with Verflare/Verholy at 3 mana stacks, using whichever mana color is lower.", RDM.JobID)]
     RedMageMeleeManaStacksFeature = 3516,
 
-    [CustomComboInfo("Melee Capstone Combo", "Replace Redoublement and Moulinet with Scorch and Resolution when available.", RDM.JobID)]
+    [CustomComboInfo("Melee Capstone Combo", "Replace Redoublement and Moulinet with Scorch, Resolution and Prefulgence when available.", RDM.JobID)]
     RedMageMeleeCapstoneCombo = 3503,
 
     [CustomComboInfo("Acceleration into Grand Impact", "Replace Acceleration with Grand Impact when available.", RDM.JobID)]

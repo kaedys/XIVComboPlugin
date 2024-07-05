@@ -196,6 +196,8 @@ internal class RedMageRedoublementMoulinet : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageMeleeCapstoneCombo))
             {
+                if (HasEffect(RDM.Buffs.PrefulgenceReady))
+                    return RDM.Prefulgence;
                 if (lastComboMove == RDM.Scorch && level >= RDM.Levels.Resolution)
                     return RDM.Resolution;
 
