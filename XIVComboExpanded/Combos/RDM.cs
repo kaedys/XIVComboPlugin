@@ -372,7 +372,7 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
 internal class RedMageAcceleration : CustomCombo
 {
-    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RedMageAccelerationSwiftcastFeature;
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.RdmAny;
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
@@ -383,17 +383,20 @@ internal class RedMageAcceleration : CustomCombo
                 if (IsEnabled(CustomComboPreset.RedMageAccelerationGrandImpactFeature) && HasEffect(RDM.Buffs.GrandImpactReady))
                     return RDM.GrandImpact;
 
-                if (IsEnabled(CustomComboPreset.RedMageAccelerationSwiftcastOption))
+                if (IsEnabled(CustomComboPreset.RedMageAccelerationSwiftcastFeature))
                 {
-                    if (IsOffCooldown(RDM.Acceleration) && IsOffCooldown(ADV.Swiftcast))
+                    if (IsEnabled(CustomComboPreset.RedMageAccelerationSwiftcastOption))
+                    {
+                        if (IsOffCooldown(RDM.Acceleration) && IsOffCooldown(ADV.Swiftcast))
+                            return ADV.Swiftcast;
+                    }
+
+                    if (IsOffCooldown(RDM.Acceleration))
+                        return RDM.Acceleration;
+
+                    if (IsOffCooldown(ADV.Swiftcast))
                         return ADV.Swiftcast;
                 }
-
-                if (IsOffCooldown(RDM.Acceleration))
-                    return RDM.Acceleration;
-
-                if (IsOffCooldown(ADV.Swiftcast))
-                    return ADV.Swiftcast;
 
                 return RDM.Acceleration;
             }
