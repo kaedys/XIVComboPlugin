@@ -280,6 +280,12 @@ internal class SamuraiShinten : CustomCombo
         {
             var gauge = GetJobGauge<SAMGauge>();
 
+            if (IsEnabled(CustomComboPreset.SamuraiShintenZanshinFeature))
+            {
+                if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
+                    return SAM.Zanshin;
+            }
+
             if (IsEnabled(CustomComboPreset.SamuraiShintenShohaFeature))
             {
                 if (level >= SAM.Levels.Shoha && gauge.MeditationStacks >= 3)
@@ -296,12 +302,6 @@ internal class SamuraiShinten : CustomCombo
                     if (level >= SAM.Levels.HissatsuGuren && level < SAM.Levels.HissatsuSenei && IsOffCooldown(SAM.HissatsuGuren))
                         return SAM.HissatsuGuren;
                 }
-            }
-
-            if (IsEnabled(CustomComboPreset.SamuraiShintenZanshinFeature))
-            {
-                if (level >= SAM.Levels.Zanshin && HasEffect(SAM.Buffs.ZanshinReady))
-                    return SAM.Zanshin;
             }
         }
 
