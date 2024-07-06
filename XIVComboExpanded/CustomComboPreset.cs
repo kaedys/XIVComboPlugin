@@ -831,6 +831,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Verstone/Verfire Feature", "Replace Verstone/Verfire with Jolt when no proc is available.", RDM.JobID)]
     RedMageVerprocFeature = 3504,
 
+    [ParentCombo(RedMageVerprocFeature)]
+    [CustomComboInfo("Deprioritize Grand Impact", "After using Acceleration, prioritize using Verstone/Verfire over Grand Impact if both buffs are active.", RDM.JobID)]
+    RedMageVerprocGrandImpactDeprioritize = 3519,
+
     [CustomComboInfo("Verstone/Verfire Plus Feature", "Replace Verstone/Verfire with Veraero/Verthunder when various instant-cast effects are active.", RDM.JobID)]
     RedMageVerprocPlusFeature = 3505,
 
