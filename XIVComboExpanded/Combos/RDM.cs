@@ -303,7 +303,7 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageVerprocFeature))
             {
-                if (HasEffect(RDM.Buffs.GrandImpactReady))
+                if (!IsEnabled(CustomComboPreset.RedMageVerprocGrandImpactDeprioritize) && HasEffect(RDM.Buffs.GrandImpactReady))
                     return RDM.GrandImpact;
 
                 if (HasEffect(RDM.Buffs.VerstoneReady))
@@ -355,7 +355,7 @@ internal class RedMageVerstoneVerfire : CustomCombo
 
             if (IsEnabled(CustomComboPreset.RedMageVerprocFeature))
             {
-                if (HasEffect(RDM.Buffs.GrandImpactReady))
+                if (!IsEnabled(CustomComboPreset.RedMageVerprocGrandImpactDeprioritize) && HasEffect(RDM.Buffs.GrandImpactReady))
                     return RDM.GrandImpact;
 
                 if (HasEffect(RDM.Buffs.VerfireReady))
