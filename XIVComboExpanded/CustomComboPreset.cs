@@ -1095,8 +1095,34 @@ public enum CustomComboPreset
     // ====================================================================================
     #region VIPER
 
-    [CustomComboInfo("Viper exists!", "No combos planned for now as the job is already combo-heavy. Stay tuned!", VPR.JobID)]
-    ViperDoingNothing = 4100,
+    [CustomComboInfo("Steel Tail Feature", "Replace Steel Fangs with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    ViperSteelTailFeature = 4101,
+
+    [ParentCombo(ViperSteelTailFeature)]
+    [CustomComboInfo("Steel Tail AoE", "Also replace Steel Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    ViperSteelTailAoEFeature = 4102,
+
+    [ParentCombo(ViperSteelTailFeature)]
+    [CustomComboInfo("Steel Legacies", "Replace Steel Fangs and Dread Fangs with their respective Legacies under Reawaken.", VPR.JobID)]
+    ViperSteelLegaciesFeature = 4103,
+
+    [CustomComboInfo("Twin Coil Feature", "Replace Swiftskin's Coil and Hunter's Coil with their respective Twinblood and Twinfang skills.", VPR.JobID)]
+    ViperTwinCoilFeature = 4104,
+
+    [ParentCombo(ViperTwinCoilFeature)]
+    [CustomComboInfo("Twin Coil AoE", "Also replace Swiftskin's Den and Hunter's Den with their respective Twinblood and Twinfang skills.", VPR.JobID)]
+    ViperTwinDenFeature = 4105,
+
+    [ParentCombo(ViperTwinCoilFeature)]
+    [CustomComboInfo("Coil Legacies", "Additionally replaces Coil and Den skills with their respective legacies under Reawaken.", VPR.JobID)]
+    ViperCoilLegaciesFeature = 4106,
+
+    [CustomComboInfo("Uncoiled Fury Followup", "Replaces Uncoiled Fury with Uncoiled Twinfang and Uncoiled Twinblood in sequence.", VPR.JobID)]
+    ViperUncoiledFollowupFeature = 4107,
+
+    // [CustomComboInfo("FuryAndIre", "Replaces Uncoiled Fury with Serpent's Ire when out of Rattling Coil stacks.", VPR.JobID)]
+    // ViperFuryAndIreFeature = 4108,
+
 
     #endregion
     // ====================================================================================
