@@ -718,6 +718,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Slice Lemure's Feature", "Replace Infernal Slice with Lemure's Slice when two or more stacks of Void Shroud are active.", RPR.JobID)]
     ReaperSliceLemuresFeature = 3919,
 
+    [SecretCustomCombo]
+    [ParentCombo(ReaperSliceLemuresFeature)]
+    [CustomComboInfo("Slice Sacrificium Feature", "Replace Infernal Slice with with Sacrificium after 3 reapings.", RPR.JobID)]
+    ReaperSliceSacrificiumFeature = 3943,
+
     [CustomComboInfo("Slice Communio Feature", "Replace Infernal Slice with Communio when one stack of Shroud is left.", RPR.JobID)]
     ReaperSliceCommunioFeature = 3920,
 
@@ -769,6 +774,11 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Scythe Lemure's Feature", "Replace Nightmare Scythe with Lemure's Scythe when two or more stacks of Void Shroud are active.", RPR.JobID)]
     ReaperScytheLemuresFeature = 3921,
+
+    [SecretCustomCombo]
+    [ParentCombo(ReaperScytheLemuresFeature)]
+    [CustomComboInfo("Scythe Sacrificium Feature", "Replace Nightmare Scythe with with Sacrificium after 3 reapings.", RPR.JobID)]
+    ReaperScytheSacrificiumFeature = 3944,
 
     [CustomComboInfo("Scythe Communio Feature", "Replace Nightmare Scythe with Communio when one stack is left of Shroud.", RPR.JobID)]
     ReaperScytheCommunioFeature = 3922,
@@ -823,6 +833,16 @@ public enum CustomComboPreset
     [ParentCombo(ReaperHarpeHarvestMoonFeature)]
     [CustomComboInfo("Combat Option", "Prevent replacing Harpe with Harvest Moon when not in combat.", RPR.JobID)]
     ReaperHarpeHarvestMoonCombatFeature = 3938,
+
+    [CustomComboInfo("Slice Perfectio Feature", "Replace Infernal Slice with Perfectio under Perfectio Parata.", RPR.JobID)]
+    ReaperSlicePerfectioFeature = 3940,
+
+    [CustomComboInfo("Scythe Perfectio Feature", "Replace Nightmare Scythe with with Perfectio under Perfectio Parata.", RPR.JobID)]
+    ReaperScythePerfectioFeature = 3941,
+
+    [CustomComboInfo("Harpe Perfectio Feature", "Replace Harpe with with Perfectio under Perfectio Parata.", RPR.JobID)]
+    ReaperHarpePerfectioFeature = 3942,
+
 
     #endregion
     // ====================================================================================
