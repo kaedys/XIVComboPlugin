@@ -64,6 +64,7 @@ internal static class BRD
             RagingStrikes = 4,
             VenomousBite = 6,
             Bloodletter = 12,
+            WideVolley = 25,
             MagesBallad = 30,
             Windbite = 30,
             Barrage = 38,
@@ -202,7 +203,7 @@ internal class BardQuickNock : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BardShadowbiteFeature))
             {
-                if (level >= BRD.Levels.Shadowbite && HasEffect(BRD.Buffs.HawksEye))
+                if (level >= BRD.Levels.WideVolley && (HasEffect(BRD.Buffs.HawksEye) || HasEffect(BRD.Buffs.Barrage))
                 {
                     if (IsEnabled(CustomComboPreset.BardShadowbiteBarrageFeature))
                     {
@@ -210,7 +211,7 @@ internal class BardQuickNock : CustomCombo
                             return BRD.Barrage;
                     }
 
-                    return BRD.Shadowbite;
+                    return OriginalHook(BRD.Shadowbite);
                 }
             }
         }
