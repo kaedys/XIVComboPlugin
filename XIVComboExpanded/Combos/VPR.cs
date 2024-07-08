@@ -76,6 +76,7 @@ internal static class VPR
             PoisedForTwinblood = 3666,
             HuntersInstinct = 3668, // Double check, might also be 4120
             Swiftscaled = 3669,     // Might also be 4121
+            Reawakened = 3670,
             ReadyToReawaken = 3671;
     }
 
@@ -234,6 +235,29 @@ internal class UncoiledFollowupFeature : CustomCombo
 
             if (level >= VPR.Levels.UncoiledTwins && OriginalHook(VPR.Twinblood) == VPR.UncoiledTwinblood)
                 return VPR.UncoiledTwinblood;
+        }
+
+        return actionID;
+    }
+}
+
+internal class DreadfangsDreadwinderFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperDreadfangsDreadwinderFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.DreadFangs)
+        {
+            // I think in this case if we're not in a combo (and something else isn't replacing Dread Fangs), we can just replace if we have charges
+            if (level >= VPR.Levels.Dreadwinder && IsOriginal(VPR.DreadFangs) && HasCharges(VPR.Dreadwinder))
+                return VPR.Dreadwinder;
+        }
+
+        if (actionID == VPR.DreadMaw && IsEnabled(CustomComboPreset.ViperPitOfDreadFeature))
+        {
+            if (level >= VPR.Levels.PitOfDread && IsOriginal(VPR.DreadMaw) && HasCharges(VPR.PitOfDread))
+                return VPR.PitOfDread;
         }
 
         return actionID;

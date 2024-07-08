@@ -1123,6 +1123,15 @@ public enum CustomComboPreset
     // [CustomComboInfo("FuryAndIre", "Replaces Uncoiled Fury with Serpent's Ire when out of Rattling Coil stacks.", VPR.JobID)]
     // ViperFuryAndIreFeature = 4108,
 
+    [CustomComboInfo("Dread Fangs to Dreadwinder", "Replaces Dread Fangs to Dreadwinder when there are stacks present and not currently in a combo.", VPR.JobID)]
+    ViperDreadfangsDreadwinderFeature = 4109,
+
+    [ParentCombo(ViperDreadfangsDreadwinderFeature)]
+    [CustomComboInfo("Dread Maw to Pit of Dread", "Also replace Dread Maw with Pit of Dread under the same conditions.", VPR.JobID)]
+    ViperPitOfDreadFeature = 4110,
+
+
+
 
     #endregion
     // ====================================================================================
