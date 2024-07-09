@@ -1095,27 +1095,23 @@ public enum CustomComboPreset
     // ====================================================================================
     #region VIPER
 
-    [CustomComboInfo("Steel Tail Feature", "Replace Steel Fangs with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    [CustomComboInfo("Steel Tail Feature", "Replace Steel Fangs and Dread Fangs with Serpent's Tail after finishing a combo.", VPR.JobID)]
     ViperSteelTailFeature = 4101,
 
-    [ParentCombo(ViperSteelTailFeature)]
-    [CustomComboInfo("Steel Tail AoE", "Also replace Steel Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    [CustomComboInfo("Steel Tail AoE Feature", "Replace Steel Maw and Dread Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
     ViperSteelTailAoEFeature = 4102,
 
-    [ParentCombo(ViperSteelTailFeature)]
-    [CustomComboInfo("Steel Legacies", "Replace Steel Fangs and Dread Fangs with their respective Legacies under Reawaken.", VPR.JobID)]
-    ViperSteelLegaciesFeature = 4103,
-
     [CustomComboInfo("Twin Coil Feature", "Replace Swiftskin's Coil and Hunter's Coil with their respective Twinblood and Twinfang skills.", VPR.JobID)]
-    ViperTwinCoilFeature = 4104,
+    ViperTwinCoilFeature = 4103,
 
-    [ParentCombo(ViperTwinCoilFeature)]
-    [CustomComboInfo("Twin Coil AoE", "Also replace Swiftskin's Den and Hunter's Den with their respective Twinblood and Twinfang skills.", VPR.JobID)]
-    ViperTwinDenFeature = 4105,
+    [CustomComboInfo("Twin Coil AoE Feature", "Replace Swiftskin's Den and Hunter's Den with their respective Twinblood and Twinfang skills.", VPR.JobID)]
+    ViperTwinDenFeature = 4104,
 
-    [ParentCombo(ViperTwinCoilFeature)]
-    [CustomComboInfo("Coil Legacies", "Additionally replaces Coil and Den skills with their respective legacies under Reawaken.", VPR.JobID)]
-    ViperCoilLegaciesFeature = 4106,
+    [CustomComboInfo("Generation Legacy Feature", "Replaces the Generation skills with their respective Legacies.", VPR.JobID)]
+    ViperGenerationLegaciesFeature = 4105,
+
+    [CustomComboInfo("Generation Legacy AoE Feature", "Replaces the AoE versions of Generation skills with their respective Legacies.", VPR.JobID)]
+    ViperGenerationLegaciesAoEFeature = 4106,
 
     [CustomComboInfo("Uncoiled Fury Followup", "Replaces Uncoiled Fury with Uncoiled Twinfang and Uncoiled Twinblood in sequence.", VPR.JobID)]
     ViperUncoiledFollowupFeature = 4107,
@@ -1126,11 +1122,8 @@ public enum CustomComboPreset
     [CustomComboInfo("Dread Fangs to Dreadwinder", "Replaces Dread Fangs to Dreadwinder when there are stacks present and not currently in a combo.", VPR.JobID)]
     ViperDreadfangsDreadwinderFeature = 4109,
 
-    [ParentCombo(ViperDreadfangsDreadwinderFeature)]
-    [CustomComboInfo("Dread Maw to Pit of Dread", "Also replace Dread Maw with Pit of Dread under the same conditions.", VPR.JobID)]
+    [CustomComboInfo("Dread Maw to Pit of Dread", "Replaces Dread Maw with Pit of Dread when there are stacks present and not currently in a combo.", VPR.JobID)]
     ViperPitOfDreadFeature = 4110,
-
-
 
 
     #endregion

@@ -125,42 +125,36 @@ internal class SteelTailFeature : CustomCombo
     {
         if (actionID == VPR.SteelFangs)
         {
-            if (level >= VPR.Levels.DeathRattle)
-            {
-                if (OriginalHook(VPR.SerpentsTail) == VPR.DeathRattle)
-                    return VPR.DeathRattle;
-
-                if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperSteelLegaciesFeature))
-                    if(OriginalHook(VPR.SerpentsTail) == VPR.FirstLegacy)
-                        return VPR.FirstLegacy;
-            }
+            if (OriginalHook(VPR.SerpentsTail) == VPR.DeathRattle)
+                return VPR.DeathRattle;
         }
 
         if (actionID == VPR.DreadFangs)
         {
-            if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperSteelLegaciesFeature))
-                if (OriginalHook(VPR.SerpentsTail) == VPR.SecondLegacy)
-                    return VPR.SecondLegacy;
+            if (OriginalHook(VPR.SerpentsTail) == VPR.DeathRattle)
+                return VPR.DeathRattle;
         }
 
-        if (actionID == VPR.SteelMaw && IsEnabled(CustomComboPreset.ViperSteelTailAoEFeature))
-        {
-            if (level >= VPR.Levels.LastLash)
-            {
-                if (OriginalHook(VPR.SerpentsTail) == VPR.LastLash)
-                    return VPR.LastLash;
+        return actionID;
+    }
+}
 
-                if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperSteelLegaciesFeature))
-                    if (OriginalHook(VPR.SerpentsTail) == VPR.FirstLegacy)
-                        return VPR.FirstLegacy;
-            }
+internal class SteelTailAoEFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperSteelTailAoEFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.SteelMaw)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.LastLash)
+                return VPR.LastLash;
         }
 
         if (actionID == VPR.DreadMaw)
         {
-            if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperSteelLegaciesFeature))
-                if (OriginalHook(VPR.SerpentsTail) == VPR.SecondLegacy)
-                    return VPR.SecondLegacy;
+            if (OriginalHook(VPR.SerpentsTail) == VPR.LastLash)
+                return VPR.LastLash;
         }
 
         return actionID;
@@ -176,45 +170,129 @@ internal class TwinCoilFeature : CustomCombo
 
         if (actionID == VPR.HuntersCoil)
         {
-            if (level >= VPR.Levels.TwinsSingle && OriginalHook(VPR.Twinfang) == VPR.TwinfangBite)
+            if (HasEffect(VPR.Buffs.HuntersVenom))
                 return VPR.TwinfangBite;
-
-            if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperCoilLegaciesFeature))
-                if (OriginalHook(VPR.SerpentsTail) == VPR.ThirdLegacy)
-                    return VPR.ThirdLegacy;
+            if (HasEffect(VPR.Buffs.SwiftskinsVenom))
+                return VPR.TwinbloodBite;
+            if (!IsOriginal(VPR.TwinfangBite))
+                return OriginalHook(VPR.TwinfangBite);
+            if (!IsOriginal(VPR.TwinbloodBite))
+                return OriginalHook(VPR.TwinbloodBite);
         }
 
         if (actionID == VPR.SwiftskinsCoil)
         {
-            if (level >= VPR.Levels.TwinsSingle && OriginalHook(VPR.Twinblood) == VPR.TwinbloodBite)
+            if (HasEffect(VPR.Buffs.HuntersVenom))
+                return VPR.TwinfangBite;
+            if (HasEffect(VPR.Buffs.SwiftskinsVenom))
                 return VPR.TwinbloodBite;
-
-            if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperCoilLegaciesFeature))
-                if (OriginalHook(VPR.SerpentsTail) == VPR.FourthLegacy)
-                    return VPR.FourthLegacy;
+            if (!IsOriginal(VPR.Twinfang))
+                return OriginalHook(VPR.Twinfang);
+            if (!IsOriginal(VPR.Twinblood))
+                return OriginalHook(VPR.Twinblood);
         }
 
-        if (IsEnabled(CustomComboPreset.ViperTwinDenFeature))
+        return actionID;
+    }
+}
+
+internal class TwinDenFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperTwinDenFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+
+        if (actionID == VPR.HuntersDen)
         {
-            if (actionID == VPR.HuntersDen)
-            {
-                if (level >= VPR.Levels.TwinsAoE && OriginalHook(VPR.Twinfang) == VPR.TwinfangThresh)
-                    return VPR.TwinfangThresh;
+            if (HasEffect(VPR.Buffs.FellhuntersVenom))
+                return VPR.TwinfangThresh;
+            if (HasEffect(VPR.Buffs.FellskinsVenom))
+                return VPR.TwinbloodThresh;
+            if (!IsOriginal(VPR.Twinfang))
+                return OriginalHook(VPR.Twinfang);
+            if (!IsOriginal(VPR.Twinblood))
+                return OriginalHook(VPR.Twinblood);
+        }
 
-                if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperCoilLegaciesFeature))
-                    if (OriginalHook(VPR.SerpentsTail) == VPR.ThirdLegacy)
-                        return VPR.ThirdLegacy;
-            }
+        if (actionID == VPR.SwiftskinsDen)
+        {
+            if (HasEffect(VPR.Buffs.FellhuntersVenom))
+                return VPR.TwinfangThresh;
+            if (HasEffect(VPR.Buffs.FellskinsVenom))
+                return VPR.TwinbloodThresh;
+            if (!IsOriginal(VPR.Twinfang))
+                return OriginalHook(VPR.Twinfang);
+            if (!IsOriginal(VPR.Twinblood))
+                return OriginalHook(VPR.Twinblood);
+        }
 
-            if (actionID == VPR.SwiftskinsDen)
-            {
-                if (level >= VPR.Levels.TwinsAoE && OriginalHook(VPR.Twinblood) == VPR.TwinbloodThresh)
-                    return VPR.TwinbloodThresh;
+        return actionID;
+    }
+}
 
-                if (level >= VPR.Levels.Legacies && IsEnabled(CustomComboPreset.ViperCoilLegaciesFeature))
-                    if (OriginalHook(VPR.SerpentsTail) == VPR.FourthLegacy)
-                        return VPR.FourthLegacy;
-            }
+internal class GenerationLegacies : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperGenerationLegaciesFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.SteelMaw)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.FirstLegacy)
+                return VPR.FirstLegacy;
+        }
+
+        if (actionID == VPR.DreadMaw)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.SecondLegacy)
+                return VPR.SecondLegacy;
+        }
+
+        if (actionID == VPR.HuntersDen)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.ThirdLegacy)
+                return VPR.ThirdLegacy;
+        }
+
+        if (actionID == VPR.SwiftskinsDen)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.FourthLegacy)
+                return VPR.FourthLegacy;
+        }
+
+        return actionID;
+    }
+}
+
+internal class GenerationLegaciesAoE : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperGenerationLegaciesAoEFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.SteelFangs)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.FirstLegacy)
+                return VPR.FirstLegacy;
+        }
+
+        if (actionID == VPR.DreadFangs)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.SecondLegacy)
+                return VPR.SecondLegacy;
+        }
+
+        if (actionID == VPR.HuntersDen)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.ThirdLegacy)
+                return VPR.ThirdLegacy;
+        }
+
+        if (actionID == VPR.SwiftskinsDen)
+        {
+            if (OriginalHook(VPR.SerpentsTail) == VPR.FourthLegacy)
+                return VPR.FourthLegacy;
         }
 
         return actionID;
@@ -230,7 +308,7 @@ internal class UncoiledFollowupFeature : CustomCombo
         if (actionID == VPR.UncoiledFury)
         {
             // If I'm reading this right, it will always want to go in this order
-            if (level >= VPR.Levels.UncoiledTwins && OriginalHook(VPR.Twinfang) == VPR.UncoiledTwinfang)
+            if (OriginalHook(VPR.Twinfang) == VPR.UncoiledTwinfang && HasEffect(VPR.Buffs.PoisedForTwinfang))
                 return VPR.UncoiledTwinfang;
 
             if (level >= VPR.Levels.UncoiledTwins && OriginalHook(VPR.Twinblood) == VPR.UncoiledTwinblood)
@@ -250,13 +328,23 @@ internal class DreadfangsDreadwinderFeature : CustomCombo
         if (actionID == VPR.DreadFangs)
         {
             // I think in this case if we're not in a combo (and something else isn't replacing Dread Fangs), we can just replace if we have charges
-            if (level >= VPR.Levels.Dreadwinder && IsOriginal(VPR.DreadFangs) && HasCharges(VPR.Dreadwinder))
+            if (level >= VPR.Levels.Dreadwinder && IsOriginal(VPR.DreadFangs) && HasCharges(VPR.Dreadwinder) && IsOriginal(VPR.SerpentsTail)) // Add the check for Serpent's Tail to avoid stepping on other combo
                 return VPR.Dreadwinder;
         }
 
-        if (actionID == VPR.DreadMaw && IsEnabled(CustomComboPreset.ViperPitOfDreadFeature))
+        return actionID;
+    }
+}
+
+internal class DreadfangsDreadwinderFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperDreadfangsDreadwinderFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.DreadMaw)
         {
-            if (level >= VPR.Levels.PitOfDread && IsOriginal(VPR.DreadMaw) && HasCharges(VPR.PitOfDread))
+            if (level >= VPR.Levels.PitOfDread && IsOriginal(VPR.DreadMaw) && HasCharges(VPR.PitOfDread) && IsOriginal(VPR.SerpentsTail)) // Add the check for Serpent's Tail to avoid stepping on other combo
                 return VPR.PitOfDread;
         }
 
