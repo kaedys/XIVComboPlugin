@@ -1185,8 +1185,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Eureka Feature", "Replace Ageless Words and Solid Reason with Wise to the World when available.", DOL.JobID)]
     DolEurekaFeature = 51001,
 
+    [ConflictingCombos(DolCastRestFeature)]
     [CustomComboInfo("Cast / Hook Feature", "Replace Cast with Hook when fishing.", DOL.JobID)]
     DolCastHookFeature = 51002,
+
+    [ConflictingCombos(DolCastHookFeature)]
+    [CustomComboInfo("Cast / Rest Feature", "Replace Cast with Rest when fishing.", DOL.JobID)]
+    DolCastRestFeature = 51008,
 
     [CustomComboInfo("Cast / Gig Feature", "Replace Cast with Gig when underwater.", DOL.JobID)]
     DolCastGigFeature = 51003,
