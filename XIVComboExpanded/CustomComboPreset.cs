@@ -1125,6 +1125,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Dread Maw to Pit of Dread", "Replaces Dread Maw with Pit of Dread when there are stacks present and not currently in a combo.", VPR.JobID)]
     ViperPitOfDreadFeature = 4110,
 
+    [ConflictingCombos(ViperMergeTwinsSerpentFeature)]
+    [CustomComboInfo("Merge Twinfang/Twinblood onto Serpent's Tail Feature", "Merge all Twinfang/Twinblood abilities onto Serpent's Tail.", VPR.JobID)]
+    ViperMergeSerpentTwinsFeature=4111,
+
+    [ConflictingCombos(ViperMergeSerpentTwinsFeature)]
+    [CustomComboInfo("Merge Serpent's Tail onto Twinfang/Twinblood Feature", "Merge all Serpent's Tail abilities onto Twinfang/Twinblood.", VPR.JobID)]
+    ViperMergeTwinsSerpentFeature=4112,
 
     #endregion
     // ====================================================================================
