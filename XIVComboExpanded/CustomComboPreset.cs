@@ -801,6 +801,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Grim Swathe Gluttony Feature", "Replace Grim Swathe with Gluttony when available and greater-than-or-equal-to 50 Soul Gauge is present.", RPR.JobID)]
     ReaperGrimSwatheGluttonyFeature = 3916,
 
+    [CustomComboInfo("Lemure's Sacrificium Feature", "Replace Lemure's Slice/Scythe with Sacrificium when available and you have fewer than 2 Void Shroud.", RPR.JobID)]
+    ReaperLemuresSacrificiumFeature = 3940,
+
+    [ParentCombo(ReaperLemuresSacrificiumFeature)]
+    [CustomComboInfo("Prioritize Sacrificium over Lemure's", "Replace Lemure's Slice/Scythe with Sacrificium even when you have 2 Void Shroud.", RPR.JobID)]
+    ReaperLemuresSacrificiumPriorityFeature = 3941,
+
     [CustomComboInfo("Arcane Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID)]
     ReaperHarvestFeature = 3908,
 
