@@ -27,6 +27,7 @@ internal static class MNK
         Brotherhood = 7396,
         FourPointFury = 16473,
         Enlightenment = 16474,
+        SteeledPeak = 25761,
         HowlingFist = 25763,
         MasterfulBlitz = 25764,
         RiddleOfWind = 25766,
@@ -180,6 +181,13 @@ internal class MonkMonkeyMode : CustomCombo
         {
             var gauge = GetJobGauge<MNKGauge>();
 
+            // Auto Chakra
+            if (IsEnabled(CustomComboPreset.MonkMonkeyAutoChakraFeature))
+            {
+                    if (gauge.Chakra > 4 && InCombat())
+                        return OriginalHook(MNK.SteeledPeak);
+            }
+
             // Masterful Blitz
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
@@ -277,6 +285,13 @@ internal class MonkAoECombo : CustomCombo
         if (actionID == MNK.MasterfulBlitz)
         {
             var gauge = GetJobGauge<MNKGauge>();
+
+            // Auto Chakra
+            if (IsEnabled(CustomComboPreset.MonkMonkeyAutoChakraFeature))
+            {
+                if (gauge.Chakra > 4 && level >= MNK.Levels.HowlingFist && InCombat())
+                    return OriginalHook(MNK.HowlingFist);
+            }
 
             if (IsEnabled(CustomComboPreset.MonkAoEMeditationFeature))
             {

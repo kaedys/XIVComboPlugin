@@ -505,6 +505,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Monkey Form Shift Feature", "Replace Bootshine with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
     MonkMonkeyFormShiftFeature = 2024,
 
+    [SecretCustomCombo]
+    [ParentCombo(MonkMonkeyMode)]
+    [CustomComboInfo("Automatic Chakra Feature", "Replace Bootshine with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
+    MonkMonkeyAutoChakraFeature = 2026,
+
     [ConflictingCombos(MonkMonkeyMode)]
     [CustomComboInfo("Opo feature", "Replace Bootshine/Leaping Opo with Dragon Kick if you don't have any Opo's fury stack.", MNK.JobID)]
     MonkOpoFeature = 2017,
@@ -538,6 +543,11 @@ public enum CustomComboPreset
     [ParentCombo(MonkAoECombo)]
     [CustomComboInfo("AoE Form Shift Feature", "Replace Masterful Blitz with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
     MonkAoEFormShiftFeature = 2027,
+
+    [SecretCustomCombo]
+    [ParentCombo(MonkAoECombo)]
+    [CustomComboInfo("Automatic Chakra Feature", "Replace Bootshine with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
+    MonkAoEAutoChakraFeature = 2028,
 
     [CustomComboInfo("Perfect Balance Feature", "Replace Perfect Balance with Masterful Blitz when you have 3 Beast Chakra.", MNK.JobID)]
     MonkPerfectBalanceFeature = 2004,
