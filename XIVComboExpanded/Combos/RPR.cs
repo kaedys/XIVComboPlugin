@@ -34,6 +34,7 @@ internal static class RPR
         // Shroud
         Enshroud = 24394,
         Communio = 24398,
+        Perfectio = 36973,
         LemuresSlice = 24399,
         LemuresScythe = 24400,
         Sacrificium = 36969,
@@ -59,6 +60,8 @@ internal static class RPR
             EnhancedCrossReaping = 2591,
             ImmortalSacrifice = 2592,
             Enshrouded = 2593,
+            Oblatio = 3857,
+            PerfectioParata = 3860,
             Soulsow = 2594,
             Threshold = 2595,
             Oblatio = 3857,          // Sacrificium ready to use
@@ -125,6 +128,12 @@ internal class ReaperSlice : CustomCombo
                         return RPR.LemuresSlice;
                 }
 
+                if (IsEnabled(CustomComboPreset.ReaperSliceSacrificiumFeature))
+                {
+                    if (level >= RPR.Levels.Sacrificium && HasEffect(RPR.Buffs.Oblatio) && gauge.LemureShroud == 2)
+                        return RPR.Sacrificium;
+                }
+
                 if (IsEnabled(CustomComboPreset.ReaperSliceCommunioFeature))
                 {
                     if (level >= RPR.Levels.Communio && gauge.LemureShroud == 1)
@@ -165,6 +174,10 @@ internal class ReaperSlice : CustomCombo
                     return OriginalHook(RPR.Gallows);
             }
 
+            if (IsEnabled(CustomComboPreset.ReaperSlicePerfectioFeature))
+                if (level >= RPR.Levels.Perfectio && HasEffect(RPR.Buffs.PerfectioParata))
+                    return RPR.Perfectio;
+
             if (IsEnabled(CustomComboPreset.ReaperSliceCombo))
             {
                 if (comboTime > 0)
@@ -202,6 +215,12 @@ internal class ReaperScythe : CustomCombo
                         return RPR.LemuresScythe;
                 }
 
+                if (IsEnabled(CustomComboPreset.ReaperScytheSacrificiumFeature))
+                {
+                    if (level >= RPR.Levels.Sacrificium && HasEffect(RPR.Buffs.Oblatio) && gauge.LemureShroud == 2)
+                        return RPR.Sacrificium;
+                }
+
                 if (IsEnabled(CustomComboPreset.ReaperScytheCommunioFeature))
                 {
                     if (level >= RPR.Levels.Communio && gauge.LemureShroud == 1)
@@ -229,6 +248,10 @@ internal class ReaperScythe : CustomCombo
                 if (level >= RPR.Levels.Soulsow && !InCombat() && !HasEffect(RPR.Buffs.Soulsow))
                     return RPR.Soulsow;
             }
+
+            if (IsEnabled(CustomComboPreset.ReaperScythePerfectioFeature))
+                if (level >= RPR.Levels.Perfectio && HasEffect(RPR.Buffs.PerfectioParata))
+                    return RPR.Perfectio;
 
             if (IsEnabled(CustomComboPreset.ReaperScytheCombo))
             {
@@ -589,6 +612,10 @@ internal class ReaperHarpe : CustomCombo
                 if (level >= RPR.Levels.Soulsow && !HasEffect(RPR.Buffs.Soulsow) && (!InCombat() || !HasTarget()))
                     return RPR.Soulsow;
             }
+
+            if (IsEnabled(CustomComboPreset.ReaperHarpePerfectioFeature))
+                if (level >= RPR.Levels.Perfectio && HasEffect(RPR.Buffs.PerfectioParata))
+                    return RPR.Perfectio;
 
             if (IsEnabled(CustomComboPreset.ReaperHarpeHarvestMoonFeature))
             {
