@@ -546,7 +546,7 @@ public enum CustomComboPreset
 
     [SecretCustomCombo]
     [ParentCombo(MonkAoECombo)]
-    [CustomComboInfo("Automatic Chakra Feature", "Replace Bootshine with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
+    [CustomComboInfo("Automatic AoE Chakra Feature", "Replace Masterful Blitz with Enlightenment when your Fifth Chakra is open.", MNK.JobID)]
     MonkAoEAutoChakraFeature = 2028,
 
     [CustomComboInfo("Perfect Balance Feature", "Replace Perfect Balance with Masterful Blitz when you have 3 Beast Chakra.", MNK.JobID)]

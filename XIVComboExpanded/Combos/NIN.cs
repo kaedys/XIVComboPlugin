@@ -99,6 +99,10 @@ internal class NinjaAeolianEdge : CustomCombo
             {
                 if (comboTime > 0)
                 {
+                    // TODO Gauge stuff
+                    //if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.ArmorCrush && gauge.)
+                    //    return NIN.AeolianEdge;
+
                     if (lastComboMove == NIN.GustSlash && level >= NIN.Levels.AeolianEdge)
                         return NIN.AeolianEdge;
 
