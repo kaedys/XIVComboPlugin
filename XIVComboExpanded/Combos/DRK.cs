@@ -24,14 +24,19 @@ internal static class DRK
         EdgeOfShadow = 16470,
         LivingShadow = 16472,
         SaltAndDarkness = 25755,
-        Shadowbringer = 25757;
+        Shadowbringer = 25757,
+        ScarletDelirium = 36928,
+        Comeuppance = 36929,
+        Torcleaver = 36930,
+        Impalement = 36931;
 
     public static class Buffs
     {
         public const ushort
             BloodWeapon = 742,
             Darkside = 751,
-            Delirium = 1972;
+            Delirium = 1972,
+            ScarletDelirium = 3836;
     }
 
     public static class Debuffs
@@ -58,7 +63,11 @@ internal static class DRK
             Shadow = 74,
             LivingShadow = 80,
             SaltAndDarkness = 86,
-            Shadowbringer = 90;
+            Shadowbringer = 90,
+            ScarletDelirium = 96,
+            Comeuppance = 96,
+            Torcleaver = 96,
+            Impalement = 96;
     }
 }
 
@@ -74,7 +83,10 @@ internal class DarkSouleater : CustomCombo
 
             if (IsEnabled(CustomComboPreset.DarkDeliriumFeature))
             {
-                if (level >= DRK.Levels.Bloodspiller && level >= DRK.Levels.Delirium && HasEffect(DRK.Buffs.Delirium))
+                if (
+                    level >= DRK.Levels.Bloodspiller
+                    && level >= DRK.Levels.Delirium
+                    && (HasEffect(DRK.Buffs.Delirium) || HasEffect(DRK.Buffs.ScarletDelirium)))
                     return OriginalHook(DRK.Bloodspiller);
             }
 
@@ -121,9 +133,14 @@ internal class DarkStalwartSoul : CustomCombo
         {
             var gauge = GetJobGauge<DRKGauge>();
 
+
+
             if (IsEnabled(CustomComboPreset.DarkDeliriumFeature))
             {
-                if (level >= DRK.Levels.Quietus && level >= DRK.Levels.Delirium && HasEffect(DRK.Buffs.Delirium))
+                if (
+                    level >= DRK.Levels.Quietus
+                    && level >= DRK.Levels.Delirium
+                    && (HasEffect(DRK.Buffs.Delirium) || HasEffect(DRK.Buffs.ScarletDelirium)))
                     return OriginalHook(DRK.Quietus);
             }
 

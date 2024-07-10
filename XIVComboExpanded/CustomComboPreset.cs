@@ -171,7 +171,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Freeze/Flare Feature", "Freeze and Flare become whichever action you can currently use.", BLM.JobID)]
     BlackFreezeFlareFeature = 2506,
 
-    [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare in Astral Fire when only 1 Umbral Heart is active, less than 3000 mp, or during Enhanced Flare.", BLM.JobID)]
+    [CustomComboInfo("Fire 2 Feature", "(High) Fire 2 becomes Flare when in Astral Fire and is optimal.", BLM.JobID)]
     BlackFire2Feature = 2508,
 
     [CustomComboInfo("Ice 2 Feature", "(High) Blizzard 2 becomes Freeze in Umbral Ice.", BLM.JobID)]
@@ -203,11 +203,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Burst Shot/Quick Nock into Apex Arrow", "Replace Burst Shot and Quick Nock with Apex Arrow when gauge is full.", BRD.JobID)]
     BardApexFeature = 2304,
 
-    [CustomComboInfo("Quick Nock into Shadowbite", "Replace Quick Nock with Shadowbite when available.", BRD.JobID)]
+    [CustomComboInfo("Quick Nock into Wide Volley/Shadowbite", "Replace Quick Nock with Wide Volley/Shadowbite when available.", BRD.JobID)]
     BardShadowbiteFeature = 2305,
 
     [ParentCombo(BardShadowbiteFeature)]
-    [CustomComboInfo("A Barrage of Shadowbites", "Replace Quick Nock with Barrage when off cooldown and Shadowbite is available.", BRD.JobID)]
+    [CustomComboInfo("A Wide Barrage of Shadowbites", "Replace Quick Nock with Barrage when off cooldown and Wide Volley/Shadowbite is available.", BRD.JobID)]
     BardShadowbiteBarrageFeature = 2321,
 
     [SecretCustomCombo]
@@ -338,7 +338,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Stalwart Soul Overcap Feature", "Replace Stalwart Soul with Quietus when the next combo action would cause the Blood Gauge to overcap.", WAR.JobID)]
     DarkStalwartSoulOvercapFeature = 3207,
 
-    [CustomComboInfo("Delirium Feature", "Replace Souleater and Stalwart Soul with Bloodspiller and Quietus when Delirium is active.", DRK.JobID)]
+    [CustomComboInfo("Delirium Feature", "Replace Souleater and Stalwart Soul with Bloodspiller & its combo chain and Quietus/Impalement when Delirium is active.", DRK.JobID)]
     DarkDeliriumFeature = 3203,
 
     [CustomComboInfo("Blood Weapon Feature", "Replace Carve and Spit, and Abyssal Drain with Blood Weapon/Delirium when available.", DRK.JobID)]
@@ -494,15 +494,16 @@ public enum CustomComboPreset
     MonkAoECombo = 2001,
 
     //[CustomComboInfo("Dragon Kick / Bootshine Feature", "Replace Dragon Kick with Bootshine if Leaden Fist is up.", MNK.JobID)]
-    //MonkBootshineFeature = 2011,
+    //MonkBootshineFeature = 2019,
 
     //[ConflictingCombos(MonkTrueStrikeFeature)]
     //[CustomComboInfo("Twin Snakes / True Strike Feature", "Replace Twin Snakes with True Strike if Twin Snakes has more than 6s remaining.", MNK.JobID)]
-    //MonkTwinSnakesFeature = 2013,
+    //MonkTwinSnakesFeature = 2020,
 
     //[ParentCombo(MonkTwinSnakesFeature)]
+    //[SecretCustomCombo]
     //[CustomComboInfo("Formless Snakes Option", "While Formless Fist is active, do not replace Twin Snakes.", MNK.JobID)]
-    //MonkFormlessSnakesOption = 2015,
+    //MonkFormlessSnakesOption = 2021,
 
     //[ConflictingCombos(MonkTwinSnakesFeature)]
     //[CustomComboInfo("True Strike / Twin Snakes Feature", "Replace True Strike with Twin Snakes if Twin Snakes has less than 6s remaining or isn't applied yet.", MNK.JobID)]
@@ -810,6 +811,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Grim Swathe Gluttony Feature", "Replace Grim Swathe with Gluttony when available and greater-than-or-equal-to 50 Soul Gauge is present.", RPR.JobID)]
     ReaperGrimSwatheGluttonyFeature = 3916,
 
+    [CustomComboInfo("Lemure's Sacrificium Feature", "Replace Lemure's Slice/Scythe with Sacrificium when available and you have fewer than 2 Void Shroud.", RPR.JobID)]
+    ReaperLemuresSacrificiumFeature = 3940,
+
+    [ParentCombo(ReaperLemuresSacrificiumFeature)]
+    [CustomComboInfo("Prioritize Sacrificium over Lemure's", "Replace Lemure's Slice/Scythe with Sacrificium even when you have 2 Void Shroud.", RPR.JobID)]
+    ReaperLemuresSacrificiumPriorityFeature = 3941,
+
     [CustomComboInfo("Arcane Harvest Feature", "Replace Arcane Circle with Plentiful Harvest when you have stacks of Immortal Sacrifice.", RPR.JobID)]
     ReaperHarvestFeature = 3908,
 
@@ -1048,6 +1056,9 @@ public enum CustomComboPreset
     [CustomComboInfo("Summon Seraph Feature", "Replace Summon Eos and Selene with Summon Seraph when a summon is out.", SCH.JobID)]
     ScholarSeraphFeature = 2805,
 
+    [CustomComboInfo("Seraphism Feature", "Replace Seraphism with Emergency Tactics as long as you are under its effect.", SCH.JobID)]
+    ScholarSeraphismFeature = 2812,
+
     [CustomComboInfo("Adloquium Level Sync", "Replace Adloquium with Physick when below level 30 in synced content.", SCH.JobID)]
     ScholarAdloquiumSyncFeature = 2810,
 
@@ -1202,8 +1213,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Eureka Feature", "Replace Ageless Words and Solid Reason with Wise to the World when available.", DOL.JobID)]
     DolEurekaFeature = 51001,
 
+    [ConflictingCombos(DolCastRestFeature)]
     [CustomComboInfo("Cast / Hook Feature", "Replace Cast with Hook when fishing.", DOL.JobID)]
     DolCastHookFeature = 51002,
+
+    [ConflictingCombos(DolCastHookFeature)]
+    [CustomComboInfo("Cast / Rest Feature", "Replace Cast with Rest when fishing.", DOL.JobID)]
+    DolCastRestFeature = 51008,
 
     [CustomComboInfo("Cast / Gig Feature", "Replace Cast with Gig when underwater.", DOL.JobID)]
     DolCastGigFeature = 51003,
