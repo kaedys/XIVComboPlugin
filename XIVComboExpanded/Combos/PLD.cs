@@ -305,10 +305,9 @@ internal class PaladinRequiescat : PaladinCombo
                 // single GCD.
                 if (IsEnabled(CustomComboPreset.PaladinRequiescatFightOrFlightFeature) && IsEnabled(CustomComboPreset.PaladinFightOrFlightGoringBladeFeature))
                 {
-                    if (level >= PLD.Levels.GoringBlade && IsOffCooldown(PLD.GoringBlade))
+                    if (HasEffect(PLD.Buffs.GoringBladeReady))
                     {
-                        if (HasEffect(PLD.Buffs.GoringBladeReady))
-                            return PLD.GoringBlade;
+                        return PLD.GoringBlade;
                     }
                 }
 
