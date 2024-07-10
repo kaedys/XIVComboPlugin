@@ -533,7 +533,7 @@ public enum CustomComboPreset
     MonkRaptorFeature = 2018,
 
     [ConflictingCombos(MonkMonkeyMode)]
-    [CustomComboInfo("Coeurl feature", "Replace Demolish with Snap Punch if you don't have any Coeurl's fury stack.", MNK.JobID)]
+    [CustomComboInfo("Coeurl feature", "Replace Snap Punch with Demolish if you don't have any Coeurl's fury stack.", MNK.JobID)]
     MonkCoeurlFeature = 2019,
 
     [CustomComboInfo("ST Balance Feature", "Replace Bootshine, Dragon Kick True Strike, Twin Snakes, Snap Punch and Demolish with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
