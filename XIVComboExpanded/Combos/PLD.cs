@@ -305,7 +305,10 @@ internal class PaladinRequiescat : PaladinCombo
                 // single GCD.
                 if (IsEnabled(CustomComboPreset.PaladinRequiescatFightOrFlightFeature) && IsEnabled(CustomComboPreset.PaladinFightOrFlightGoringBladeFeature))
                 {
-                    if (HasEffect(PLD.Buffs.GoringBladeReady))
+                    // Don't use Goring Blade until Requiescat is on cooldown, unless it somehow got desynced and is >5s left on its cooldown.
+                    // This prevents an odd effect where shortly after casting Fight or Flight, Goring Blade would be cast instead of Requiescat, causing drift.
+                    var req = GetCooldown(PLD.Requiescat);
+                    if (HasEffect(PLD.Buffs.GoringBladeReady) && req.CooldownElapsed > 0 && req.CooldownElapsed < 55)
                     {
                         return PLD.GoringBlade;
                     }
