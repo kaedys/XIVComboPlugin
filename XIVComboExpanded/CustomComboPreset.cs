@@ -338,7 +338,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Stalwart Soul Overcap Feature", "Replace Stalwart Soul with Quietus when the next combo action would cause the Blood Gauge to overcap.", WAR.JobID)]
     DarkStalwartSoulOvercapFeature = 3207,
 
-    [CustomComboInfo("Delirium Feature", "Replace Souleater and Stalwart Soul with Bloodspiller and Quietus when Delirium is active.", DRK.JobID)]
+    [CustomComboInfo("Delirium Feature", "Replace Souleater and Stalwart Soul with Bloodspiller & its combo chain and Quietus/Impalement when Delirium is active.", DRK.JobID)]
     DarkDeliriumFeature = 3203,
 
     [CustomComboInfo("Blood Weapon Feature", "Replace Carve and Spit, and Abyssal Drain with Blood Weapon/Delirium when available.", DRK.JobID)]
@@ -494,15 +494,16 @@ public enum CustomComboPreset
     MonkAoECombo = 2001,
 
     //[CustomComboInfo("Dragon Kick / Bootshine Feature", "Replace Dragon Kick with Bootshine if Leaden Fist is up.", MNK.JobID)]
-    //MonkBootshineFeature = 2011,
+    //MonkBootshineFeature = 2019,
 
     //[ConflictingCombos(MonkTrueStrikeFeature)]
     //[CustomComboInfo("Twin Snakes / True Strike Feature", "Replace Twin Snakes with True Strike if Twin Snakes has more than 6s remaining.", MNK.JobID)]
-    //MonkTwinSnakesFeature = 2013,
+    //MonkTwinSnakesFeature = 2020,
 
     //[ParentCombo(MonkTwinSnakesFeature)]
+    //[SecretCustomCombo]
     //[CustomComboInfo("Formless Snakes Option", "While Formless Fist is active, do not replace Twin Snakes.", MNK.JobID)]
-    //MonkFormlessSnakesOption = 2015,
+    //MonkFormlessSnakesOption = 2021,
 
     //[ConflictingCombos(MonkTwinSnakesFeature)]
     //[CustomComboInfo("True Strike / Twin Snakes Feature", "Replace True Strike with Twin Snakes if Twin Snakes has less than 6s remaining or isn't applied yet.", MNK.JobID)]
