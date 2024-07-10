@@ -227,7 +227,7 @@ internal class SummonerGemshinePreciousBrilliance : CustomCombo
 
             if (IsEnabled(CustomComboPreset.SummonerShinyEnkindleFeature))
             {
-                if (level >= SMN.Levels.EnkindleBahamut && !gauge.IsIfritAttuned && !gauge.IsTitanAttuned && !gauge.IsGarudaAttuned && gauge.SummonTimerRemaining > 0)
+                if (level >= SMN.Levels.EnkindleBahamut && gauge.SummonTimerRemaining > 0 && gauge.AttunmentTimerRemaining == 0)
                     // Rekindle
                     return OriginalHook(SMN.EnkindleBahamut);
             }
