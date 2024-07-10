@@ -22,6 +22,7 @@ internal static class MNK
         Rockbreaker = 70,
         DragonKick = 74,
         Meditation = 3546,
+        FormShift = 4262,
         RiddleOfFire = 7395,
         Brotherhood = 7396,
         FourPointFury = 16473,
@@ -29,7 +30,12 @@ internal static class MNK
         HowlingFist = 25763,
         MasterfulBlitz = 25764,
         RiddleOfWind = 25766,
-        ShadowOfTheDestroyer = 25767;
+        ShadowOfTheDestroyer = 25767,
+        SteeledMeditation = 36942,
+        EnlightenedMeditation = 36943,
+        LeapingOpo = 36945,
+        RisingRaptor = 36946,
+        PouncingCoeurl = 39647;
 
     public static class Buffs
     {
@@ -56,6 +62,7 @@ internal static class MNK
             TrueStrike = 4,
             SnapPunch = 6,
             Meditation = 15,
+            SteeledMeditation = 15,
             TwinSnakes = 18,
             ArmOfTheDestroyer = 26,
             Rockbreaker = 30,
@@ -71,7 +78,193 @@ internal static class MNK
             Brotherhood = 70,
             Enlightenment = 70,
             RiddleOfWind = 72,
+            EnlightenedMeditation = 74,
             ShadowOfTheDestroyer = 82;
+    }
+}
+
+internal class MonkOpoCombo : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkOpoFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == MNK.Bootshine || actionID == MNK.LeapingOpo)
+        {
+            var gauge = GetJobGauge<MNKGauge>();
+
+            if (IsEnabled(CustomComboPreset.MonkBootshineMeditationFeature))
+            {
+                if (level >= MNK.Levels.SteeledMeditation && gauge.Chakra < 5 && !InCombat())
+                    return MNK.SteeledMeditation;
+            }
+
+            if (IsEnabled(CustomComboPreset.MonkBootshineFormShiftFeature))
+            {
+                if (level >= MNK.Levels.FormShift && !HasEffect(MNK.Buffs.FormlessFist) && !InCombat())
+                    return MNK.FormShift;
+            }
+
+            if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
+            {
+                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                    // Chakra actions
+                    return OriginalHook(MNK.MasterfulBlitz);
+            }
+
+            if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
+                return MNK.DragonKick;
+        }
+
+        return actionID;
+    }
+}
+
+internal class MonkRaptorCombo : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkRaptorFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == MNK.TrueStrike || actionID == MNK.RisingRaptor)
+        {
+            var gauge = GetJobGauge<MNKGauge>();
+
+            if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
+            {
+                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                    // Chakra actions
+                    return OriginalHook(MNK.MasterfulBlitz);
+            }
+
+            if (gauge.RaptorFury == 0 && level > MNK.Levels.TwinSnakes)
+                return MNK.TwinSnakes;
+        }
+
+        return actionID;
+    }
+}
+
+internal class MonkCoeurlCombo : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkCoeurlFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == MNK.SnapPunch || actionID == MNK.PouncingCoeurl)
+        {
+            var gauge = GetJobGauge<MNKGauge>();
+
+            if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
+            {
+                if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                    // Chakra actions
+                    return OriginalHook(MNK.MasterfulBlitz);
+            }
+
+            if (gauge.CoeurlFury == 0 && level > MNK.Levels.Demolish)
+                return MNK.Demolish;
+        }
+
+        return actionID;
+    }
+}
+
+internal class MonkMonkeyMode : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.MonkMonkeyMode;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == MNK.Bootshine || actionID == MNK.LeapingOpo)
+        {
+            var gauge = GetJobGauge<MNKGauge>();
+
+            // Masterful Blitz
+            if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
+            {
+                    if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
+                        return OriginalHook(MNK.MasterfulBlitz);
+            }
+
+            if (level >= MNK.Levels.PerfectBalance && HasEffect(MNK.Buffs.PerfectBalance))
+            {
+                // Solar Nadi
+                if (level >= MNK.Levels.EnhancedPerfectBalance && !gauge.Nadi.HasFlag(Nadi.SOLAR))
+                {
+                    if (level >= MNK.Levels.TwinSnakes && !gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                    {
+                        if (gauge.RaptorFury == 0 && level >= MNK.Levels.TwinSnakes)
+                            return MNK.TwinSnakes;
+                        else
+                            return OriginalHook(MNK.TrueStrike);
+                    }
+
+                    if (level >= MNK.Levels.Demolish && !gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                    {
+                        if (gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish)
+                            return MNK.Demolish;
+                        else
+                            return OriginalHook(MNK.SnapPunch);
+                    }
+
+                    if (level >= MNK.Levels.DragonKick && !gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                       {
+                        if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
+                            return MNK.DragonKick;
+                        else
+                            return OriginalHook(MNK.Bootshine);
+                    }
+                }
+
+                // Lunar Nadi or both
+                else if (level >= MNK.Levels.EnhancedPerfectBalance && gauge.Nadi.HasFlag(Nadi.SOLAR))
+                {
+                    if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
+                        return MNK.DragonKick;
+                    else
+                        return OriginalHook(MNK.Bootshine);
+                }
+            }
+
+            if (IsEnabled(CustomComboPreset.MonkBootshineMeditationFeature))
+            {
+                if (level >= MNK.Levels.SteeledMeditation && gauge.Chakra < 5 && !InCombat())
+                    return MNK.SteeledMeditation;
+            }
+
+            if (IsEnabled(CustomComboPreset.MonkMonkeyFormShiftFeature))
+            {
+                if (level >= MNK.Levels.FormShift && !HasEffect(MNK.Buffs.FormlessFist) && !InCombat())
+                    return MNK.FormShift;
+            }
+
+            if (HasEffect(MNK.Buffs.RaptorForm))
+            {
+                if (gauge.RaptorFury == 0 && level >= MNK.Levels.TwinSnakes)
+                    return MNK.TwinSnakes;
+                else
+                    return OriginalHook(MNK.TrueStrike);
+            }
+
+            if (HasEffect(MNK.Buffs.CoerlForm))
+            {
+                if (gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish)
+                    return MNK.Demolish;
+                else
+                    return OriginalHook(MNK.SnapPunch);
+            }
+
+            if (HasEffect(MNK.Buffs.OpoOpoForm) || (!HasEffect(MNK.Buffs.OpoOpoForm) || !HasEffect(MNK.Buffs.CoerlForm) || !HasEffect(MNK.Buffs.RaptorForm)))
+            {
+                if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
+                    return MNK.DragonKick;
+                else
+                    return OriginalHook(MNK.Bootshine);
+            }
+        }
+
+        return actionID;
     }
 }
 
@@ -84,6 +277,18 @@ internal class MonkAoECombo : CustomCombo
         if (actionID == MNK.MasterfulBlitz)
         {
             var gauge = GetJobGauge<MNKGauge>();
+
+            if (IsEnabled(CustomComboPreset.MonkAoEMeditationFeature))
+            {
+                if (level >= MNK.Levels.EnlightenedMeditation && gauge.Chakra < 5 && !InCombat())
+                    return MNK.EnlightenedMeditation;
+            }
+
+            if (IsEnabled(CustomComboPreset.MonkAoEFormShiftFeature))
+            {
+                if (level >= MNK.Levels.FormShift && !HasEffect(MNK.Buffs.FormlessFist) && !InCombat())
+                    return MNK.FormShift;
+            }
 
             // Blitz
             if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
@@ -118,8 +323,9 @@ internal class MonkAoECombo : CustomCombo
             // FPF with FormShift
             if (level >= MNK.Levels.FormShift && HasEffect(MNK.Buffs.FormlessFist))
             {
-                if (level >= MNK.Levels.FourPointFury)
-                    return MNK.FourPointFury;
+                return level >= MNK.Levels.ShadowOfTheDestroyer
+                    ? MNK.ShadowOfTheDestroyer
+                    : MNK.Rockbreaker;
             }
 
             // 1-2-3 combo

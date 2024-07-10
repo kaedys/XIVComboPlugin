@@ -490,45 +490,54 @@ public enum CustomComboPreset
     // ====================================================================================
     #region MONK
 
+    [SecretCustomCombo]
+    [ConflictingCombos([MonkOpoFeature, MonkRaptorFeature, MonkCoeurlFeature])]
+    [CustomComboInfo("monke mode", "One-buttons the basic rotation on Bootshine/Leaping Opo.", MNK.JobID)]
+    MonkMonkeyMode = 2021,
+
+    [SecretCustomCombo]
+    [ParentCombo(MonkMonkeyMode)]
+    [CustomComboInfo("Monkey Bootshine Steeled Meditation Feature", "Replace Bootshine with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
+    MonkMonkeyMeditationFeature = 2022,
+
+    [SecretCustomCombo]
+    [ParentCombo(MonkMonkeyMode)]
+    [CustomComboInfo("Monkey Form Shift Feature", "Replace Bootshine with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
+    MonkMonkeyFormShiftFeature = 2024,
+
+    [ConflictingCombos(MonkMonkeyMode)]
+    [CustomComboInfo("Opo feature", "Replace Bootshine/Leaping Opo with Dragon Kick if you don't have any Opo's fury stack.", MNK.JobID)]
+    MonkOpoFeature = 2017,
+
+    [ParentCombo(MonkOpoFeature)]
+    [CustomComboInfo("Bootshine Steeled Meditation Feature", "Replace Bootshine with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
+    MonkBootshineMeditationFeature = 2012,
+
+    [ParentCombo(MonkOpoFeature)]
+    [CustomComboInfo("Form Shift Feature", "Replace Bootshine with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
+    MonkBootshineFormShiftFeature = 2023,
+
+    [ConflictingCombos(MonkMonkeyMode)]
+    [CustomComboInfo("Raptor feature", "Replace True Strike with Twin Snakes if you don't have any Raptor's fury stack.", MNK.JobID)]
+    MonkRaptorFeature = 2018,
+
+    [ConflictingCombos(MonkMonkeyMode)]
+    [CustomComboInfo("Coeurl feature", "Replace Demolish with Snap Punch if you don't have any Coeurl's fury stack.", MNK.JobID)]
+    MonkCoeurlFeature = 2019,
+
+    [CustomComboInfo("ST Balance Feature", "Replace Bootshine, Dragon Kick True Strike, Twin Snakes, Snap Punch and Demolish with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
+    MonkSTBalanceFeature = 2005,
+
     [CustomComboInfo("Monk AoE Combo", "Replace Masterful Blitz with the AoE combo chain. This was changed from Rockbreaker due to an action queueing bug.", MNK.JobID)]
     MonkAoECombo = 2001,
 
-    //[CustomComboInfo("Dragon Kick / Bootshine Feature", "Replace Dragon Kick with Bootshine if Leaden Fist is up.", MNK.JobID)]
-    //MonkBootshineFeature = 2019,
+    [ParentCombo(MonkAoECombo)]
+    [CustomComboInfo("Enlightened Meditation Feature", "Replace Masterful Blitz with Enlightened Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
+    MonkAoEMeditationFeature = 2025,
 
-    //[ConflictingCombos(MonkTrueStrikeFeature)]
-    //[CustomComboInfo("Twin Snakes / True Strike Feature", "Replace Twin Snakes with True Strike if Twin Snakes has more than 6s remaining.", MNK.JobID)]
-    //MonkTwinSnakesFeature = 2020,
-
-    //[ParentCombo(MonkTwinSnakesFeature)]
-    //[SecretCustomCombo]
-    //[CustomComboInfo("Formless Snakes Option", "While Formless Fist is active, do not replace Twin Snakes.", MNK.JobID)]
-    //MonkFormlessSnakesOption = 2021,
-
-    //[ConflictingCombos(MonkTwinSnakesFeature)]
-    //[CustomComboInfo("True Strike / Twin Snakes Feature", "Replace True Strike with Twin Snakes if Twin Snakes has less than 6s remaining or isn't applied yet.", MNK.JobID)]
-    //MonkTrueStrikeFeature = 2016,
-
-    //[ParentCombo(MonkTrueStrikeFeature)]
-    //[CustomComboInfo("Formless Strike Option", "While Formless Fist is active, do not replace True Strike.", MNK.JobID)]
-    //MonkFormlessStrikeOption = 2018,
-
-    //[ConflictingCombos(MonkSnapPunchFeature)]
-    //[CustomComboInfo("Demolish / Snap Punch Feature", "Replace Demolish with Snap Punch if Demolish has more than 6s remaining on your current target.", MNK.JobID)]
-    //MonkDemolishFeature = 2014,
-
-    //[ConflictingCombos(MonkDemolishFeature)]
-    //[CustomComboInfo("Snap Punch / Demolish Feature", "Replace Snap Punch with Demolish if Demolish has less than 6s remaining on your current target or isn't applied yet.", MNK.JobID)]
-    //MonkSnapPunchFeature = 2017,
-
-    [CustomComboInfo("Dragon Balance Feature", "Replace Dragon Kick with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
-    MonkDragonKickBalanceFeature = 2005,
-
-    //[CustomComboInfo("Dragon Meditation Feature", "Replace Dragon Kick with Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
-    //MonkDragonKickMeditationFeature = 2012,
-
-    //[CustomComboInfo("Howling Fist / Meditation Feature", "Replace Howling Fist with Meditation when the Fifth Chakra is not open.", MNK.JobID)]
-    //MonkHowlingFistMeditationFeature = 2003,
+    [ParentCombo(MonkAoECombo)]
+    [CustomComboInfo("AoE Form Shift Feature", "Replace Masterful Blitz with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
+    MonkAoEFormShiftFeature = 2027,
 
     [CustomComboInfo("Perfect Balance Feature", "Replace Perfect Balance with Masterful Blitz when you have 3 Beast Chakra.", MNK.JobID)]
     MonkPerfectBalanceFeature = 2004,
