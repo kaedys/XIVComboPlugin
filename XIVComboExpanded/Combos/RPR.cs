@@ -34,7 +34,6 @@ internal static class RPR
         // Shroud
         Enshroud = 24394,
         Communio = 24398,
-        Perfectio = 36973,
         LemuresSlice = 24399,
         LemuresScythe = 24400,
         Sacrificium = 36969,
@@ -60,8 +59,6 @@ internal static class RPR
             EnhancedCrossReaping = 2591,
             ImmortalSacrifice = 2592,
             Enshrouded = 2593,
-            Oblatio = 3857,
-            PerfectioParata = 3860,
             Soulsow = 2594,
             Threshold = 2595,
             Oblatio = 3857,          // Sacrificium ready to use
