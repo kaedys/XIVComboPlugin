@@ -148,7 +148,7 @@ internal abstract partial class CustomCombo
                 }
                 else
                 {
-                    return a1.Data.CooldownRemaining < a2.Data.CooldownRemaining
+                    return a1.Data.CooldownRemaining <= a2.Data.CooldownRemaining
                         ? a1 : a2;
                 }
             }
