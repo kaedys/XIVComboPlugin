@@ -29,7 +29,7 @@ internal static class VPR
             PitOfDread = 34623,
             HuntersDen = 34624,
             SwiftskinsDen = 34625,
-            
+
             SerpentsTail = 35920,
             DeathRattle = 34634,
             LastLash = 34635,
@@ -407,18 +407,18 @@ internal class MergeTwinsSerpentFeature : CustomCombo
 }
 
 // TODO: Once Gauge is implemented
-// internal class FuryAndIreFeature : CustomCombo
-// {
-//     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperFuryAndIreFeature;
+internal class FuryAndIreFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperFuryAndIreFeature;
 
-//     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
-//     {
-//         if (actionID == VPR.UncoiledFury)
-//         {
-//             var gauge = GetJobGauge<VPRGauge>();
-//             if (gauge.RattlingCoil == 0)
-//                 return VPR.SerpentsIre;
-//         }
-//         return actionID;
-//     }
-// }
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.UncoiledFury)
+        {
+            var gauge = GetJobGauge<VPRGauge>();
+            if (gauge.RattlingCoilStacks == 0)
+                return VPR.SerpentsIre;
+        }
+        return actionID;
+    }
+}
