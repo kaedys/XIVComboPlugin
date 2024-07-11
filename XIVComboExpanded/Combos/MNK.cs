@@ -36,7 +36,7 @@ internal static class MNK
         EnlightenedMeditation = 36943,
         LeapingOpo = 36945,
         RisingRaptor = 36946,
-        PouncingCoeurl = 39647;
+        PouncingCoeurl = 36947;
 
     public static class Buffs
     {
