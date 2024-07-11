@@ -1214,8 +1214,43 @@ public enum CustomComboPreset
     // ====================================================================================
     #region VIPER
 
-    [CustomComboInfo("Viper exists!", "No combos planned for now as the job is already combo-heavy. Stay tuned!", VPR.JobID)]
-    ViperDoingNothing = 4100,
+    [CustomComboInfo("Steel Tail Feature", "Replace Steel Fangs and Dread Fangs with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    ViperSteelTailFeature = 4101,
+
+    [CustomComboInfo("Steel Tail AoE Feature", "Replace Steel Maw and Dread Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    ViperSteelTailAoEFeature = 4102,
+
+    [CustomComboInfo("Twin Coil Feature", "Replace Swiftskin's Coil and Hunter's Coil with their respective Twinblood and Twinfang skills.", VPR.JobID)]
+    ViperTwinCoilFeature = 4103,
+
+    [CustomComboInfo("Twin Coil AoE Feature", "Replace Swiftskin's Den and Hunter's Den with their respective Twinblood and Twinfang skills.", VPR.JobID)]
+    ViperTwinDenFeature = 4104,
+
+    [CustomComboInfo("Generation Legacy Feature", "Replaces the Generation skills with their respective Legacies.", VPR.JobID)]
+    ViperGenerationLegaciesFeature = 4105,
+
+    [CustomComboInfo("Generation Legacy AoE Feature", "Replaces the AoE versions of Generation skills with their respective Legacies.", VPR.JobID)]
+    ViperGenerationLegaciesAoEFeature = 4106,
+
+    [CustomComboInfo("Uncoiled Fury Followup", "Replaces Uncoiled Fury with Uncoiled Twinfang and Uncoiled Twinblood in sequence.", VPR.JobID)]
+    ViperUncoiledFollowupFeature = 4107,
+
+    // [CustomComboInfo("FuryAndIre", "Replaces Uncoiled Fury with Serpent's Ire when out of Rattling Coil stacks.", VPR.JobID)]
+    // ViperFuryAndIreFeature = 4108,
+
+    [CustomComboInfo("Dread Fangs to Dreadwinder", "Replaces Dread Fangs to Dreadwinder when there are stacks present and not currently in a combo.", VPR.JobID)]
+    ViperDreadfangsDreadwinderFeature = 4109,
+
+    [CustomComboInfo("Dread Maw to Pit of Dread", "Replaces Dread Maw with Pit of Dread when there are stacks present and not currently in a combo.", VPR.JobID)]
+    ViperPitOfDreadFeature = 4110,
+
+    [ConflictingCombos(ViperMergeTwinsSerpentFeature)]
+    [CustomComboInfo("Merge Twinfang/Twinblood onto Serpent's Tail Feature", "Merge all Twinfang/Twinblood abilities onto Serpent's Tail.", VPR.JobID)]
+    ViperMergeSerpentTwinsFeature=4111,
+
+    [ConflictingCombos(ViperMergeSerpentTwinsFeature)]
+    [CustomComboInfo("Merge Serpent's Tail onto Twinfang/Twinblood Feature", "Merge all Serpent's Tail abilities onto Twinfang/Twinblood.", VPR.JobID)]
+    ViperMergeTwinsSerpentFeature=4112,
 
     #endregion
     // ====================================================================================
