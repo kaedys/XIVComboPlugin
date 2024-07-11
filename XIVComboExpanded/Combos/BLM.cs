@@ -32,7 +32,7 @@ internal static class BLM
         HighFire2 = 25794,
         HighBlizzard2 = 25795,
         Paradox = 25797,
-        FlareStar = 38072;
+        FlareStar = 36989;
 
     public static class Buffs
     {
@@ -119,6 +119,9 @@ internal class BlackFireBlizzard4 : CustomCombo
                 {
                     if (IsEnabled(CustomComboPreset.BlackEnochianDespairFeature))
                     {
+                        if (IsEnabled(CustomComboPreset.BlackEnochianDespairFlareStarFeature))
+                            if (level >= BLM.Levels.FlareStar && gauge.AstralSoulStacks >= 6 && LocalPlayer?.CurrentMp <= 0)
+                                return BLM.FlareStar;
                         if (level >= BLM.Levels.Despair && LocalPlayer?.CurrentMp < 2400)
                             return BLM.Despair;
                     }

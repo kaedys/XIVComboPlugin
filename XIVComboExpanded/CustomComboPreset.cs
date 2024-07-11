@@ -161,6 +161,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Enochian Despair Feature", "Replace Fire 4 and Blizzard 4 with Despair when in Astral Fire with less than 2400 mana.", BLM.JobID)]
     BlackEnochianDespairFeature = 2510,
 
+    [SecretCustomCombo]
+    [ParentCombo(BlackEnochianDespairFeature)]
+    [CustomComboInfo("Enochian Despair into Flare Star Feature", "Replace Fire 4 and Blizzard 4 with Flare Star when you have 6 astral soul and 0 mana.", BLM.JobID)]
+    BlackEnochianDespairFlareStarFeature = 2524,
+
     [ParentCombo(BlackEnochianFeature)]
     [CustomComboInfo("Enochian No Sync Feature", "Fire 4 and Blizzard 4 will not sync to Fire 1 and Blizzard 1.", BLM.JobID)]
     BlackEnochianNoSyncFeature = 2518,
