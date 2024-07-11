@@ -210,16 +210,16 @@ internal static class PCT
                     {
                         if (actionID == PCT.ExtraBlizzardCyan)
                         {
-                            if (HasEffect(PCT.Buffs.Chroma2Ready))
+                            if (HasEffect(PCT.Buffs.Chroma2Ready) && level >= PCT.Levels.ExtraAeroGreen)
                             {
                                 return PCT.ExtraAeroGreen;
                             }
-                            else if (HasEffect(PCT.Buffs.Chroma3Ready))
+                            else if (HasEffect(PCT.Buffs.Chroma3Ready) && level >= PCT.Levels.ExtraWaterBlue)
                             {
                                 return PCT.ExtraWaterBlue;
                             }
 
-                            return PCT.ExtraFireRed;
+                            return OriginalHook(PCT.ExtraFireRed);
                         }
                     }
                 }
