@@ -731,6 +731,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Star Prism Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Star Prism when you have Star Prism Ready.", PCT.JobID)]
     PictomancerStarPrismAutoCombo = 4214,
 
+    [SecretCustomCombo]
+    [CustomComboInfo("Mog of the Ages Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
+    PictomancerAutoMogCombo = 4220,
+
     [CustomComboInfo("Creature Muse/Motif Combo", "Replace Creature Motifs with Creature Muses when the Creature Canvas is painted.", PCT.JobID)]
     PictomancerCreatureMotifCombo = 4206,
 

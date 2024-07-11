@@ -145,11 +145,20 @@ internal static class PCT
                         return PCT.StarPrism1;
                     }
                 }
+
                 if (IsEnabled(CustomComboPreset.PictomancerRainbowAutoCombo))
                 {
                     if (HasEffect(PCT.Buffs.RainbowReady))
                     {
                         return PCT.RainbowDrip;
+                    }
+                }
+
+                if (IsEnabled(CustomComboPreset.PictomancerAutoMogCombo))
+                {
+                    if (gauge.MooglePortraitReady || gauge.MadeenPortraitReady)
+                    {
+                        return OriginalHook(PCT.MogOftheAges);
                     }
                 }
 
@@ -200,6 +209,12 @@ internal static class PCT
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             var gauge = GetJobGauge<PCTGauge>();
+
+            if ((actionID == PCT.ExtraFireRed || actionID == PCT.ExtraBlizzardCyan) && IsEnabled(CustomComboPreset.PictomancerRainbowStarter) && !InCombat())
+            {
+                return PCT.RainbowDrip;
+            }
+
             if (actionID == PCT.ExtraBlizzardCyan)
             {
                 if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAutoCombo))
