@@ -676,6 +676,14 @@ public enum CustomComboPreset
     [CustomComboInfo("Royal Authority Atonement Feature", "Replace Royal Authority with Atonement, Supplication & Sepulchre when under the effect of the corresponding buffs.", PLD.JobID)]
     PaladinRoyalAuthorityAtonementComboFeature = 1903,
 
+    [ParentCombo(PaladinRoyalAuthorityCombo)]
+    [CustomComboInfo("Royal Authority Confiteor Feature", "Replace Royal Authority with Confiteor and its combo chain when under the effect of Requiescat.", PLD.JobID)]
+    PaladinRoyalAuthorityConfiteorComboFeature = 1917,
+
+    [ParentCombo(PaladinRoyalAuthorityCombo)]
+    [CustomComboInfo("Royal Authority Goring Blade Feature", "Replace Royal Authority with Goring Blade when available.", PLD.JobID)]
+    PaladinRoyalAuthorityGoringBladeComboFeature = 1918,
+
     [CustomComboInfo("Prominence Combo", "Replace Prominence with its combo chain.", PLD.JobID)]
     PaladinProminenceCombo = 1904,
 
@@ -683,14 +691,19 @@ public enum CustomComboPreset
     [CustomComboInfo("Prominence Divine Might Feature", "Replace Prominence with Holy Circle when Divine Might is active.", PLD.JobID)]
     PaladinProminenceDivineMightFeature = 1913,
 
+    [ParentCombo(PaladinProminenceCombo)]
+    [CustomComboInfo("Prominence Confiteor Feature", "Replace Prominence with Confiteor and its combo chain when under the effect of Requiescat.", PLD.JobID)]
+    PaladinProminenceConfiteorComboFeature = 1919,
+
+    [ParentCombo(PaladinProminenceCombo)]
+    [CustomComboInfo("Prominence Goring Blade Feature", "Replace Prominence with Goring Blade when available.", PLD.JobID)]
+    PaladinProminenceGoringBladeComboFeature = 1920,
+
     [CustomComboInfo("Requiescat Fight or Flight Feature", "Replace Requiescat with Fight or Flight when off cooldown or if it will be ready sooner.", PLD.JobID)]
     PaladinRequiescatFightOrFlightFeature = 1914,
 
     [CustomComboInfo("Requiescat Confiteor", "Replace Requiescat with Confiteor and combo chain while under the effect of Requiescat, and then with Holy Spirit if there are remaining charges.", PLD.JobID)]
     PaladinRequiescatCombo = 1905,
-
-    [CustomComboInfo("Fight or Flight Goring Blade Feature", "Replace Fight or Flight with Goring Blade while Fight or Flight is active.  Also applies to Requiescat if the Requiescat Fight or Flight Feature is enabled.", PLD.JobID)]
-    PaladinFightOrFlightGoringBladeFeature = 1911,
 
     [CustomComboInfo("Confiteor Feature", "Replace Holy Spirit/Circle with Confiteor while under the effect of Requiescat.", PLD.JobID)]
     PaladinConfiteorFeature = 1907,
