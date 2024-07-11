@@ -630,10 +630,10 @@ public enum CustomComboPreset
     [CustomComboInfo("Kassatsu Chi/Jin Feature", "Replace Chi with Jin while Kassatsu is up if you have Enhanced Kassatsu.", NIN.JobID)]
     NinjaKassatsuChiJinFeature = 3006,
 
-    [CustomComboInfo("Hide to Mug/Dokumori", "Replace Hide with Mug/Dokumori while in combat.", NIN.JobID)]
+    [CustomComboInfo("Hide to Mug/Dokumori", "Replace Hide with Mug/Dokumori while in combat or hidden.", NIN.JobID)]
     NinjaHideMugFeature = 3007,
 
-    [CustomComboInfo("Hide to Ninjutsu", "Replace Hide with Ninjutsu if any Mudra are active.", NIN.JobID)]
+    [CustomComboInfo("Hide to Ninjutsu", "Replace Hide with Ninjutsu if any Mudra are active. Takes precedence over Hide to Mug/Dokumori.", NIN.JobID)]
     NinjaHideNinjutsuFeature = 3020,
 
     #endregion

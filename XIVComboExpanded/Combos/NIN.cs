@@ -218,9 +218,9 @@ internal class NinjaHide : CustomCombo
                     return OriginalHook(NIN.Ninjutsu);
             }
 
-            if (IsEnabled(CustomComboPreset.NinjaHideMugFeature))
+            if (IsEnabled(CustomComboPreset.NinjaHideMugFeature) && (InCombat() || HasEffect(NIN.Buffs.Hidden)))
             {
-                if (level >= NIN.Levels.Mug && InCombat())
+                if (level >= NIN.Levels.Mug)
                 {
                     if (level >= NIN.Levels.Dokumori)
                         return NIN.Dokumori;
