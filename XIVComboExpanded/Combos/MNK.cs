@@ -94,6 +94,13 @@ internal class MonkOpoCombo : CustomCombo
         {
             var gauge = GetJobGauge<MNKGauge>();
 
+            // Opo Chakra
+            if (IsEnabled(CustomComboPreset.MonkOpoChakraFeature))
+            {
+                if (gauge.Chakra > 4 && InCombat())
+                    return OriginalHook(MNK.SteeledPeak);
+            }
+
             if (IsEnabled(CustomComboPreset.MonkBootshineMeditationFeature))
             {
                 if (level >= MNK.Levels.SteeledMeditation && gauge.Chakra < 5 && !InCombat())

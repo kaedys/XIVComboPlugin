@@ -529,17 +529,17 @@ public enum CustomComboPreset
 
     [SecretCustomCombo]
     [ParentCombo(MonkMonkeyMode)]
-    [CustomComboInfo("Monkey Bootshine Steeled Meditation Feature", "Replace Bootshine with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
+    [CustomComboInfo("Monkey Bootshine Steeled Meditation Feature", "Replace Bootshine/Leaping Opo with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
     MonkMonkeyMeditationFeature = 2022,
 
     [SecretCustomCombo]
     [ParentCombo(MonkMonkeyMode)]
-    [CustomComboInfo("Monkey Form Shift Feature", "Replace Bootshine with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
+    [CustomComboInfo("Monkey Form Shift Feature", "Replace Bootshine/Leaping Opo with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
     MonkMonkeyFormShiftFeature = 2024,
 
     [SecretCustomCombo]
     [ParentCombo(MonkMonkeyMode)]
-    [CustomComboInfo("Automatic Chakra Feature", "Replace Bootshine with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
+    [CustomComboInfo("Automatic Chakra Feature", "Replace Bootshine/Leaping Opo with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
     MonkMonkeyAutoChakraFeature = 2026,
 
     [ConflictingCombos(MonkMonkeyMode)]
@@ -547,12 +547,17 @@ public enum CustomComboPreset
     MonkOpoFeature = 2017,
 
     [ParentCombo(MonkOpoFeature)]
-    [CustomComboInfo("Bootshine Steeled Meditation Feature", "Replace Bootshine with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
+    [CustomComboInfo("Bootshine Steeled Meditation Feature", "Replace Bootshine/Leaping Opo with Steeled Meditation when out of combat and the Fifth Chakra is not open.", MNK.JobID)]
     MonkBootshineMeditationFeature = 2012,
 
     [ParentCombo(MonkOpoFeature)]
-    [CustomComboInfo("Form Shift Feature", "Replace Bootshine with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
+    [CustomComboInfo("Form Shift Feature", "Replace Bootshine/Leaping Opo with Form Shift when out of combat and you don't have Formless Fist.", MNK.JobID)]
     MonkBootshineFormShiftFeature = 2023,
+
+    [SecretCustomCombo]
+    [ParentCombo(MonkOpoFeature)]
+    [CustomComboInfo("Opomatic Chakra Feature", "Replace Bootshine/Leaping Opo with The Forbidden Chakra when your Fifth Chakra is open.", MNK.JobID)]
+    MonkOpoChakraFeature = 2029,
 
     [ConflictingCombos(MonkMonkeyMode)]
     [CustomComboInfo("Raptor feature", "Replace True Strike with Twin Snakes if you don't have any Raptor's fury stack.", MNK.JobID)]
@@ -562,7 +567,7 @@ public enum CustomComboPreset
     [CustomComboInfo("Coeurl feature", "Replace Snap Punch with Demolish if you don't have any Coeurl's fury stack.", MNK.JobID)]
     MonkCoeurlFeature = 2019,
 
-    [CustomComboInfo("ST Balance Feature", "Replace Bootshine, Dragon Kick True Strike, Twin Snakes, Snap Punch and Demolish with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
+    [CustomComboInfo("ST Balance Feature", "Replace Bootshine/Leaping Opo, Dragon Kick, True Strike/Rising Raptor, Twin Snakes, Snap Punch/Pouncing Coeurl and Demolish with Masterful Blitz if you have 3 Beast Chakra.", MNK.JobID)]
     MonkSTBalanceFeature = 2005,
 
     [CustomComboInfo("Monk AoE Combo", "Replace Masterful Blitz with the AoE combo chain. This was changed from Rockbreaker due to an action queueing bug.", MNK.JobID)]
