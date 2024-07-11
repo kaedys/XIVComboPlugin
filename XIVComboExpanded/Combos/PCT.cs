@@ -130,6 +130,12 @@ internal static class PCT
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
             var gauge = GetJobGauge<PCTGauge>();
+
+            if ((actionID == PCT.FireRed || actionID == PCT.BlizzardCyan) && IsEnabled(CustomComboPreset.PictomancerRainbowStarter) && !InCombat())
+            {
+                return PCT.RainbowDrip;
+            }
+
             if (actionID == PCT.BlizzardCyan)
             {
                 if (IsEnabled(CustomComboPreset.PictomancerStarPrismAutoCombo))
@@ -254,8 +260,16 @@ internal static class PCT
 
         protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
         {
-            if (actionID == PCT.MiracleWhite && HasEffect(PCT.Buffs.InvertedColors))
-                return PCT.CometBlack;
+            if (actionID == PCT.MiracleWhite)
+            {
+                if (IsEnabled(CustomComboPreset.PictomancerRainbowHolyCombo) && HasEffect(PCT.Buffs.RainbowReady))
+                {
+                    return PCT.RainbowDrip;
+                }
+
+                if (HasEffect(PCT.Buffs.InvertedColors))
+                    return PCT.CometBlack;
+            }
 
             return actionID;
         }

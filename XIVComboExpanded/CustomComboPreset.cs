@@ -715,9 +715,6 @@ public enum CustomComboPreset
     [CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
     PictomancerSubtractiveAutoCombo = 4205,
 
-    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
-    PictomancerHolyCometCombo = 4203,
-
     [SecretCustomCombo]
     [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]
     PictomancerHolyAutoCombo = 4204,
@@ -747,6 +744,16 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Landscape Muse/Star Prism Combo", "Replace Starry Muse with Star Prism when it is usable.", PCT.JobID)]
     PictomancerLandscapePrismCombo = 4211,
+
+    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
+    PictomancerHolyCometCombo = 4203,
+
+    [ParentCombo(PictomancerHolyCometCombo)]
+    [CustomComboInfo("Rainbow Holy Combo", "Replace Holy in White with Rainbow Drip when under the effect of Rainbow Drip Ready (has priority over Comet in Black).", PCT.JobID)]
+    PictomancerRainbowHolyCombo = 4215,
+
+    [CustomComboInfo("Rainbow Drip Starter", "Replace Fire in Red & Fire in Red II with Rainbow Drip when out of combat.", PCT.JobID)]
+    PictomancerRainbowStarter = 4216,
 
     #endregion
     // ====================================================================================
