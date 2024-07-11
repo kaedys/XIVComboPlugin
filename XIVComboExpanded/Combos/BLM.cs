@@ -112,8 +112,6 @@ internal class BlackFireBlizzard4 : CustomCombo
                     {
                         if (gauge.AstralSoulStacks >= 6)
                             return BLM.FlareStar;
-
-                        return BLM.Flare;
                     }
                 }
 
