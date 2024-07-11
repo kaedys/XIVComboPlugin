@@ -106,6 +106,17 @@ internal class BlackFireBlizzard4 : CustomCombo
 
             if (IsEnabled(CustomComboPreset.BlackEnochianFeature))
             {
+                if (IsEnabled(CustomComboPreset.BlackFlareStarFeature))
+                {
+                    if (level >= BLM.Levels.FlareStar)
+                    {
+                        if (gauge.AstralSoulStacks >= 6)
+                            return BLM.FlareStar;
+
+                        return BLM.Flare;
+                    }
+                }
+
                 if (gauge.InAstralFire)
                 {
                     if (IsEnabled(CustomComboPreset.BlackEnochianDespairFeature))
@@ -143,7 +154,6 @@ internal class BlackTranspose : CustomCombo
         if (actionID == BLM.Transpose)
         {
             var gauge = GetJobGauge<BLMGauge>();
-
             if (level >= BLM.Levels.UmbralSoul && gauge.IsEnochianActive && gauge.InUmbralIce)
                 return BLM.UmbralSoul;
         }
@@ -195,6 +205,14 @@ internal class BlackFire : CustomCombo
         if (actionID == BLM.Fire)
         {
             var gauge = GetJobGauge<BLMGauge>();
+
+            if (level >= BLM.Levels.FlareStar)
+            {
+                if (gauge.AstralSoulStacks >= 6)
+                    return BLM.FlareStar;
+
+                return BLM.Flare;
+            }
 
             if (level >= BLM.Levels.Paradox && gauge.IsParadoxActive && gauge.InUmbralIce)
                 return BLM.Paradox;
@@ -313,9 +331,8 @@ internal class BlackFire2 : CustomCombo
                 // Level 100 uses a simplified rotation that just uses Flare twice and then Flare Star.
                 if (level >= BLM.Levels.FlareStar)
                 {
-                    // FIXME: Uncomment once the Astral Soul gauge is implemented
-                    // if (gauge.AstralSoulStacks >= 6)
-                    //     return BLM.FlareStar
+                    if (gauge.AstralSoulStacks >= 6)
+                        return BLM.FlareStar;
 
                     return BLM.Flare;
                 }
