@@ -42,6 +42,7 @@ internal static class NIN
             Hidden = 614,
             Bunshin = 1954,
             RaijuReady = 2690,
+            ShadowWalker = 3848,
             Higi = 3850;
     }
 
@@ -196,7 +197,7 @@ internal class NinjaKassatsu : CustomCombo
         if (actionID == NIN.Kassatsu)
         {
             if ((level >= NIN.Levels.Hide && HasEffect(NIN.Buffs.Hidden)) ||
-                (level >= NIN.Levels.Suiton && HasEffect(NIN.Buffs.Suiton)))
+                (level >= NIN.Levels.Suiton && HasEffect(NIN.Buffs.ShadowWalker)))
                 return NIN.TrickAttack;
         }
 
@@ -258,7 +259,7 @@ internal class NinjaTenChiJin : CustomCombo
     {
         if (actionID == NIN.TenChiJin)
         {
-            if (level >= NIN.Levels.Meisui && HasEffect(NIN.Buffs.Suiton))
+            if (level >= NIN.Levels.Meisui && HasEffect(NIN.Buffs.ShadowWalker))
                 return NIN.Meisui;
         }
 
