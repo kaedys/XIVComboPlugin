@@ -106,6 +106,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Variant Raise Feature", "Replace Ascend, Ressurection, Egeiro, Raise, Verraise, and Angel Whisper with Variant Raise II when in a variant dungeon.", ADV.JobID)]
     AdvVariantRaiseFeature = 1001,
 
+    [CustomComboInfo("Stance over Provoke", "Replace Provoke with Iron Will, Defiance, Grit or Royal Guard when it is off cooldown and your stance isn't up.", ADV.JobID)]
+    AdvStanceProvokeFeature = 1004,
+
+    [ParentCombo(AdvStanceProvokeFeature)]
+    [CustomComboInfo("Unstance while on CD", "Replace Provoke by the Stance removal action when Provoke is on cooldown. Be careful with this option as you won't be able to track Provoke's cooldown.", ADV.JobID)]
+    AdvStanceBackProvokeFeature = 1005,
+
     #endregion
     // ====================================================================================
     #region ASTROLOGIAN

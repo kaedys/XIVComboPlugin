@@ -7,6 +7,7 @@ internal static class ADV
 
     public const uint
         LucidDreaming = 1204,
+        Provoke = 7533,
         Swiftcast = 7561,
         AngelWhisper = 18317,
         VariantRaise2 = 29734;
@@ -40,8 +41,7 @@ internal class SwiftRaiseFeature : CustomCombo
         if ((actionID == AST.Ascend && level >= AST.Levels.Ascend) ||
             (actionID == SCH.Resurrection && level >= SCH.Levels.Resurrection) ||
             (actionID == SGE.Egeiro && level >= SGE.Levels.Egeiro) ||
-            (actionID == WHM.Raise && level >= WHM.Levels.Raise) ||
-            (actionID == BLU.AngelWhisper && level >= BLU.Levels.AngelWhisper))
+            (actionID == WHM.Raise && level >= WHM.Levels.Raise))
         {
             if (level >= ADV.Levels.Swiftcast && IsOffCooldown(ADV.Swiftcast))
                 return ADV.Swiftcast;
@@ -64,7 +64,6 @@ internal class SwiftRaiseFeature : CustomCombo
         return actionID;
     }
 }
-
 internal class VariantRaiseFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset => CustomComboPreset.AdvVariantRaiseFeature;
@@ -84,6 +83,48 @@ internal class VariantRaiseFeature : CustomCombo
             // 1076: savage
             if (level >= ADV.Levels.VariantRaise2 && CurrentTerritory == 1075u)
                 return ADV.VariantRaise2;
+        }
+
+        return actionID;
+    }
+}
+
+internal class StanceProvokeFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset => CustomComboPreset.AdvStanceProvokeFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == ADV.Provoke)
+        {
+            var job = LocalPlayer?.ClassJob.Id;
+
+            if (!HasEffect(PLD.Buffs.IronWill)
+                && !HasEffect(WAR.Buffs.Defiance)
+                && !HasEffect(DRK.Buffs.Grit)
+                && !HasEffect(GNB.Buffs.RoyalGuard))
+            {
+                if (job == PLD.JobID && level >= PLD.Levels.IronWill)
+                    return PLD.IronWill;
+                if (job == WAR.JobID && level >= WAR.Levels.Defiance)
+                    return WAR.Defiance;
+                if (job == DRK.JobID && level >= DRK.Levels.Grit)
+                    return DRK.Grit;
+                if (job == GNB.JobID && level >= GNB.Levels.RoyalGuard)
+                    return GNB.RoyalGuard;
+            }
+
+            if (IsEnabled(CustomComboPreset.AdvStanceBackProvokeFeature) && IsOnCooldown(ADV.Provoke))
+            {
+                if (job == PLD.JobID && level >= PLD.Levels.IronWill)
+                    return PLD.IronWillRemoval;
+                if (job == WAR.JobID && level >= WAR.Levels.Defiance)
+                    return WAR.DefianceRemoval;
+                if (job == DRK.JobID && level >= DRK.Levels.Grit)
+                    return DRK.GritRemoval;
+                if (job == GNB.JobID && level >= GNB.Levels.RoyalGuard)
+                    return GNB.RoyalGuardRemoval;
+            }
         }
 
         return actionID;

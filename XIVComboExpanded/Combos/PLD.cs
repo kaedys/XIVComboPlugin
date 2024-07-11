@@ -13,6 +13,7 @@ internal static class PLD
         RageOfHalone = 21,
         CircleOfScorn = 23,
         ShieldLob = 24,
+        IronWill = 28,
         SpiritsWithin = 29,
         GoringBlade = 3538,
         RoyalAuthority = 3539,
@@ -29,6 +30,7 @@ internal static class PLD
         BladeOfFaith = 25748,
         BladeOfTruth = 25749,
         BladeOfValor = 25750,
+        IronWillRemoval = 32065,
         Supplication = 36918,
         Sepulchre = 36919,
         Imperator = 36921,
@@ -38,6 +40,7 @@ internal static class PLD
     {
         public const ushort
             FightOrFlight = 76,
+            IronWill = 79,
             Requiescat = 1368,
             SwordOath = 1902,
             DivineMight = 2673,
@@ -59,6 +62,7 @@ internal static class PLD
         public const byte
             FightOrFlight = 2,
             RiotBlade = 4,
+            IronWill = 10,
             LowBlow = 12,
             SpiritsWithin = 30,
             CircleOfScorn = 50,

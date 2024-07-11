@@ -10,6 +10,7 @@ internal static class DRK
         HardSlash = 3617,
         Unleash = 3621,
         SyphonStrike = 3623,
+        Grit = 3629,
         Souleater = 3632,
         BloodWeapon = 3625,
         SaltedEarth = 3639,
@@ -25,6 +26,7 @@ internal static class DRK
         LivingShadow = 16472,
         SaltAndDarkness = 25755,
         Shadowbringer = 25757,
+        GritRemoval = 32067,
         ScarletDelirium = 36928,
         Comeuppance = 36929,
         Torcleaver = 36930,
@@ -34,6 +36,7 @@ internal static class DRK
     {
         public const ushort
             BloodWeapon = 742,
+            Grit = 743,
             Darkside = 751,
             Delirium = 1972,
             ScarletDelirium = 3836;
@@ -49,6 +52,7 @@ internal static class DRK
     {
         public const byte
             SyphonStrike = 2,
+            Grit = 10,
             Souleater = 26,
             FloodOfDarkness = 30,
             BloodWeapon = 35,

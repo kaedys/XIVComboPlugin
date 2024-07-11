@@ -17,6 +17,7 @@ internal static class WAR
         Overpower = 41,
         StormsPath = 42,
         StormsEye = 45,
+        Defiance = 48,
         InnerBeast = 49,
         SteelCyclone = 51,
         Infuriate = 52,
@@ -31,6 +32,7 @@ internal static class WAR
         InnerChaos = 16465,
         Bloodwhetting = 25751,
         PrimalRend = 25753,
+        DefianceRemoval = 32066,
         PrimalWrath = 36924,
         PrimalRuination = 36925;
 
@@ -38,6 +40,7 @@ internal static class WAR
     {
         public const ushort
             Berserk = 86,
+            Defiance = 91,
             InnerRelease = 1177,
             NascentChaos = 1897,
             PrimalRendReady = 2624,
@@ -57,6 +60,7 @@ internal static class WAR
         public const byte
             Maim = 4,
             Berserk = 6,
+            Defiance = 10,
             StormsPath = 26,
             ThrillOfBattle = 30,
             InnerBeast = 35,
