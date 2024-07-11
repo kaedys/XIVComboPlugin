@@ -110,8 +110,11 @@ public enum CustomComboPreset
     AdvStanceProvokeFeature = 1004,
 
     [ParentCombo(AdvStanceProvokeFeature)]
-    [CustomComboInfo("Unstance while on CD", "Replace Provoke by the Stance removal action when Provoke is on cooldown. Be careful with this option as you won't be able to track Provoke's cooldown.", ADV.JobID)]
+    [CustomComboInfo("Stance Removal while on CD", "Replace Provoke by your Stance removal action when Provoke is on cooldown. Be careful with this option as you won't be able to track Provoke's cooldown.", ADV.JobID)]
     AdvStanceBackProvokeFeature = 1005,
+
+    [CustomComboInfo("Stance Removal over Shirk", "Replace Shirk by your Stance removal action when it is on cooldown and your stance is up.", ADV.JobID)]
+    AdvShirkStanceFeature = 1006,
 
     #endregion
     // ====================================================================================

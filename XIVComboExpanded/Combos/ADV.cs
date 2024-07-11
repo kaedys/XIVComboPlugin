@@ -8,6 +8,7 @@ internal static class ADV
     public const uint
         LucidDreaming = 1204,
         Provoke = 7533,
+        Shirk = 7537,
         Swiftcast = 7561,
         AngelWhisper = 18317,
         VariantRaise2 = 29734;
@@ -115,6 +116,37 @@ internal class StanceProvokeFeature : CustomCombo
             }
 
             if (IsEnabled(CustomComboPreset.AdvStanceBackProvokeFeature) && IsOnCooldown(ADV.Provoke))
+            {
+                if (job == PLD.JobID && level >= PLD.Levels.IronWill)
+                    return PLD.IronWillRemoval;
+                if (job == WAR.JobID && level >= WAR.Levels.Defiance)
+                    return WAR.DefianceRemoval;
+                if (job == DRK.JobID && level >= DRK.Levels.Grit)
+                    return DRK.GritRemoval;
+                if (job == GNB.JobID && level >= GNB.Levels.RoyalGuard)
+                    return GNB.RoyalGuardRemoval;
+            }
+        }
+
+        return actionID;
+    }
+}
+
+
+internal class ShirkStanceFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset => CustomComboPreset.AdvShirkStanceFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == ADV.Shirk && IsOnCooldown(ADV.Shirk))
+        {
+            var job = LocalPlayer?.ClassJob.Id;
+
+            if (HasEffect(PLD.Buffs.IronWill)
+                || HasEffect(WAR.Buffs.Defiance)
+                || HasEffect(DRK.Buffs.Grit)
+                || HasEffect(GNB.Buffs.RoyalGuard))
             {
                 if (job == PLD.JobID && level >= PLD.Levels.IronWill)
                     return PLD.IronWillRemoval;
