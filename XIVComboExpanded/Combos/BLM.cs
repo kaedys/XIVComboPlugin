@@ -206,14 +206,6 @@ internal class BlackFire : CustomCombo
         {
             var gauge = GetJobGauge<BLMGauge>();
 
-            if (level >= BLM.Levels.FlareStar)
-            {
-                if (gauge.AstralSoulStacks >= 6)
-                    return BLM.FlareStar;
-
-                return BLM.Flare;
-            }
-
             if (level >= BLM.Levels.Paradox && gauge.IsParadoxActive && gauge.InUmbralIce)
                 return BLM.Paradox;
 
