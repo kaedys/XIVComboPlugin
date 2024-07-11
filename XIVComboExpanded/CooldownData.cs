@@ -1,5 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 
+using FFXIVClientStructs.FFXIV.Client.Game;
+
 namespace XIVComboExpandedPlugin;
 
 /// <summary>
@@ -21,39 +23,23 @@ internal struct CooldownData
     private readonly float cooldownTotal;
 
     /// <summary>
-    /// Gets a value indicating whether the action is on cooldown.
+    /// Gets the base cooldown time in seconds.
     /// </summary>
-    public bool IsCooldown
+    public float BaseCooldown => ActionManager.GetAdjustedRecastTime(ActionType.Action, this.ActionID) / 1000f;
+
+    /// <summary>
+    /// Gets the total cooldown calculated from AdjustedRecastTime in seconds.
+    /// </summary>
+    public float TotalBaseCooldown
     {
         get
         {
             var (cur, max) = Service.ComboCache.GetMaxCharges(this.ActionID);
-            if (cur == max)
-                return this.isCooldown;
 
-            return this.cooldownElapsed < this.CooldownTotal;
-        }
-    }
+            // Rebase to the current charge count
+            var total = this.BaseCooldown / max * cur;
 
-    /// <summary>
-    /// Gets the action ID on cooldown.
-    /// </summary>
-    public uint ActionID => this.actionID;
-
-    /// <summary>
-    /// Gets the elapsed cooldown time.
-    /// </summary>
-    public float CooldownElapsed
-    {
-        get
-        {
-            if (this.cooldownElapsed == 0)
-                return 0;
-
-            if (this.cooldownElapsed > this.CooldownTotal)
-                return 0;
-
-            return this.cooldownElapsed;
+            return total * cur;
         }
     }
 
@@ -82,9 +68,68 @@ internal struct CooldownData
     }
 
     /// <summary>
-    /// Gets the cooldown time remaining.
+    /// Gets a value indicating whether the action is on cooldown.
     /// </summary>
-    public float CooldownRemaining => this.IsCooldown ? this.CooldownTotal - this.CooldownElapsed : 0;
+    public bool IsCooldown
+    {
+        get
+        {
+            return this.cooldownElapsed < this.BaseCooldown;
+        }
+    }
+
+    /// <summary>
+    /// Gets a value indicating whether all charges are capped.
+    /// </summary>
+    public bool IsCapped
+    {
+        get
+        {
+            return this.cooldownElapsed == 0;
+        }
+    }
+
+    /// <summary>
+    /// Gets the action ID on cooldown.
+    /// </summary>
+    public uint ActionID => this.actionID;
+
+    /// <summary>
+    /// Gets the elapsed cooldown time limited to an active charge (0 if a charge is available).
+    /// </summary>
+    public float CooldownElapsed
+    {
+        get
+        {
+            if (this.cooldownElapsed > this.BaseCooldown)
+                return 0;
+
+            return this.cooldownElapsed;
+        }
+    }
+
+    /// <summary>
+    /// Gets the elapsed cooldown time across the total cooldown (total cooldown time - total cooldown already regained).
+    /// </summary>
+    public float TotalCooldownElapsed => this.cooldownElapsed;
+
+    /// <summary>
+    /// Gets the cooldown time remaining until all charges are replenished.
+    /// </summary>
+    public float TotalCooldownRemaining => this.TotalBaseCooldown - this.TotalCooldownElapsed;
+
+    /// <summary>
+    /// Gets the cooldown time remaining until the current cooldown has recovered.
+    /// </summary>
+    public float CooldownRemaining
+    {
+        get
+        {
+            var (cur, _) = Service.ComboCache.GetMaxCharges(this.ActionID);
+
+            return this.TotalCooldownRemaining % (this.TotalBaseCooldown / cur);
+        }
+    }
 
     /// <summary>
     /// Gets the maximum number of charges for an action at the current level.
@@ -106,12 +151,24 @@ internal struct CooldownData
         {
             var (cur, _) = Service.ComboCache.GetMaxCharges(this.ActionID);
 
-            if (!this.IsCooldown)
-                return cur;
+            if (this.TotalCooldownElapsed == 0)
+            {
+                return this.MaxCharges;
+            }
 
-            return (ushort)(this.CooldownElapsed / (this.CooldownTotal / this.MaxCharges));
+            return (ushort)(this.TotalCooldownElapsed / (this.TotalBaseCooldown / this.MaxCharges));
         }
     }
+
+    /// <summary>
+    /// Gets a value indicating whether gets value indicating whether this action has at least one charge out of however many it has total, even if it can only have one "charge".
+    /// </summary>
+    public bool Available => this.CooldownRemaining == 0 || this.RemainingCharges > 0;
+
+    /// <summary>
+    /// Gets the time since the cooldown was spent in seconds (only fuctional if actionID is not charge based).
+    /// </summary>
+    public float CooldownDuration => this.BaseCooldown - this.CooldownRemaining;
 
     /// <summary>
     /// Gets the cooldown time remaining until the next charge.
@@ -120,12 +177,39 @@ internal struct CooldownData
     {
         get
         {
-            if (!this.IsCooldown)
-                return 0;
-
             var (cur, _) = Service.ComboCache.GetMaxCharges(this.ActionID);
 
-            return this.CooldownRemaining % (this.CooldownTotal / cur);
+            return this.TotalCooldownRemaining % (this.TotalBaseCooldown / cur);
         }
     }
+
+    /// <summary>
+    /// Gets the recovery time in seconds if action is used when cooldown is off.
+    /// </summary>
+    public float RecoveryTime => this.CooldownRemaining + this.BaseCooldown;
+
+    /// <summary>
+    /// Gets the time until another charge is available after using the currently refreshing charge.
+    /// </summary>
+    public float ChargeRecoveryTime
+    {
+        get
+        {
+            if ((this.RemainingCharges - 1) >= 0)
+            {
+                return this.ChargeCooldownRemaining;
+            }
+
+            return this.ChargeCooldownRemaining + this.BaseCooldown;
+        }
+    }
+
+    /// <summary>
+    /// Gets the cooldown time remaining until all charges of ability are replenished.
+    /// </summary>
+    public float TotalChargeCooldownRemaining => this.MaxCharges - this.RemainingCharges > 0
+            ? this.MaxCharges - this.RemainingCharges == 1
+                ? this.ChargeCooldownRemaining
+                : (this.BaseCooldown * ((this.MaxCharges - this.RemainingCharges) - 1)) + this.ChargeCooldownRemaining
+            : 0;
 }
