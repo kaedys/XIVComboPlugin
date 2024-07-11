@@ -319,6 +319,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Devilment Feature", "Replace Devilment with Starfall Dance when active.", DNC.JobID)]
     DancerDevilmentFeature = 3807,
 
+    [CustomComboInfo("Partner Feature", "Replace Standard Step, Devilment, and Technical step by Closed Position if a partner is available, you are in a duty, and and you haven't partner'd yet.", DNC.JobID)]
+    DancerPartnerFeature = 3815,
+
+    [ParentCombo(DancerPartnerFeature)]
+    [CustomComboInfo("Chocobo Partner Feature", "Also applies if you are out of duty and that your Chocobo is summoned.", DNC.JobID)]
+    DancerChocoboPartnerFeature = 3816,
+
     [CustomComboInfo("Last Dance Feature", "Replace Standard Step by Last Dance if available.", DNC.JobID)]
     DancerLastDanceFeature = 3813,
 
@@ -498,7 +505,7 @@ public enum CustomComboPreset
 
     [SecretCustomCombo]
     [ConflictingCombos([MonkOpoFeature, MonkRaptorFeature, MonkCoeurlFeature])]
-    [CustomComboInfo("monke mode", "One-buttons the basic rotation on Bootshine/Leaping Opo.", MNK.JobID)]
+    [CustomComboInfo("monke mode", "One-buttons the basic rotation on Bootshine/Leaping Opo. Neat for beginners, very, very bad for serious players.", MNK.JobID)]
     MonkMonkeyMode = 2021,
 
     [SecretCustomCombo]

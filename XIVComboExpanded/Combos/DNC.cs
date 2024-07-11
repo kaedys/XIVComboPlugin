@@ -2,6 +2,8 @@ using System;
 using System.Linq;
 
 using Dalamud.Game.ClientState.JobGauge.Types;
+using FFXIVClientStructs.FFXIV.Client.Game.Character;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -32,7 +34,9 @@ internal static class DNC
         FanDance3 = 16009,
         FanDance4 = 25791,
         // Other
+
         SaberDance = 16005,
+        ClosedPosition = 16006,
         EnAvant = 16010,
         Devilment = 16011,
         Flourish = 16013,
@@ -42,6 +46,7 @@ internal static class DNC
     public static class Buffs
     {
         public const ushort
+            ClosedPosition = 1823,
             FlourishingSymmetry = 3017,
             FlourishingFlow = 3018,
             FlourishingFinish = 2698,
@@ -74,6 +79,7 @@ internal static class DNC
             RisingWindmill = 35,
             Fountainfall = 40,
             Bloodshower = 45,
+            ClosedPosition = 60,
             FanDance3 = 66,
             TechnicalStep = 70,
             Flourish = 72,
@@ -162,6 +168,18 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
         {
             var gauge = GetJobGauge<DNCGauge>();
 
+
+            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
+            {
+                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
+                {
+                    return DNC.ClosedPosition;
+                }
+
+                if (IsInParty() && IsInInstance())
+                    return DNC.ClosedPosition;
+            }
+
             if (level >= DNC.Levels.StandardStep && gauge.IsDancing && HasEffect(DNC.Buffs.StandardStep))
             {
                 if (gauge.CompletedSteps < 2)
@@ -176,6 +194,18 @@ internal class DancerStandardStepTechnicalStep : CustomCombo
         if (actionID == DNC.TechnicalStep)
         {
             var gauge = GetJobGauge<DNCGauge>();
+
+
+            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
+            {
+                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
+                {
+                    return DNC.ClosedPosition;
+                }
+
+                if (IsInParty() && IsInInstance())
+                    return DNC.ClosedPosition;
+            }
 
             if (level >= DNC.Levels.TechnicalStep && gauge.IsDancing && HasEffect(DNC.Buffs.TechnicalStep))
             {
@@ -304,6 +334,17 @@ internal class DancerDevilment : CustomCombo
     {
         if (actionID == DNC.Devilment)
         {
+            if (IsEnabled(CustomComboPreset.DancerPartnerFeature) && level >= DNC.Levels.ClosedPosition && (!HasEffect(DNC.Buffs.ClosedPosition)))
+            {
+                if (IsEnabled(CustomComboPreset.DancerChocoboPartnerFeature) && HasCompanionPresent())
+                {
+                    return DNC.ClosedPosition;
+                }
+
+                if (IsInParty() && IsInInstance())
+                    return DNC.ClosedPosition;
+            }
+
             if (level >= DNC.Levels.StarfallDance && HasEffect(DNC.Buffs.FlourishingStarfall))
                 return DNC.StarfallDance;
         }

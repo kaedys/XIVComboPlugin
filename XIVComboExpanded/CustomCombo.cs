@@ -8,6 +8,7 @@ using Dalamud.Game.ClientState.Objects.SubKinds;
 using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.ClientState.Statuses;
 using Dalamud.Utility;
+using FFXIVClientStructs.FFXIV.Client.Game.UI;
 using XIVComboExpandedPlugin.Attributes;
 
 namespace XIVComboExpandedPlugin.Combos;
@@ -280,6 +281,12 @@ internal abstract partial class CustomCombo
     /// <returns>A value indicating whether the player has a pet present.</returns>
     protected static bool HasPetPresent()
         => Service.BuddyList.PetBuddy != null;
+    /// <summary>
+    /// Find if the player has a companion present.
+    /// </summary>
+    /// <returns>A value indicating whether the player has a companion present.</returns>
+    protected static bool HasCompanionPresent()
+        => Service.BuddyList.CompanionBuddy != null;
 
     /// <summary>
     /// Find if an effect on the player exists.
@@ -370,6 +377,20 @@ internal abstract partial class CustomCombo
     /// <returns>Cooldown data.</returns>
     protected static CooldownData GetCooldown(uint actionID)
         => Service.ComboCache.GetCooldown(actionID);
+
+    /// <summary>
+    /// Checks whether the player is in a party.
+    /// </summary>
+    /// <returns>True or false.</returns>
+    protected static bool IsInInstance()
+        => Service.DutyState.IsDutyStarted;
+
+    /// <summary>
+    /// Checks whether the player is in a party.
+    /// </summary>
+    /// <returns>True or false.</returns>
+    protected static bool IsInParty()
+        => Service.PartyList.Count > 0 ? true : false;
 
     /// <summary>
     /// Gets a value indicating whether an action is on cooldown.
