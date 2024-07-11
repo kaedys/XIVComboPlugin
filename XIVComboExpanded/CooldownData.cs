@@ -74,7 +74,7 @@ internal struct CooldownData
     {
         get
         {
-            return this.cooldownElapsed < this.BaseCooldown;
+            return this.cooldownElapsed > 0 && this.cooldownElapsed < this.BaseCooldown;
         }
     }
 

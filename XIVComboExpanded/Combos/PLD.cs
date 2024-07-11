@@ -306,32 +306,32 @@ internal class PaladinRequiescat : PaladinCombo
     {
         if (actionID == PLD.Requiescat || actionID == PLD.Imperator)
         {
+            // Prioritize Goring Blade over the Confiteor combo.  While Goring Blade deals less damage (700p) than
+            // most of the Confiteor combo (900p -> 700p -> 800p -> 900p), Goring Blade uniquely requires melee
+            // range to cast, while the entire Confiteor combo chain does not.  Since Requiescat also requires
+            // melee range to cast, the most reliable time that the player will be in melee range during the Req
+            // buff is immediately following the usage of Req.  This minimizes potential losses and potential
+            // cooldown drift if the player is forced out of melee range during the Confiteor combo and is unable
+            // to return to melee range by the time it is completed.
+            //
+            // Since Goring Blade, the entire Confiteor combo, *and* one additional GCD (typically Holy Spirit) fits
+            // within even the shortest of party buffs (15s ones like Battle Litany), this should not result in a
+            // net reduction in potency, and *may* in fact increase it if someone is slightly late in applying
+            // their party buffs, as it shifts the high-potency Confiteor cast back into the party buff window by a
+            // single GCD.
+            if (IsEnabled(CustomComboPreset.PaladinRequiescatFightOrFlightFeature))
+            {
+                // Don't use Goring Blade until Requiescat is on cooldown, unless it somehow got desynced and is >5s left on its cooldown.
+                // This prevents an odd effect where shortly after casting Fight or Flight, Goring Blade would be cast instead of Requiescat, causing drift.
+                // This also respects the user's selection in the Actions and Trait window for whether FoF turns into Goring Blade, only including it on
+                // Requiescat if FoF would also include it.
+                // Lastly, if the user is not currently in melee range, Goring Blade will be skipped, usually in favor of the Confiteor combo below.
+                if (OriginalHook(PLD.FightOrFlight) == PLD.GoringBlade && GetCooldown(PLD.Requiescat).CooldownRemaining > 5 && InMeleeRange())
+                    return PLD.GoringBlade;
+            }
+            
             if (IsEnabled(CustomComboPreset.PaladinRequiescatCombo))
             {
-                // Prioritize Goring Blade over the Confiteor combo.  While Goring Blade deals less damage (700p) than
-                // most of the Confiteor combo (900p -> 700p -> 800p -> 900p), Goring Blade uniquely requires melee
-                // range to cast, while the entire Confiteor combo chain does not.  Since Requiescat also requires
-                // melee range to cast, the most reliable time that the player will be in melee range during the Req
-                // buff is immediately following the usage of Req.  This minimizes potential losses and potential
-                // cooldown drift if the player is forced out of melee range during the Confiteor combo and is unable
-                // to return to melee range by the time it is completed.
-                //
-                // Since Goring Blade, the entire Confiteor combo, *and* one additional GCD (typically Holy Spirit) fits
-                // within even the shortest of party buffs (15s ones like Battle Litany), this should not result in a
-                // net reduction in potency, and *may* in fact increase it if someone is slightly late in applying
-                // their party buffs, as it shifts the high-potency Confiteor cast back into the party buff window by a
-                // single GCD.
-                if (IsEnabled(CustomComboPreset.PaladinRequiescatFightOrFlightFeature))
-                {
-                    // Don't use Goring Blade until Requiescat is on cooldown, unless it somehow got desynced and is >5s left on its cooldown.
-                    // This prevents an odd effect where shortly after casting Fight or Flight, Goring Blade would be cast instead of Requiescat, causing drift.
-                    // This also respects the user's selection in the Actions and Trait window for whether FoF turns into Goring Blade, only including it on
-                    // Requiescat if FoF would also include it.
-                    // Lastly, if the user is not currently in melee range, Goring Blade will be skipped, usually in favor of the Confiteor combo below.
-                    if (OriginalHook(PLD.FightOrFlight) == PLD.GoringBlade && GetCooldown(PLD.Requiescat).CooldownRemaining > 5 && InMeleeRange())
-                        return PLD.GoringBlade;
-                }
-
                 if (level >= PLD.Levels.Confiteor)
                 {
                     // Blade combo
