@@ -167,7 +167,6 @@ internal class TwinCoilFeature : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-
         if (actionID == VPR.HuntersCoil)
         {
             if (HasEffect(VPR.Buffs.HuntersVenom))
@@ -202,7 +201,6 @@ internal class TwinDenFeature : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-
         if (actionID == VPR.HuntersDen)
         {
             if (HasEffect(VPR.Buffs.FellhuntersVenom))
@@ -406,7 +404,6 @@ internal class MergeTwinsSerpentFeature : CustomCombo
     }
 }
 
-// TODO: Once Gauge is implemented
 internal class FuryAndIreFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperFuryAndIreFeature;
@@ -419,6 +416,7 @@ internal class FuryAndIreFeature : CustomCombo
             if (gauge.RattlingCoilStacks == 0)
                 return VPR.SerpentsIre;
         }
+
         return actionID;
     }
 }

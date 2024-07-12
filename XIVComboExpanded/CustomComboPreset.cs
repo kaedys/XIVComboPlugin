@@ -738,9 +738,13 @@ public enum CustomComboPreset
     [CustomComboInfo("Subtractive AoE Combo", "Replace Blizzard II in Cyan and its combo chain with Fire II in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveAoECombo = 4202,
 
-    [SecretCustomCombo]
-    [CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
+    [CustomComboInfo("Don't overcap Subtractive", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
     PictomancerSubtractiveAutoCombo = 4205,
+
+    [SecretCustomCombo]
+    [ParentCombo(PictomancerSubtractiveAutoCombo)]
+    [CustomComboInfo("Subtractive Early Autocast", "Do it as soon as you reach 50 Palette gauge or you are under the effect of Substractive Palette Ready instead.", PCT.JobID)]
+    PictomancerSubtractiveEarlyAutoCombo = 4221,
 
     [SecretCustomCombo]
     [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]
@@ -941,7 +945,6 @@ public enum CustomComboPreset
 
     [CustomComboInfo("Harpe Perfectio Feature", "Replace Harpe with with Perfectio under Perfectio Parata.", RPR.JobID)]
     ReaperHarpePerfectioFeature = 3944,
-
 
     #endregion
     // ====================================================================================
@@ -1209,7 +1212,6 @@ public enum CustomComboPreset
     [CustomComboInfo("Summon Lux Solaris Feature", "Change Summon Bahamut to Lux Solaris when you have Refulgent Lux ready.", SMN.JobID)]
     SummonerSummonLuxSolarisFeature = 2717,
 
-
     #endregion
     // ====================================================================================
     #region VIPER
@@ -1220,9 +1222,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Steel Tail AoE Feature", "Replace Steel Maw and Dread Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
     ViperSteelTailAoEFeature = 4102,
 
+    [SecretCustomCombo]
     [CustomComboInfo("Twin Coil Feature", "Replace Swiftskin's Coil and Hunter's Coil with their respective Twinblood and Twinfang skills.", VPR.JobID)]
     ViperTwinCoilFeature = 4103,
 
+    [SecretCustomCombo]
     [CustomComboInfo("Twin Coil AoE Feature", "Replace Swiftskin's Den and Hunter's Den with their respective Twinblood and Twinfang skills.", VPR.JobID)]
     ViperTwinDenFeature = 4104,
 
@@ -1235,22 +1239,24 @@ public enum CustomComboPreset
     [CustomComboInfo("Uncoiled Fury Followup", "Replaces Uncoiled Fury with Uncoiled Twinfang and Uncoiled Twinblood in sequence.", VPR.JobID)]
     ViperUncoiledFollowupFeature = 4107,
 
-    [CustomComboInfo("FuryAndIre", "Replaces Uncoiled Fury with Serpent's Ire when out of Rattling Coil stacks.", VPR.JobID)]
+    [CustomComboInfo("Fury And Ire", "Replaces Uncoiled Fury with Serpent's Ire when out of Rattling Coil stacks.", VPR.JobID)]
     ViperFuryAndIreFeature = 4108,
 
+    [SecretCustomCombo]
     [CustomComboInfo("Dread Fangs to Dreadwinder", "Replaces Dread Fangs to Dreadwinder when there are stacks present and not currently in a combo.", VPR.JobID)]
     ViperDreadfangsDreadwinderFeature = 4109,
 
+    [SecretCustomCombo]
     [CustomComboInfo("Dread Maw to Pit of Dread", "Replaces Dread Maw with Pit of Dread when there are stacks present and not currently in a combo.", VPR.JobID)]
     ViperPitOfDreadFeature = 4110,
 
     [ConflictingCombos(ViperMergeTwinsSerpentFeature)]
     [CustomComboInfo("Merge Twinfang/Twinblood onto Serpent's Tail Feature", "Merge all Twinfang/Twinblood abilities onto Serpent's Tail.", VPR.JobID)]
-    ViperMergeSerpentTwinsFeature=4111,
+    ViperMergeSerpentTwinsFeature = 4111,
 
     [ConflictingCombos(ViperMergeSerpentTwinsFeature)]
     [CustomComboInfo("Merge Serpent's Tail onto Twinfang/Twinblood Feature", "Merge all Serpent's Tail abilities onto Twinfang/Twinblood.", VPR.JobID)]
-    ViperMergeTwinsSerpentFeature=4112,
+    ViperMergeTwinsSerpentFeature = 4112,
 
     #endregion
     // ====================================================================================

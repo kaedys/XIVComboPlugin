@@ -1,8 +1,4 @@
-﻿
-using System;
-
-using Dalamud.Game.ClientState.JobGauge.Types;
-using FFXIVClientStructs.FFXIV.Client.Game.Gauge;
+﻿using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -162,12 +158,14 @@ internal static class PCT
                     }
                 }
 
-                if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAutoCombo))
+                if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAutoCombo) && !HasEffect(PCT.Buffs.SubstractivePalette))
                 {
-                    if (HasEffect(PCT.Buffs.Chroma3Ready) && !HasEffect(PCT.Buffs.SubstractivePalette) && gauge.PalleteGauge == 100)
-                    {
+                    if (IsEnabled(CustomComboPreset.PictomancerSubtractiveEarlyAutoCombo)
+                        && (gauge.PalleteGauge >= 50 || HasEffect(PCT.Buffs.SubstractivePaletteReady)))
                         return PCT.SubstractivePalette;
-                    }
+
+                    if (HasEffect(PCT.Buffs.Chroma3Ready) && (gauge.PalleteGauge == 100))
+                        return PCT.SubstractivePalette;
                 }
 
                 if (IsEnabled(CustomComboPreset.PictomancerHolyAutoCombo))
@@ -217,12 +215,14 @@ internal static class PCT
 
             if (actionID == PCT.ExtraBlizzardCyan)
             {
-                if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAutoCombo))
+                if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAutoCombo) && !HasEffect(PCT.Buffs.SubstractivePalette))
                 {
-                    if (HasEffect(PCT.Buffs.Chroma3Ready) && !HasEffect(PCT.Buffs.SubstractivePalette) && gauge.PalleteGauge == 100)
-                    {
+                    if (IsEnabled(CustomComboPreset.PictomancerSubtractiveEarlyAutoCombo)
+                        && (gauge.PalleteGauge >= 50 || HasEffect(PCT.Buffs.SubstractivePaletteReady)))
                         return PCT.SubstractivePalette;
-                    }
+
+                    if (HasEffect(PCT.Buffs.Chroma3Ready) && (gauge.PalleteGauge == 100))
+                        return PCT.SubstractivePalette;
                 }
 
                 if (IsEnabled(CustomComboPreset.PictomancerSubtractiveAoECombo))
@@ -300,7 +300,6 @@ internal static class PCT
 
             if (actionID == PCT.CreatureMotif)
             {
-
                 if (IsEnabled(CustomComboPreset.PictomancerCreatureMogCombo))
                 {
                     if (gauge.MooglePortraitReady || gauge.MadeenPortraitReady)
