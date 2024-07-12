@@ -413,7 +413,7 @@ internal class FuryAndIreFeature : CustomCombo
 
     protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
     {
-        if (actionID == VPR.UncoiledFury)
+        if (actionID == VPR.UncoiledFury && level >= VPR.Levels.UncoiledFury)
         {
             var gauge = GetJobGauge<VPRGauge>();
             if (gauge.RattlingCoilStacks == 0)
