@@ -1216,11 +1216,25 @@ public enum CustomComboPreset
     // ====================================================================================
     #region VIPER
 
+    [SecretCustomCombo]
+    [CustomComboInfo("Dread Steel Feature", "Replace Steel Fangs with Dread Fangs when Noxious Gash < 20s, and replace Dread Fangs with Steel Fangs when Noxious Gash > 20s.  Only affects the first combo hit, everything after that works like normal.", VPR.JobID)]
+    ViperDreadSteelFeature = 4113,
+
+    [SecretCustomCombo]
+    [CustomComboInfo("Dread Steel AoE Feature", "Replace Steel Maw with Dread Maw when Noxious Gash < 20s, and replace Dread Maw with Steel Maw when Noxious Gash > 20s.  Only affects the first combo hit, everything after that works like normal.", VPR.JobID)]
+    ViperDreadSteelAoEFeature = 4114,
+
     [CustomComboInfo("Steel Tail Feature", "Replace Steel Fangs and Dread Fangs with Serpent's Tail after finishing a combo.", VPR.JobID)]
     ViperSteelTailFeature = 4101,
 
     [CustomComboInfo("Steel Tail AoE Feature", "Replace Steel Maw and Dread Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
     ViperSteelTailAoEFeature = 4102,
+
+    [CustomComboInfo("Steel Coil Feature", "Replace Steel Fangs with Swiftskin's Coil and Dread Fangs with Hunter's Coil when usable.  Also replaces Steel Fangs with both First and Third Generation, and Dread Fangs with both Second and Fourth.", VPR.JobID)]
+    ViperSteelCoilFeature = 4115,
+
+    [CustomComboInfo("Steel Coil AoE Feature", "Replace Steel Maw with Swiftskin's Den and Dread Maw with Hunter's Den when usable.  Also replaces Steel Maw with both First and Third Generation, and Dread Maw with both Second and Fourth.", VPR.JobID)]
+    ViperSteelCoilAoEFeature = 4116,
 
     [SecretCustomCombo]
     [CustomComboInfo("Twin Coil Feature", "Replace Swiftskin's Coil and Hunter's Coil with their respective Twinblood and Twinfang skills.", VPR.JobID)]

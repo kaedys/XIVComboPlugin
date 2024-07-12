@@ -1,4 +1,5 @@
-﻿using Dalamud.Game.ClientState.JobGauge.Types;
+﻿using Dalamud.Game.ClientState.JobGauge.Enums;
+using Dalamud.Game.ClientState.JobGauge.Types;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -161,6 +162,77 @@ internal class SteelTailAoEFeature : CustomCombo
     }
 }
 
+internal class SteelCoilFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperSteelCoilFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        var gauge = GetJobGauge<VPRGauge>();
+        if (actionID == VPR.SteelFangs)
+        {
+            if (gauge.AnguineTribute >= 5 || (level < VPR.Levels.Ouroboros && gauge.AnguineTribute >= 4))
+                return VPR.FirstGeneration;
+
+            if (gauge.AnguineTribute > 0)
+                return VPR.ThirdGeneration;
+
+            if (gauge.DreadCombo == DreadCombo.Dreadwinder || gauge.DreadCombo == DreadCombo.SwiftskinsCoil)
+                return VPR.HuntersCoil;
+        }
+
+        if (actionID == VPR.DreadFangs)
+        {
+            if (gauge.AnguineTribute >= 3 || (level < VPR.Levels.Ouroboros && gauge.AnguineTribute >= 2))
+                return VPR.SecondGeneration;
+
+            if (gauge.AnguineTribute > 0)
+                return VPR.FourthGeneration;
+
+            if (gauge.DreadCombo == DreadCombo.Dreadwinder || gauge.DreadCombo == DreadCombo.HuntersCoil)
+                    return VPR.SwiftskinsCoil;
+        }
+
+        return actionID;
+    }
+}
+
+
+internal class SteelCoilAoEFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperSteelCoilAoEFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        var gauge = GetJobGauge<VPRGauge>();
+        if (actionID == VPR.SteelMaw)
+        {
+            if (gauge.AnguineTribute >= 5 || (level < VPR.Levels.Ouroboros && gauge.AnguineTribute >= 4))
+                return VPR.FirstGeneration;
+
+            if (gauge.AnguineTribute > 0)
+                return VPR.ThirdGeneration;
+
+            if (gauge.DreadCombo == DreadCombo.PitOfDread || gauge.DreadCombo == DreadCombo.SwiftskinsDen)
+                return VPR.HuntersDen;
+        }
+
+        if (actionID == VPR.DreadMaw)
+        {
+            if (gauge.AnguineTribute >= 3 || (level < VPR.Levels.Ouroboros && gauge.AnguineTribute >= 2))
+                return VPR.SecondGeneration;
+
+            if (gauge.AnguineTribute > 0)
+                return VPR.FourthGeneration;
+
+            if (gauge.DreadCombo == DreadCombo.PitOfDread || gauge.DreadCombo == DreadCombo.HuntersDen)
+                return VPR.SwiftskinsDen;
+        }
+
+        return actionID;
+    }
+}
+
 internal class TwinCoilFeature : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperTwinCoilFeature;
@@ -309,8 +381,76 @@ internal class UncoiledFollowupFeature : CustomCombo
             if (OriginalHook(VPR.Twinfang) == VPR.UncoiledTwinfang && HasEffect(VPR.Buffs.PoisedForTwinfang))
                 return VPR.UncoiledTwinfang;
 
-            if (level >= VPR.Levels.UncoiledTwins && OriginalHook(VPR.Twinblood) == VPR.UncoiledTwinblood)
+            if (OriginalHook(VPR.Twinblood) == VPR.UncoiledTwinblood)
                 return VPR.UncoiledTwinblood;
+        }
+
+        return actionID;
+    }
+}
+
+internal class DreadSteelFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperDreadSteelFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.DreadFangs)
+        {
+            if (level >= VPR.Levels.DreadFangs && IsOriginal(VPR.DreadFangs))
+            {
+                var gash = FindTargetEffect(VPR.Debuffs.NoxiousGash);
+                if (gash is null || gash.RemainingTime <= 20)
+                    return VPR.DreadFangs;
+
+                return VPR.SteelFangs;
+            }
+        }
+
+        if (actionID == VPR.SteelFangs)
+        {
+            if (level >= VPR.Levels.DreadFangs && IsOriginal(VPR.SteelFangs))
+            {
+                var gash = FindTargetEffect(VPR.Debuffs.NoxiousGash);
+                if (gash is null || gash.RemainingTime <= 20)
+                    return VPR.DreadFangs;
+
+                return VPR.SteelFangs;
+            }
+        }
+
+        return actionID;
+    }
+}
+
+internal class DreadSteelAoEFeature : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.ViperDreadSteelAoEFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == VPR.DreadMaw)
+        {
+            if (level >= VPR.Levels.DreadMaw && IsOriginal(VPR.DreadMaw))
+            {
+                var gash = FindTargetEffect(VPR.Debuffs.NoxiousGash);
+                if (gash is null || gash.RemainingTime <= 20)
+                    return VPR.DreadMaw;
+
+                return VPR.SteelMaw;
+            }
+        }
+
+        if (actionID == VPR.SteelMaw)
+        {
+            if (level >= VPR.Levels.DreadMaw && IsOriginal(VPR.SteelMaw))
+            {
+                var gash = FindTargetEffect(VPR.Debuffs.NoxiousGash);
+                if (gash is null || gash.RemainingTime <= 20)
+                    return VPR.DreadMaw;
+
+                return VPR.SteelMaw;
+            }
         }
 
         return actionID;
