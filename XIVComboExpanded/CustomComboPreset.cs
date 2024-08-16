@@ -383,6 +383,11 @@ public enum CustomComboPreset
     [CustomComboInfo("Heavy Shot Iron Jaws Optimized Option", "Replace Heavy shot with Iron Jaws when Venomous Bite/Windbite is less than 2.8 seconds on the target instead of 5 seconds.", BRD.JobID)]
     BardShotIronJawsOption = 2323,
 
+    [IconsCombo([BRD.ApexArrow, BRD.BlastArrow, UTL.ArrowLeft, BRD.IronJaws, UTL.Blank, BRD.Debuffs.CausticBite, BRD.Debuffs.Windbite, UTL.Idea])]
+    [ParentCombo(BardShotIronJawsFeature)]
+    [CustomComboInfo("Auto Iron Jaws Apex", "Also replace Apex Arrow and Blast Arrow with Iron Jaws when Caustic Bite or Stormbite are below 5s remaining.", BRD.JobID)]
+    BardAutoIronJawsApexFeature = 2324,
+
     [IconsCombo([BRD.Bloodletter, UTL.ArrowLeft, BRD.EmpyrealArrow, UTL.Cycle, BRD.Bloodletter, UTL.Cycle, BRD.Sidewinder])]
     [SectionCombo("Single Target")]
     [AccessibilityCustomCombo]
@@ -453,21 +458,37 @@ public enum CustomComboPreset
 
     [IconsCombo([BRD.MagesBallad, UTL.ArrowLeft, BRD.WanderersMinuet, UTL.Cycle, BRD.MagesBallad, UTL.Cycle, BRD.ArmysPaeon])]
     [ExpandedCustomCombo]
-    [SectionCombo("Song features")]
+    [SectionCombo("Cooldowns")]
     [CustomComboInfo("Cycling Song Feature", "Replace Mage's Ballad with Wanderer's Minuet, Mage's Ballad, and Army's Paeon, while the previous is on cooldown.", BRD.JobID)]
     BardCyclingSongFeature = 2317,
 
     [IconsCombo([BRD.RadiantFinale, UTL.ArrowLeft, BRD.BattleVoice, UTL.Blank, BRD.BattleVoice, UTL.Checkmark])]
-    [SectionCombo("Song features")]
+    [SectionCombo("Cooldowns")]
+    [ConflictingCombos([BardBattleFinaleFeature])]
     [ExpandedCustomCombo]
     [CustomComboInfo("Radiant Voice Feature", "Replace Radiant Finale with Battle Voice if Battle Voice is available.", BRD.JobID)]
     BardRadiantVoiceFeature = 2310,
 
+    [IconsCombo([BRD.RadiantFinale, UTL.ArrowLeft, BRD.BattleVoice, UTL.Blank, BRD.BattleVoice, UTL.Checkmark])]
+    [SectionCombo("Cooldowns")]
+    [ConflictingCombos([BardRadiantVoiceFeature])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Battle Finale Feature", "Replace Battle Voice with Radiant Finale when Battle Voice is on cooldown and Radiant Finale or Radiant Encore are available.", BRD.JobID)]
+    BardBattleFinaleFeature = 2325,
+
     [IconsCombo([BRD.RadiantFinale, UTL.ArrowLeft, BRD.RagingStrikes, UTL.Blank, BRD.RagingStrikes, UTL.Checkmark])]
-    [SectionCombo("Song features")]
+    [SectionCombo("Cooldowns")]
+    [ConflictingCombos([BardRagingBarrageFeature])]
     [ExpandedCustomCombo]
     [CustomComboInfo("Radiant Strikes Feature", "Replace Radiant Finale with Raging Strikes if Raging Strikes is available.\nThis takes priority over Battle Voice if Radiant Voice is enabled.", BRD.JobID)]
     BardRadiantStrikesFeature = 2311,
+
+    [IconsCombo([BRD.RadiantFinale, UTL.ArrowLeft, BRD.RagingStrikes, UTL.Blank, BRD.RagingStrikes, UTL.Checkmark])]
+    [SectionCombo("Cooldowns")]
+    [ConflictingCombos([BardRadiantStrikesFeature])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Raging Barrage Feature", "Replace Raging Strikes with Barrage when the former is on cooldown and the latter is not.", BRD.JobID)]
+    BardRagingBarrageFeature = 2326,
 
     #endregion
     // ====================================================================================
@@ -531,6 +552,12 @@ public enum CustomComboPreset
     [SecretCustomCombo]
     [CustomComboInfo("AoE 85 Esprit", "Only replace AoE combo actions with Saber Dance when at >= 85 Esprit instead of 50.\n\nNOTE: This is intended to permit greater pooling of Esprit for burst windows, while still minimizing the risk of overcapping.", DNC.JobID)]
     DancerAutoSaberDanceAoE85Esprit = 3820,
+
+    [IconsCombo([DNC.Tillana, UTL.ArrowLeft, DNC.SaberDance, UTL.Danger])]
+    [SectionCombo("Saber Dance features")]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Tillana Overcap Prevention", "Replace Tillana with Saber Dance at >= 50 Esprit during Technical Step.", DNC.JobID)]
+    DancerTillanaOvercap = 3829,
 
     [IconsCombo([DNC.Windmill, UTL.ArrowLeft, DNC.SaberDance, UTL.Plus, DNC.TechnicalStep])]
     [ParentCombo(DancerAutoSaberDanceAoE85Esprit)]
@@ -697,16 +724,41 @@ public enum CustomComboPreset
     DarkLivingShadowFeature = 3205,
 
     [SectionCombo("Living Shadow")]
-    [IconsCombo([DRK.Shadowbringer, UTL.ArrowLeft, DRK.LivingShadow, UTL.Blank, DRK.LivingShadow, UTL.Checkmark])]
+    [IconsCombo([DRK.LivingShadow, UTL.ArrowLeft, DRK.Shadowbringer, UTL.Blank, DRK.LivingShadow, UTL.Checkmark])]
     [ExpandedCustomCombo]
     [CustomComboInfo("Living Shadowbringer Feature", "Replace Living Shadow with Shadowbringer when charges are available and your Shadow is present.", DRK.JobID)]
     DarkLivingShadowbringerFeature = 3208,
 
     [SectionCombo("Living Shadow")]
-    [IconsCombo([DRK.Shadowbringer, UTL.ArrowLeft, DRK.LivingShadow, UTL.Blank, DRK.LivingShadow, UTL.Clock])]
+    [IconsCombo([DRK.LivingShadow, UTL.ArrowLeft, DRK.Shadowbringer, UTL.Blank, DRK.LivingShadow, UTL.Cross])]
     [ExpandedCustomCombo]
     [CustomComboInfo("Missing Shadowbringer Feature", "Replace Living Shadow with Shadowbringer when charges are available and Living Shadow is on cooldown.", DRK.JobID)]
     DarkLivingShadowbringerHpFeature = 3209,
+
+    [SectionCombo("Living Shadow")]
+    [IconsCombo([DRK.Souleater, DRK.StalwartSoul, UTL.ArrowLeft, DRK.Disesteem, UTL.Blank, DRK.Buffs.Scorn, UTL.Checkmark])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Automatic Disesteem", "Replace Souleater and Stalwart Soul with Disesteem when available.  If the Delirium Feature is also enabled, Disesteem is used after the Delirium combo to allow better flexibility for when it is used.", DRK.JobID)]
+    DarkAutoDisesteemFeature = 3210,
+
+    [SectionCombo("Living Shadow")]
+    [IconsCombo([DRK.Disesteem, UTL.ArrowUp, DRK.ScarletDelirium])]
+    [ParentCombo(DarkAutoDisesteemFeature)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Prioritize Disesteem", "Use Disesteem before the Delirium rather than after.\n\nNOTE: This is in better alignment with the burst rotation graphic from The Balance, but strictly speaking isn't a gain or a loss, and potentially reduces flexibility during the burst window if you have to disengage from the boss during those 4 GCDs (since Disesteem has a 10y range).", DRK.JobID)]
+    DarkAutoDisesteemPriorityFeature = 3211,
+
+    [SectionCombo("Level Sync")]
+    [IconsCombo([DRK.EdgeOfDarkness, UTL.ArrowLeft, DRK.FloodOfDarkness])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Edge to Flood", "Replace Edge of Shadow with Flood of Shadow between levels 30 and 40.", DRK.JobID)]
+    DarkSyncEdgeFloodFeature = 3212,
+
+    [SectionCombo("Level Sync")]
+    [IconsCombo([DRK.CarveAndSpit, UTL.ArrowLeft, DRK.AbyssalDrain])]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Carve to Drain", "Replace Carve and Spit with Abyssal Drain between levels 56 and 60.", DRK.JobID)]
+    DarkSyncCarveDrainFeature = 3213,
 
     #endregion
     // ====================================================================================
@@ -817,6 +869,13 @@ public enum CustomComboPreset
     GunbreakerBurstStrikeFeature = 3710,
 
     [SectionCombo("Single Target")]
+    [IconsCombo([GNB.SolidBarrel, UTL.ArrowLeft, GNB.BurstStrike, UTL.Blank, GNB.Buffs.NoMercy, UTL.Checkmark])]
+    [AccessibilityCustomCombo]
+    [ParentCombo(GunbreakerBurstStrikeFeature)]
+    [CustomComboInfo("Burst No Mercy Feature", "Always replace Solid Barrel with Burst Strike while No Mercy is active if any charges are available.  Prioritized below other replacements such as Double Down.", GNB.JobID)]
+    GunbreakerBurstNoMercyFeature = 3726,
+
+    [SectionCombo("Single Target")]
     [IconsCombo([GNB.BurstStrike, UTL.ArrowLeft, GNB.DoubleDown])]
     [AccessibilityCustomCombo]
     [ParentCombo(GunbreakerSolidBarrelCombo)]
@@ -858,6 +917,13 @@ public enum CustomComboPreset
     GunbreakerFatedCircleFeature = 3706,
 
     [SectionCombo("Area of Effect")]
+    [IconsCombo([GNB.DemonSlaughter, UTL.ArrowLeft, GNB.FatedCircle, UTL.Blank, GNB.Buffs.NoMercy, UTL.Checkmark])]
+    [AccessibilityCustomCombo]
+    [ParentCombo(GunbreakerFatedCircleFeature)]
+    [CustomComboInfo("Fated No Mercy Feature", "Always replace Demon Slaughter with Fated Circle while No Mercy is active if any charges are available.  Prioritized below other replacements such as Double Down.", GNB.JobID)]
+    GunbreakerFatedNoMercyFeature = 3727,
+
+    [SectionCombo("Area of Effect")]
     [IconsCombo([GNB.FatedCircle, UTL.ArrowLeft, GNB.DoubleDown])]
     [ParentCombo(GunbreakerDemonSlaughterCombo)]
     [AccessibilityCustomCombo]
@@ -869,32 +935,56 @@ public enum CustomComboPreset
     [CustomComboInfo("Fated Circle Continuation", "Replace Fated Circle with Continuation moves when appropriate.", GNB.JobID)]
     GunbreakerFatedCircleCont = 3714,
 
-    [SectionCombo("No Mercy")]
+    [SectionCombo("Lion Heart")]
+    [IconsCombo([GNB.SolidBarrel, UTL.ArrowLeft, GNB.ReignOfBeasts, GNB.NobleBlood, GNB.LionHeart])]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Lion Heart on Solid Barrel", "Replace Solid Barrel with the Lion Heart combo when available.", GNB.JobID)]
+    GunbreakerLionHeartSolidBarrelFeature = 3728,
+
+    [SectionCombo("Lion Heart")]
+    [IconsCombo([GNB.BurstStrike, UTL.ArrowLeft, GNB.ReignOfBeasts, GNB.NobleBlood, GNB.LionHeart])]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Lion Heart on Burst Strike", "Replace Burst Strike with the Lion Heart combo when available.", GNB.JobID)]
+    GunbreakerLionHeartBurstStrikeFeature = 3729,
+
+    [SectionCombo("Lion Heart")]
+    [IconsCombo([GNB.DemonSlaughter, UTL.ArrowLeft, GNB.ReignOfBeasts, GNB.NobleBlood, GNB.LionHeart])]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Lion Heart on Demon Slaughter", "Replace Demon Slaughter with the Lion Heart combo when available.", GNB.JobID)]
+    GunbreakerLionHeartDemonSlaughterFeature = 3730,
+
+    [SectionCombo("Lion Heart")]
+    [IconsCombo([GNB.FatedCircle, UTL.ArrowLeft, GNB.ReignOfBeasts, GNB.NobleBlood, GNB.LionHeart])]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Lion Heart on Fated Circle", "Replace Fated Circle with the Lion Heart combo when available.", GNB.JobID)]
+    GunbreakerLionHeartFatedCircleFeature = 3731,
+
+    [SectionCombo("Cooldowns")]
     [IconsCombo([GNB.NoMercy, UTL.ArrowLeft, GNB.DoubleDown, UTL.Blank, GNB.Buffs.NoMercy, UTL.Checkmark])]
     [ConflictingCombos(GunbreakerNoMercyFeature)]
     [AccessibilityCustomCombo]
     [CustomComboInfo("No Mercy Always Double Down Feature", "Replace No Mercy with Double Down while No Mercy is active.", GNB.JobID)]
     GunbreakerNoMercyAlwaysDoubleDownFeature = 3713,
 
-    [SectionCombo("No Mercy")]
+    [SectionCombo("Cooldowns")]
     [IconsCombo([GNB.NoMercy, UTL.ArrowLeft, GNB.DoubleDown, UTL.Blank, GNB.SonicBreak, UTL.Clock])]
     [SecretCustomCombo]
     [CustomComboInfo("No Mercy Double Down Feature", "Replace No Mercy with Double Down while No Mercy is active, 2 cartridges are available, and Double Down is off cooldown.\nThis takes priority over the No Mercy Bow Shock/Sonic Break Feature.", GNB.JobID)]
     GunbreakerNoMercyDoubleDownFeature = 3712,
 
-    [SectionCombo("No Mercy")]
+    [SectionCombo("Cooldowns")]
     [IconsCombo([GNB.NoMercy, UTL.ArrowLeft, GNB.BowShock, UTL.Blank, GNB.SonicBreak, UTL.Clock])]
     [SecretCustomCombo]
     [CustomComboInfo("No Mercy Bow Shock", "Replace No Mercy with Bow Shock while No Mercy is active and Sonic Break has been used or the GCD is active.", GNB.JobID)]
     GunbreakerNoMercyFeature = 3708,
 
-    [SectionCombo("Buffs")]
+    [SectionCombo("Cooldowns")]
     [IconsCombo([GNB.BurstStrike, GNB.FatedCircle, UTL.ArrowLeft, GNB.Bloodfest, UTL.Blank, UTL.Blank, UTL.Danger])]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Empty Bloodfest Feature", "Replace Burst Strike and Fated Circle with Bloodfest if the powder gauge is empty.", GNB.JobID)]
+    [CustomComboInfo("Empty Bloodfest Feature", "Replace Burst Strike and Fated Circle with Bloodfest if the powder gauge is empty.\n\nNOTE: Bloodfest is intended to be used as a major damage cooldown aligned with party buffs and No Mercy.  It is not recommended to use it at random simply because you're out of powder gauge.", GNB.JobID)]
     GunbreakerEmptyBloodfestFeature = 3707,
 
-    [SectionCombo("Buffs")]
+    [SectionCombo("Cooldowns")]
     [IconsCombo([GNB.BowShock, UTL.Cycle, GNB.SonicBreak])]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Sonic Shock Feature", "Replace both Sonic Break and Bow Shock with the former when it is available and you are not on GCD, and the latter when it is not on CD and either Sonic Break is not available or you are on GCD.", GNB.JobID)]
@@ -904,12 +994,12 @@ public enum CustomComboPreset
     [SectionCombo("Alternative Playstyle")]
     [SecretCustomCombo]
     [CustomComboInfo("Expanded Continuation Feature", "Replace Continuation with several abilities, giving a continuation-like followup to several abilities.\n" +
-        "Becomes Bow Shock if it is available" +
-        "Combo Danger Zone after Keen Edge or Brutal Shell" +
-        "\nCombo Sonic Break after No Mercy" +
-        "\nFollow up Solid Barrel with Double Down, Gnashing Fang combo, or Burst Strike" +
-        "\nFollow up Demon Slaughter with Double Down or Fated Circle" +
-        "\nFollow up Bloodfest with the Reign combo.", GNB.JobID)]
+        "\n- Becomes Bow Shock if it is available" +
+        "\n- Combo Danger Zone after Keen Edge or Brutal Shell" +
+        "\n- Combo Sonic Break after No Mercy" +
+        "\n- Follow up Solid Barrel with Double Down, Gnashing Fang combo, or Burst Strike" +
+        "\n- Follow up Demon Slaughter with Double Down or Fated Circle" +
+        "\n- Follow up Bloodfest with the Reign combo.", GNB.JobID)]
     GunbreakerExpandedContinuation = 3715,
 
     [IconsCombo([GNB.Continuation, UTL.ArrowLeft, GNB.BowShock, UTL.Cross])]
@@ -1064,13 +1154,11 @@ public enum CustomComboPreset
 
     [IconsCombo([MNK.TrueStrike, UTL.ArrowLeft, MNK.TwinSnakes])]
     [SectionCombo("Single Target")]
-    [ConflictingCombos(MonkMonkeyMode)]
     [CustomComboInfo("Raptor Feature", "Replace True Strike with Twin Snakes if you don't have any Raptor's fury stack.", MNK.JobID)]
     MonkRaptorFeature = 2018,
 
     [IconsCombo([MNK.SnapPunch, UTL.ArrowLeft, MNK.Demolish])]
     [SectionCombo("Single Target")]
-    [ConflictingCombos(MonkMonkeyMode)]
     [CustomComboInfo("Coeurl Feature", "Replace Snap Punch with Demolish if you don't have any Coeurl's fury stack.", MNK.JobID)]
     MonkCoeurlFeature = 2019,
 
@@ -1126,9 +1214,9 @@ public enum CustomComboPreset
 
     [IconsCombo([MNK.Bootshine, UTL.ArrowLeft, UTL.Opo])]
     [SectionCombo("Monkey Mode")]
-    [ConflictingCombos([MonkOpoFeature, MonkRaptorFeature, MonkCoeurlFeature])]
+    [ConflictingCombos([MonkOpoFeature])]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Monkey Mode", "One-buttons the basic rotation on Bootshine/Leaping Opo. Neat for beginners, very, very bad for serious players.", MNK.JobID)]
+    [CustomComboInfo("monke mode", "One-buttons the basic rotation on Bootshine/Leaping Opo.\n\nNOTE: This is neat for beginners and generally performes a solid rotation, but can be quite bad for optimization, especially around Perfect Balance and burst windows.  This is not recommended for serious players.", MNK.JobID)]
     MonkMonkeyMode = 2021,
 
     [IconsCombo([MNK.Bootshine, UTL.ArrowLeft, MNK.SteeledPeak, UTL.Blank, MNK.SteeledMeditation, UTL.Checkmark])]
@@ -1158,20 +1246,17 @@ public enum CustomComboPreset
 
     [IconsCombo([NIN.AeolianEdge, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
-    [ConflictingCombos(NinjaKazematoiFeature)]
     [CustomComboInfo("Aeolian Edge Combo", "Replace Aeolian Edge with its combo chain.", NIN.JobID)]
     NinjaAeolianEdgeCombo = 3002,
 
     [IconsCombo([NIN.ArmorCrush, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
-    [ConflictingCombos(NinjaKazematoiFeature)]
     [CustomComboInfo("Armor Crush Combo", "Replace Armor Crush with its combo chain.", NIN.JobID)]
     NinjaArmorCrushCombo = 3001,
 
     [IconsCombo([NIN.ArmorCrush, UTL.Cycle, NIN.AeolianEdge, UTL.ArrowLeft, NIN.GustSlash, UTL.ArrowLeft, NIN.SpinningEdge])]
     [SectionCombo("Single Target")]
     [AccessibilityCustomCombo]
-    [ConflictingCombos([NinjaAeolianEdgeCombo, NinjaArmorCrushCombo])]
     [CustomComboInfo("Auto-Refill Kazematoi / Huton Feature", "Replace Aeolian Edge with Armor Crush when you don't have any Kazematoi left or with its combo chain else.", NIN.JobID)]
     NinjaKazematoiFeature = 3019,
 
@@ -1374,23 +1459,23 @@ public enum CustomComboPreset
     [CustomComboInfo("Subtractive Single-Target Combo", "Replace Blizzard in Cyan and its combo chain with Fire in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveSTCombo = 4201,
 
-    [IconsCombo([PCT.ExtraBlizzardCyan, UTL.ArrowLeft, PCT.ExtraFireRed, UTL.Blank, PCT.SubstractivePalette, UTL.Cross])]
+    [IconsCombo([PCT.BlizzardCyanAoE, UTL.ArrowLeft, PCT.FireRedAoE, UTL.Blank, PCT.SubstractivePalette, UTL.Cross])]
     [SectionCombo("Substractive")]
     [CustomComboInfo("Subtractive AoE Combo", "Replace Blizzard II in Cyan and its combo chain with Fire II in Red and its combo chain when Subtractive Palette is not active.", PCT.JobID)]
     PictomancerSubtractiveAoECombo = 4202,
 
-    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, UTL.Blank, UTL.Danger])]
-    [SectionCombo("Substractive")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Don't overcap Subtractive", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge.", PCT.JobID)]
-    PictomancerSubtractiveAutoCombo = 4205,
-
-    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, PCT.Buffs.SubstractivePalette, UTL.Checkmark])]
+    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, UTL.Blank, UTL.Idea])]
     [SectionCombo("Substractive")]
     [AccessibilityCustomCombo]
-    [ParentCombo(CustomComboPreset.PictomancerSubtractiveAutoCombo)]
-    [CustomComboInfo("Subtractive Early Autocast", "Do it as soon as you reach 50 Palette gauge or you are under the effect of Substractive Palette Ready instead.", PCT.JobID)]
-    PictomancerSubtractiveEarlyAutoCombo = 4221,
+    [CustomComboInfo("Subtractive Autocast", "Replace Fire in Red and Fire II in Red, and their combo chains, with Subtractive Palette whenever it is usable.", PCT.JobID)]
+    PictomancerSubtractiveAutoCombo = 4221,
+
+    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.SubstractivePalette, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Substractive")]
+    [ParentCombo(PictomancerSubtractiveAutoCombo)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Subtractive Overcap-only", "Only replace with Subtractive Palette if the next cast in the chain would overcap the Palette Gauge or if you have Subtractive Palette Ready from Starry Muse.\n\nNOTE: This is intended to allow more flexibility for when Subtractive Pallet is used, due to the greater demand for stationary casting while it is active.  It is recommended to also have Subtractive Pallet seperately on your hotbars, and to use it manually whenever it makes sense, with this feature simply acting as a guard against Palette waste.", PCT.JobID)]
+    PictomancerSubtractiveOvercap = 4205,
 
     [IconsCombo([PCT.CreatureMotif, UTL.ArrowLeft, PCT.PomMuse, PCT.WingedMuse, PCT.ClawedMuse, PCT.FangedMuse, UTL.Blank, PCT.CreatureMotifDrawn, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
@@ -1403,11 +1488,17 @@ public enum CustomComboPreset
     [CustomComboInfo("Creature Muse/Mog of the Ages Combo", "Also replace Creature Motifs with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
     PictomancerCreatureMogCombo = 4207,
 
-    [IconsCombo([PCT.FireRed, PCT.ExtraFireRed, UTL.ArrowLeft, PCT.MogOftheAges, PCT.Retribution, UTL.Blank, PCT.MogOftheAges, PCT.Retribution, UTL.Checkmark])]
+    [IconsCombo([PCT.FireRed, PCT.FireRedAoE, UTL.ArrowLeft, PCT.MogOftheAges, PCT.Retribution, UTL.Blank, PCT.MogOftheAges, PCT.Retribution, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Mog of the Ages Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Mog of the Ages and Retribution of the Madeen when they are usable.", PCT.JobID)]
     PictomancerAutoMogCombo = 4220,
+
+    [IconsCombo([PCT.MogOftheAges, PCT.Retribution, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Muses & Motifs")]
+    [ParentCombo(PictomancerCreatureMogCombo)]
+    [CustomComboInfo("Mog of the Ages only for overcap", "Only replace Creature Motifs with Mog of the Ages and Retribution of the Madeen when the next Creature Muse cast would overwrite the Moogle or Madeen.", PCT.JobID)]
+    PictomancerCreatureMogOvercapCombo = 4223,
 
     [IconsCombo([PCT.HammerMotif, UTL.ArrowLeft, PCT.StrikingMuse, UTL.Blank, PCT.WeaponMotifDrawn, UTL.Checkmark])]
     [SectionCombo("Muses & Motifs")]
@@ -1430,40 +1521,72 @@ public enum CustomComboPreset
     PictomancerLandscapePrismCombo = 4211,
 
     [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.StarryMuse, UTL.Blank, PCT.Buffs.StarPrismReady, UTL.Checkmark])]
-    [SectionCombo("Muses & Motifs")]
+    [SectionCombo("Miscellaneous")]
     [AccessibilityCustomCombo]
-    [CustomComboInfo("Star Prism Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Star Prism when you have Star Prism Ready.", PCT.JobID)]
+    [CustomComboInfo("Star Prism Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Star Prism when you have Star Prism Ready.  Has priority over Comet, if enabled along with the Automatic Comet feature.", PCT.JobID)]
     PictomancerStarPrismAutoCombo = 4214,
 
-    [IconsCombo([PCT.HolyInWhite, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.CometBlack, UTL.Checkmark])]
-    [SectionCombo("Holy Comet")]
-    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
-    PictomancerHolyCometCombo = 4203,
-
-    [IconsCombo([PCT.HolyInWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
-    [SectionCombo("Holy Comet")]
-    [ExpandedCustomCombo]
-    [ParentCombo(PictomancerHolyCometCombo)]
-    [CustomComboInfo("Rainbow Holy Combo", "Replace Holy in White with Rainbow Drip when under the effect of Rainbow Drip Ready (has priority over Comet in Black).", PCT.JobID)]
-    PictomancerRainbowHolyCombo = 4215,
-
-    [IconsCombo([PCT.FireRed, PCT.BlizzardCyan, UTL.ArrowLeft, PCT.HolyInWhite, UTL.Blank, PCT.HolyInWhite, UTL.Danger])]
-    [SectionCombo("Holy Comet")]
-    [AccessibilityCustomCombo]
-    [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.", PCT.JobID)]
-    PictomancerHolyAutoCombo = 4204,
+    [IconsCombo([PCT.SubstractivePalette, UTL.ArrowUp, PCT.StarPrism1])]
+    [SectionCombo("Miscellaneous")]
+    [SecretCustomCombo]
+    [ParentCombo(PictomancerStarPrismAutoCombo)]
+    [CustomComboInfo("Star Prism after Subtractive", "Use Star Prism only if Subtractive Pallet is not currently active.  If enabled with Automatic Comet, Star Prism will be used before Comet in Black.  If enabled with Subtractive Autocast, the free Subtractive Pallet from Starry Muse will be activated (and consumed) before Star Prism is used.", PCT.JobID)]
+    PictomancerStarPrismAfterSubtractiveFeature = 4226,
 
     [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
-    [SectionCombo("Rainbow Drip")]
+    [SectionCombo("Miscellaneous")]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Rainbow Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Rainbow Drip when you have Rainbow Drip Ready.", PCT.JobID)]
     PictomancerRainbowAutoCombo = 4213,
 
-    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.RainbowDrip, UTL.OutOfBattle])]
-    [SectionCombo("Rainbow Drip")]
+    [IconsCombo([PCT.FireRed, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, UTL.Blank, UTL.OutOfBattle])]
+    [SectionCombo("Miscellaneous")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rainbow Drip Combo Starter", "Replace Fire in Red & Fire in Red II with Rainbow Drip when out of combat.\n\nThis is intended to allow a pre-pull Rainbow Drip cast, but can seriously interfere with initial casts if you are not given a pull timer, as you'll need to enter combo in some other way before you're able to use normal combo casts.  Generally, this is not recommended, even if you're using Rainbow Autocast above.", PCT.JobID)]
+    PictomancerRainbowStarterCombo = 4216,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, UTL.Blank, UTL.OutOfBattle])]
+    [SectionCombo("Miscellaneous")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rainbow Drip Holy Starter", "Replace Holy with Rainbow Drip when out of combat and at 0 Paint charges.\n\nThis is an alternative to the Rainbow Drip Combo Starter that does not interfere with normal combo casts (if not given a pull timer or someone pulls early).  Since it only replaces Holy when at 0 Paint charges, this is more narrowly focused on a prepull cast prior to a boss in a trial or raid, and should interfere less with other circumstances where you're not yet in combat but should not be precasting Rainbow Drip.", PCT.JobID)]
+    PictomancerRainbowStarterHoly = 4227,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.CometBlack, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [CustomComboInfo("Holy Comet Combo", "Replace Holy in White with Comet in Black when usable.", PCT.JobID)]
+    PictomancerHolyCometCombo = 4203,
+
+    [IconsCombo([PCT.HolyWhite, UTL.ArrowLeft, PCT.RainbowDrip, UTL.Blank, PCT.Buffs.RainbowReady, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Rainbow Holy Combo", "Replace Holy in White with Rainbow Drip when under the effect of Rainbow Drip Ready.  Holy/Comet will be used first if Holy Autocast is enabled and you have 5 paint charges.", PCT.JobID)]
+    PictomancerRainbowHolyCombo = 4215,
+
+    [IconsCombo([PCT.FireRed, PCT.BlizzardCyan, UTL.ArrowLeft, PCT.HolyWhite, UTL.Blank, UTL.Idea, UTL.Danger])]
+    [SectionCombo("Holy/Comet")]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Holy Autocast", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Holy or Comet if the next cast would overcap the Paint Gauge.\nThis is not recommended, as Holy is a small DPS loss versus continuing to cast your normal combos, and should generally be saved for movement instead.", PCT.JobID)]
+    PictomancerHolyAutoCombo = 4204,
+
+    [IconsCombo([PCT.FireRed, PCT.BlizzardCyan, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, UTL.Blank, UTL.Idea])]
+    [SectionCombo("Holy/Comet")]
+    [AccessibilityCustomCombo]
+    [CustomComboInfo("Automatic Comet", "Replace Fire in Red, Fire II in Red, Blizzard in Cyan, Blizzard II in Cyan, and their combo chains, with Comet whenever it is available.\n\nNOTE: This will ensure you do not lose usages of Comet by forgetting about it, but also prevents holding Comet for movement after using Subtractive Palette, which can be a small loss due to potentially having to use Holy to cover that movement instead.", PCT.JobID)]
+    PictomancerAutoCometFeature = 4222,
+
+    [IconsCombo([PCT.FireRed, PCT.BlizzardCyan, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.Buffs.SubstractivePalette, UTL.Cross])]
+    [SectionCombo("Holy/Comet")]
+    [ParentCombo(PictomancerAutoCometFeature)]
     [SecretCustomCombo]
-    [CustomComboInfo("Rainbow Drip Starter", "Replace Fire in Red & Fire in Red II with Rainbow Drip when out of combat.", PCT.JobID)]
-    PictomancerRainbowStarter = 4216,
+    [CustomComboInfo("Auto-Comet after Subtractive", "Automatically use Comet only after using the 3 Subtractive charges from Subtractive Palette.\n\nNOTE: This allows Comet to be used manually to cover movement during the Subtractive combo, while still avoiding forgetting about it.  Note that since Subractive Palette can be used again as soon as the Subtractive combo has been completed, you CAN overwrite and waste Comet if you immediately use Subtractive Palette again after finishing the prior combo and before using the Comet from that prior combo.", PCT.JobID)]
+    PictomancerCometAfterSubtractive = 4224,
+
+    [IconsCombo([PCT.FireRed, PCT.BlizzardCyan, UTL.ArrowLeft, PCT.CometBlack, UTL.Blank, PCT.StarryMuse, UTL.Checkmark])]
+    [SectionCombo("Holy/Comet")]
+    [ParentCombo(PictomancerAutoCometFeature)]
+    [SecretCustomCombo]
+    [CustomComboInfo("Auto-Comet only during Starry", "Automatically use Comet only while Inspiration from Starry Muse is active\n\nNOTE: This prevents forgetting about Comet during the important Starry Muse cast sequence, while otherwise leaving it entirely up to the player to use or waste Comet.", PCT.JobID)]
+    PictomancerCometStarryOnly = 4228,
 
     #endregion
     // ====================================================================================
@@ -1844,100 +1967,100 @@ public enum CustomComboPreset
     #region SAGE
 
     [IconsCombo([SGE.Dosis, UTL.ArrowLeft, SGE.Eukrasia, UTL.Blank, SGE.Debuffs.EukrasianDosis, UTL.Clock])]
-    [SectionCombo("Single Target")]
+    [SectionCombo("Damage")]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Auto Eukrasian Dosis", "Replace Dosis with Eukrasia when Eukrasian Dosis is about to run out.", SGE.JobID)]
     SageDoTFeature = 4012,
 
     [IconsCombo([SGE.Dosis, UTL.ArrowLeft, SGE.Psyche, UTL.Blank, SGE.Psyche, UTL.Clock])]
-    [SectionCombo("Single Target")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Dosis Psyche Feature", "Replace Dosis with Psyche when cooldown is available.", SGE.JobID)]
     SageDosisPsyche = 4014,
 
     [IconsCombo([SGE.Dyskrasia, UTL.ArrowLeft, SGE.Psyche, UTL.Blank, SGE.Psyche, UTL.Clock])]
-    [SectionCombo("Area of Effect")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Dyskrasia Psyche Feature", "Replace Dyskrasia with Psyche when cooldown is available.", SGE.JobID)]
     SagePsycheDyskrasiaFeature = 4015,
 
-    [IconsCombo([SGE.Dosis, UTL.ArrowLeft, SGE.Kardia, UTL.Blank, SGE.Buffs.Kardion, UTL.Cross])]
-    [SectionCombo("Kardia features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Dosis Kardia Feature", "Replace Dosis with Kardia when missing Kardion.", SGE.JobID)]
-    SageDosisKardiaFeature = 4010,
-
-    [IconsCombo([SGE.Soteria, UTL.ArrowLeft, SGE.Kardia, UTL.Blank, SGE.Buffs.Kardion, UTL.Cross])]
-    [SectionCombo("Kardia features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Soteria Kardia Feature", "Replace Soteria with Kardia when off cooldown and missing Kardion.", SGE.JobID)]
-    SageSoteriaKardionFeature = 4006,
-
-    [IconsCombo([SGE.Druochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
-    [SectionCombo("Rhizomata features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Druochole into Rhizomata Feature", "Replace Druochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
-    SageDruocholeRhizomataFeature = 4003,
-
-    [IconsCombo([SGE.Ixochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
-    [SectionCombo("Rhizomata features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Ixochole into Rhizomata Feature", "Replace Ixochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
-    SageIxocholeRhizomataFeature = 4004,
-
-    [IconsCombo([SGE.Taurochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
-    [SectionCombo("Rhizomata features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Taurochole into Rhizomata Feature", "Replace Taurochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
-    SageTaurocholeRhizomataFeature = 4002,
-
-    [IconsCombo([SGE.Kerachole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
-    [SectionCombo("Rhizomata features")]
-    [ExpandedCustomCombo]
-    [CustomComboInfo("Kerachole into Rhizomata Feature", "Replace Kerachole with Rhizomata when Addersgall is empty.", SGE.JobID)]
-    SageKeracholaRhizomataFeature = 4005,
-
     [IconsCombo([SGE.Phlegma, UTL.ArrowLeft, SGE.Dyskrasia, UTL.Blank, SGE.Psyche, UTL.Checkmark])]
-    [SectionCombo("Phlegma features")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Phlegma into Psyche", "Replace Phlegma with Psyche when Psyche is available, you're in combat, and have a target.", SGE.JobID)]
     SagePhlegmaPsyche = 4008,
 
     [IconsCombo([SGE.Phlegma, UTL.ArrowLeft, SGE.Dyskrasia, UTL.Blank, SGE.Phlegma, UTL.Cross])]
-    [SectionCombo("Phlegma features")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Phlegma into Dyskrasia", "Replace Phlegma with Dyskrasia when no charges remain or have no target.", SGE.JobID)]
     SagePhlegmaDyskrasia = 4016,
 
     [IconsCombo([SGE.Phlegma, UTL.ArrowLeft, SGE.Toxikon, UTL.Blank, SGE.Phlegma, UTL.Cross])]
-    [SectionCombo("Phlegma features")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Phlegma into Toxikon", "Replace Phlegma with Toxikon when no charges remain and you have Addersting.\nThis takes priority over Phlegma into Dyskrasia.", SGE.JobID)]
     SagePhlegmaToxikon = 4007,
 
     [IconsCombo([SGE.Toxikon, UTL.ArrowLeft, SGE.Phlegma, UTL.Blank, SGE.Phlegma, UTL.Checkmark])]
-    [SectionCombo("Toxikon features")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Toxikon into Phlegma", "Replace Toxikon with Phlegma when charges are available.", SGE.JobID)]
     SageToxikonPhlegma = 4011,
 
     [IconsCombo([SGE.Toxikon, UTL.ArrowLeft, SGE.Psyche, UTL.Blank, SGE.Psyche, UTL.Checkmark])]
-    [SectionCombo("Toxikon features")]
+    [SectionCombo("Damage")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Toxikon into Psyche", "Replace Toxicon with Psyche when Psyche is available", SGE.JobID)]
     SagePsycheToxikonFeature = 4013,
 
+    [IconsCombo([SGE.Dosis, UTL.ArrowLeft, SGE.Kardia, UTL.Blank, SGE.Buffs.Kardion, UTL.Cross])]
+    [SectionCombo("Kardia")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Dosis Kardia Feature", "Replace Dosis with Kardia when missing Kardion.", SGE.JobID)]
+    SageDosisKardiaFeature = 4010,
+
+    [IconsCombo([SGE.Soteria, UTL.ArrowLeft, SGE.Kardia, UTL.Blank, SGE.Buffs.Kardion, UTL.Cross])]
+    [SectionCombo("Kardia")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Soteria Kardia Feature", "Replace Soteria with Kardia when off cooldown and missing Kardion.", SGE.JobID)]
+    SageSoteriaKardionFeature = 4006,
+
     [IconsCombo([SGE.Druochole, UTL.ArrowLeft, SGE.Taurochole, UTL.Blank, SGE.Druochole, UTL.Checkmark])]
-    [SectionCombo("Somethingchole features")]
+    [SectionCombo("Addersgall")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Druochole into Taurochole Feature", "Replace Druochole with Taurochole when off cooldown.\nWarning: This will limit your abiility to use Druochole.", SGE.JobID)]
     SageDruocholeTaurocholeFeature = 4009,
 
     [IconsCombo([SGE.Taurochole, UTL.ArrowLeft, SGE.Druochole, UTL.Blank, SGE.Taurochole, UTL.Clock])]
-    [SectionCombo("Somethingchole features")]
+    [SectionCombo("Addersgall")]
     [ExpandedCustomCombo]
     [CustomComboInfo("Taurochole into Druochole Feature", "Replace Taurochole with Druochole when on cooldown", SGE.JobID)]
     SageTaurocholeDruocholeFeature = 4001,
+
+    [IconsCombo([SGE.Druochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Addersgall")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Druochole into Rhizomata Feature", "Replace Druochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
+    SageDruocholeRhizomataFeature = 4003,
+
+    [IconsCombo([SGE.Ixochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Addersgall")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Ixochole into Rhizomata Feature", "Replace Ixochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
+    SageIxocholeRhizomataFeature = 4004,
+
+    [IconsCombo([SGE.Taurochole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Addersgall")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Taurochole into Rhizomata Feature", "Replace Taurochole with Rhizomata when Addersgall is empty.", SGE.JobID)]
+    SageTaurocholeRhizomataFeature = 4002,
+
+    [IconsCombo([SGE.Kerachole, UTL.ArrowLeft, SGE.Rhizomata, UTL.Blank, UTL.Blank, UTL.Danger])]
+    [SectionCombo("Addersgall")]
+    [ExpandedCustomCombo]
+    [CustomComboInfo("Kerachole into Rhizomata Feature", "Replace Kerachole with Rhizomata when Addersgall is empty.", SGE.JobID)]
+    SageKeracholaRhizomataFeature = 4005,
 
     #endregion
     // ====================================================================================
@@ -2255,6 +2378,17 @@ public enum CustomComboPreset
     #region VIPER
 
     [SectionCombo("Standard Combos")]
+    [IconsCombo([VPR.SteelFangs, VPR.ReavingFangs, UTL.ArrowLeft, VPR.DeathRattle, UTL.Blank, VPR.SteelMaw, VPR.ReavingMaw, UTL.ArrowLeft, VPR.LastLash])]
+    [CustomComboInfo("Serpent's Fang Feature", "Replace Steel Fangs, Reaving Fangs, Steel Maw, and Reaving Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
+    ViperSteelTailFeature = 4101,
+
+    [IconsCombo([VPR.SteelFangs, VPR.ReavingFangs, VPR.SteelMaw, VPR.ReavingMaw, UTL.ArrowLeft, VPR.SerpentsTail, VPR.Twinblood, VPR.Twinfang])]
+    [SecretCustomCombo]
+    [ParentCombo(ViperSteelTailFeature)]
+    [CustomComboInfo("Include All oGCDs", "Replace Steel Fangs, Reaving Fangs, Steel Maw, and Reaving Maw with Serpent's Tail, Twinfang, and Twinblood whenever they are available.", VPR.JobID)]
+    ViperSteelAllOGCDsFeature = 4128,
+
+    [SectionCombo("Standard Combos")]
     [IconsCombo([VPR.SteelFangs, UTL.Cycle, VPR.ReavingFangs, UTL.Blank, VPR.SteelMaw, UTL.Cycle, VPR.ReavingMaw])]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Auto Steel Reaving", "Replace Steel Fangs/Reaving Fangs and Steel Maw/Reaving Maw with whichever is currently empowered. Only affects the first combo hit.", VPR.JobID)]
@@ -2264,12 +2398,7 @@ public enum CustomComboPreset
     [IconsCombo([VPR.HindstingStrike, VPR.HindsbaneFang, VPR.FlanksbaneFang, VPR.FlankstingStrike, UTL.Idea, UTL.Blank, VPR.JaggedMaw, VPR.BloodiedMaw, UTL.Idea])]
     [AccessibilityCustomCombo]
     [CustomComboInfo("Auto Fang/Bite", "Replace Steel Fangs/Reaving Fangs and Steel Maw/Reaving Maw with whichever of the two available 3rd combo hits is currently empowered. Only affects the third combo hit.\n\nNOTE: This means that, for example, rather than Steel Fangs having Hindsting Strike and Reaving Fangs having Hindsbane Fang, both will have whichever of those two is currently empowered.  If neither is empowered, they'll have whatever they normally have for the 3rd combo hit.", VPR.JobID)]
-    ViperAutoFangBiteFeature = 4128,
-
-    [SectionCombo("Standard Combos")]
-    [IconsCombo([VPR.SteelFangs, VPR.ReavingFangs, UTL.ArrowLeft, VPR.DeathRattle, UTL.Blank, VPR.SteelMaw, VPR.ReavingMaw, UTL.ArrowLeft, VPR.LastLash])]
-    [CustomComboInfo("Serpent's Fang Feature", "Replace Steel Fangs, Reaving Fangs, Steel Maw, and Reaving Maw with Serpent's Tail after finishing a combo.", VPR.JobID)]
-    ViperSteelTailFeature = 4101,
+    ViperAutoFangBiteFeature = 4129,
 
     [SectionCombo("Vice Combos")]
     [IconsCombo([VPR.SteelFangs, VPR.ReavingFangs, VPR.SteelMaw, VPR.ReavingMaw, UTL.ArrowLeft, VPR.HuntersCoil, VPR.SwiftskinsCoil, VPR.HuntersDen, VPR.SwiftskinsDen])]

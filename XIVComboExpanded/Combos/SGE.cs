@@ -51,7 +51,6 @@ internal static class SGE
             EukrasianDosis = 2614,
             EukrasianDosis2 = 2615,
             EukrasianDosis3 = 2616;
-
     }
 
     public static class Levels
@@ -126,7 +125,6 @@ internal class SageDosis : CustomCombo
                 return OriginalHook(SGE.Psyche);
         }
 
-
         return actionID;
     }
 }
@@ -139,7 +137,6 @@ internal class SageToxikon : CustomCombo
     {
         if (actionID == SGE.Toxikon)
         {
-
             if (IsEnabled(CustomComboPreset.SagePsycheToxikonFeature))
             {
                 if (level >= SGE.Levels.Psyche && IsCooldownUsable(SGE.Psyche))
@@ -156,7 +153,6 @@ internal class SageToxikon : CustomCombo
                 if (phlegma != 0 && IsCooldownUsable(phlegma))
                     return OriginalHook(SGE.Phlegma);
             }
-
         }
 
         return actionID;
@@ -288,7 +284,6 @@ internal class SagePhlegma : CustomCombo
     {
         if (actionID == SGE.Phlegma || actionID == SGE.Phlegma2 || actionID == SGE.Phlegma3)
         {
-
             if (IsEnabled(CustomComboPreset.SagePhlegmaPsyche))
             {
                 if (level >= SGE.Levels.Psyche && IsCooldownUsable(SGE.Psyche) && TargetIsEnemy() && InCombat())

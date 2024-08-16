@@ -53,12 +53,13 @@ internal static class AST
         Play2 = 37020,
         Play3 = 37021,
         MinorArcanaDT = 37022,
-        CombinedHelios = 37030;
+        CombinedHelios = 37030,
+        Oracle = 37029;
 
     public static class Buffs
     {
         public const ushort
-            ClarifyingDraw = 2713;
+            Divining = 3893;
     }
 
     public static class Debuffs
@@ -102,9 +103,7 @@ internal class AstrologianMalefic : CustomCombo
                 };
 
                 if (!combustEffects.Any(effect => effect?.RemainingTime > 2.8))
-                {
                     return OriginalHook(AST.Combust);
-                }
             }
 
             if (IsEnabled(CustomComboPreset.AstrologianMaleficArcanaFeature) && gauge.DrawnCrownCard == CardType.LORD && level >= AST.Levels.MinorArcana)

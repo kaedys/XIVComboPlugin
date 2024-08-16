@@ -45,6 +45,7 @@ internal static class MNK
             RaptorForm = 108,
             CoerlForm = 109,
             PerfectBalance = 110,
+            Brotherhood = 1185,
             LeadenFist = 1861,
             FormlessFist = 2513,
             DisciplinedFist = 3001;
@@ -191,55 +192,40 @@ internal class MonkMonkeyMode : CustomCombo
             // Auto Chakra
             if (IsEnabled(CustomComboPreset.MonkMonkeyAutoChakraFeature))
             {
-                    if (gauge.Chakra > 4 && InCombat())
-                        return OriginalHook(MNK.SteeledPeak);
+                if (gauge.Chakra > 4 && InCombat())
+                    return OriginalHook(MNK.SteeledPeak);
             }
 
             // Masterful Blitz
             if (IsEnabled(CustomComboPreset.MonkSTBalanceFeature))
             {
-                    if (!gauge.BeastChakra.Contains(BeastChakra.NONE) && level >= MNK.Levels.MasterfulBlitz)
-                        return OriginalHook(MNK.MasterfulBlitz);
+                if (level >= MNK.Levels.MasterfulBlitz && !gauge.BeastChakra.Contains(BeastChakra.NONE))
+                    return OriginalHook(MNK.MasterfulBlitz);
             }
 
             if (level >= MNK.Levels.PerfectBalance && HasEffect(MNK.Buffs.PerfectBalance))
             {
+                // Lunar Nadi combo is superior for potency, so we use it first, as well as if we have both Nadi,
+                // and if the player is below the level of having Nadi at all (level 60).  However, if we currently
+                // have no Nadi and Brotherhood is not active, we use Solar instead, allowing us to double-Nadi in
+                // the next Brotherhood window.
+                // Note that the official Monk opener actually prefers using a Solar Nadi first, so the Lunar Nadi
+                // sequence can be aligned with raid buffs.  But this is monke mode, we're not exactly hyper-concerned
+                // with raid optimization.
+                if (level < MNK.Levels.EnhancedPerfectBalance ||
+                    gauge.Nadi.HasFlag(Nadi.SOLAR) || (!gauge.Nadi.HasFlag(Nadi.LUNAR) &&
+                    (level < MNK.Levels.Brotherhood || HasEffect(MNK.Buffs.Brotherhood))))
+                    return gauge.OpoOpoFury == 0 ? OriginalHook(MNK.DragonKick) : OriginalHook(MNK.Bootshine);
+
                 // Solar Nadi
-                if (level >= MNK.Levels.EnhancedPerfectBalance && !gauge.Nadi.HasFlag(Nadi.SOLAR))
-                {
-                    if (level >= MNK.Levels.TwinSnakes && !gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
-                    {
-                        if (gauge.RaptorFury == 0 && level >= MNK.Levels.TwinSnakes)
-                            return MNK.TwinSnakes;
-                        else
-                            return OriginalHook(MNK.TrueStrike);
-                    }
+                if (!gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                    return gauge.OpoOpoFury == 0 ? OriginalHook(MNK.DragonKick) : OriginalHook(MNK.Bootshine);
 
-                    if (level >= MNK.Levels.Demolish && !gauge.BeastChakra.Contains(BeastChakra.COEURL))
-                    {
-                        if (gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish)
-                            return MNK.Demolish;
-                        else
-                            return OriginalHook(MNK.SnapPunch);
-                    }
+                if (!gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                    return gauge.RaptorFury == 0 ? OriginalHook(MNK.TwinSnakes) : OriginalHook(MNK.TrueStrike);
 
-                    if (level >= MNK.Levels.DragonKick && !gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
-                       {
-                        if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
-                            return MNK.DragonKick;
-                        else
-                            return OriginalHook(MNK.Bootshine);
-                    }
-                }
-
-                // Lunar Nadi or both
-                else if (level >= MNK.Levels.EnhancedPerfectBalance && gauge.Nadi.HasFlag(Nadi.SOLAR))
-                {
-                    if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
-                        return MNK.DragonKick;
-                    else
-                        return OriginalHook(MNK.Bootshine);
-                }
+                if (!gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                    return gauge.CoeurlFury == 0 ? OriginalHook(MNK.Demolish) : OriginalHook(MNK.SnapPunch);
             }
 
             if (IsEnabled(CustomComboPreset.MonkMonkeyMeditationFeature))
@@ -255,28 +241,14 @@ internal class MonkMonkeyMode : CustomCombo
             }
 
             if (HasEffect(MNK.Buffs.RaptorForm))
-            {
-                if (gauge.RaptorFury == 0 && level >= MNK.Levels.TwinSnakes)
-                    return MNK.TwinSnakes;
-                else
-                    return OriginalHook(MNK.TrueStrike);
-            }
+                return gauge.RaptorFury == 0 && level >= MNK.Levels.TwinSnakes ?
+                    OriginalHook(MNK.TwinSnakes) : OriginalHook(MNK.TrueStrike);
 
             if (HasEffect(MNK.Buffs.CoerlForm))
-            {
-                if (gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish)
-                    return MNK.Demolish;
-                else
-                    return OriginalHook(MNK.SnapPunch);
-            }
+                return gauge.CoeurlFury == 0 && level >= MNK.Levels.Demolish ?
+                    OriginalHook(MNK.Demolish) : OriginalHook(MNK.SnapPunch);
 
-            if (HasEffect(MNK.Buffs.OpoOpoForm) || (!HasEffect(MNK.Buffs.OpoOpoForm) || !HasEffect(MNK.Buffs.CoerlForm) || !HasEffect(MNK.Buffs.RaptorForm)))
-            {
-                if (gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick)
-                    return MNK.DragonKick;
-                else
-                    return OriginalHook(MNK.Bootshine);
-            }
+            return gauge.OpoOpoFury == 0 && level >= MNK.Levels.DragonKick ? OriginalHook(MNK.DragonKick) : OriginalHook(MNK.Bootshine);
         }
 
         return actionID;
@@ -318,28 +290,27 @@ internal class MonkAoECombo : CustomCombo
 
             if (level >= MNK.Levels.PerfectBalance && HasEffect(MNK.Buffs.PerfectBalance))
             {
-                // Solar
-                if (level >= MNK.Levels.EnhancedPerfectBalance && !gauge.Nadi.HasFlag(Nadi.SOLAR))
-                {
-                    if (level >= MNK.Levels.FourPointFury && !gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
-                        return MNK.FourPointFury;
+                // Lunar Nadi combo is superior for potency, so we use it first, as well as if we have both Nadi,
+                // and if the player is below the level of having Nadi at all (level 60).  However, if we currently
+                // have no Nadi and Brotherhood is not active, we use Solar instead, allowing us to double-Nadi in
+                // the next Brotherhood window.
+                // Note that the official Monk opener actually prefers using a Solar Nadi first, so the Lunar Nadi
+                // sequence can be aligned with raid buffs.  But this is monke mode, we're not exactly hyper-concerned
+                // with raid optimization.
+                if (level < MNK.Levels.EnhancedPerfectBalance ||
+                    gauge.Nadi.HasFlag(Nadi.SOLAR) || (!gauge.Nadi.HasFlag(Nadi.LUNAR) &&
+                    (level < MNK.Levels.Brotherhood || HasEffect(MNK.Buffs.Brotherhood))))
+                    return level >= MNK.Levels.ShadowOfTheDestroyer ? MNK.ShadowOfTheDestroyer : MNK.Rockbreaker;
 
-                    if (level >= MNK.Levels.Rockbreaker && !gauge.BeastChakra.Contains(BeastChakra.COEURL))
-                        return MNK.Rockbreaker;
+                // Solar Nadi
+                if (!gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
+                    return OriginalHook(MNK.ArmOfTheDestroyer);
 
-                    if (level >= MNK.Levels.ArmOfTheDestroyer && !gauge.BeastChakra.Contains(BeastChakra.OPOOPO))
-                        // Shadow of the Destroyer
-                        return OriginalHook(MNK.ArmOfTheDestroyer);
+                if (!gauge.BeastChakra.Contains(BeastChakra.RAPTOR))
+                    return OriginalHook(MNK.FourPointFury);
 
-                    return level >= MNK.Levels.ShadowOfTheDestroyer
-                        ? MNK.ShadowOfTheDestroyer
-                        : MNK.Rockbreaker;
-                }
-
-                // Lunar.  Also used if we have both Nadi as Tornado Kick/Phantom Rush isn't picky, or under 60.
-                return level >= MNK.Levels.ShadowOfTheDestroyer
-                    ? MNK.ShadowOfTheDestroyer
-                    : MNK.Rockbreaker;
+                if (!gauge.BeastChakra.Contains(BeastChakra.COEURL))
+                    return OriginalHook(MNK.Rockbreaker);
             }
 
             // FPF with FormShift

@@ -30,7 +30,8 @@ internal static class DRK
         ScarletDelirium = 36928,
         Comeuppance = 36929,
         Torcleaver = 36930,
-        Impalement = 36931;
+        Impalement = 36931,
+        Disesteem = 36932;
 
     public static class Buffs
     {
@@ -39,7 +40,8 @@ internal static class DRK
             Grit = 743,
             Darkside = 751,
             Delirium = 1972,
-            ScarletDelirium = 3836;
+            ScarletDelirium = 3836, // Buff is still just called "Delirium", but different version after level 96
+            Scorn = 3837;
     }
 
     public static class Debuffs
@@ -85,39 +87,35 @@ internal class DarkSouleater : CustomCombo
         {
             var gauge = GetJobGauge<DRKGauge>();
 
+            if (IsEnabled(CustomComboPreset.DarkDeliriumFeature) &&
+                !IsEnabled(CustomComboPreset.DarkAutoDisesteemPriorityFeature) &&
+                HasEffect(DRK.Buffs.Scorn))
+                return DRK.Disesteem;
+
             if (IsEnabled(CustomComboPreset.DarkDeliriumFeature))
             {
-                if (
-                    level >= DRK.Levels.Bloodspiller
-                    && level >= DRK.Levels.Delirium
-                    && (HasEffect(DRK.Buffs.Delirium) || HasEffect(DRK.Buffs.ScarletDelirium)))
+                if (level >= DRK.Levels.Delirium && (HasEffect(DRK.Buffs.Delirium) ||
+                    HasEffect(DRK.Buffs.ScarletDelirium)))
                     return OriginalHook(DRK.Bloodspiller);
             }
 
+            if (IsEnabled(CustomComboPreset.DarkDeliriumFeature) &&
+                HasEffect(DRK.Buffs.Scorn))
+                return DRK.Disesteem;
+
             if (IsEnabled(CustomComboPreset.DarkSouleaterCombo))
             {
-                if (IsEnabled(CustomComboPreset.DarkSouleaterOvercapFeature))
+                if (lastComboMove == DRK.SyphonStrike && level >= DRK.Levels.Souleater)
                 {
-                    if (level >= DRK.Levels.Bloodspiller && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                    if (IsEnabled(CustomComboPreset.DarkSouleaterOvercapFeature) &&
+                        level >= DRK.Levels.Bloodspiller && gauge.Blood >= 60)
                         return OriginalHook(DRK.Bloodspiller);
+
+                    return DRK.Souleater;
                 }
 
-                if (comboTime > 0)
-                {
-                    if (lastComboMove == DRK.SyphonStrike && level >= DRK.Levels.Souleater)
-                    {
-                        if (IsEnabled(CustomComboPreset.DarkSouleaterOvercapFeature))
-                        {
-                            if (level >= DRK.Levels.Bloodspiller && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon))))
-                                return OriginalHook(DRK.Bloodspiller);
-                        }
-
-                        return DRK.Souleater;
-                    }
-
-                    if (lastComboMove == DRK.HardSlash && level >= DRK.Levels.SyphonStrike)
-                        return DRK.SyphonStrike;
-                }
+                if (lastComboMove == DRK.HardSlash && level >= DRK.Levels.SyphonStrike)
+                    return DRK.SyphonStrike;
 
                 return DRK.HardSlash;
             }
@@ -137,35 +135,31 @@ internal class DarkStalwartSoul : CustomCombo
         {
             var gauge = GetJobGauge<DRKGauge>();
 
+            if (IsEnabled(CustomComboPreset.DarkDeliriumFeature) &&
+                !IsEnabled(CustomComboPreset.DarkAutoDisesteemPriorityFeature) &&
+                HasEffect(DRK.Buffs.Scorn))
+                return DRK.Disesteem;
+
             if (IsEnabled(CustomComboPreset.DarkDeliriumFeature))
             {
-                if (
-                    level >= DRK.Levels.Quietus
-                    && level >= DRK.Levels.Delirium
-                    && (HasEffect(DRK.Buffs.Delirium) || HasEffect(DRK.Buffs.ScarletDelirium)))
+                if (level >= DRK.Levels.Delirium && (HasEffect(DRK.Buffs.Delirium) ||
+                    HasEffect(DRK.Buffs.ScarletDelirium)))
                     return OriginalHook(DRK.Quietus);
             }
 
+            if (IsEnabled(CustomComboPreset.DarkDeliriumFeature) &&
+                HasEffect(DRK.Buffs.Scorn))
+                return DRK.Disesteem;
+
             if (IsEnabled(CustomComboPreset.DarkStalwartSoulCombo))
             {
-                if (IsEnabled(CustomComboPreset.DarkStalwartSoulOvercapFeature))
+                if (lastComboMove == DRK.Unleash && level >= DRK.Levels.StalwartSoul)
                 {
-                    if (level >= DRK.Levels.Quietus && gauge.Blood > 90 && HasEffect(DRK.Buffs.BloodWeapon))
+                    if (IsEnabled(CustomComboPreset.DarkStalwartSoulOvercapFeature) &&
+                        level >= DRK.Levels.Quietus && gauge.Blood >= 60)
                         return OriginalHook(DRK.Quietus);
-                }
 
-                if (comboTime > 0)
-                {
-                    if (lastComboMove == DRK.Unleash && level >= DRK.Levels.StalwartSoul)
-                    {
-                        if (IsEnabled(CustomComboPreset.DarkStalwartSoulOvercapFeature))
-                        {
-                            if (level >= DRK.Levels.Quietus && (gauge.Blood > 80 || (gauge.Blood > 70 && HasEffect(DRK.Buffs.BloodWeapon))))
-                                return OriginalHook(DRK.Quietus);
-                        }
-
-                        return DRK.StalwartSoul;
-                    }
+                    return DRK.StalwartSoul;
                 }
 
                 return DRK.Unleash;
@@ -196,6 +190,22 @@ internal class DarkCarveAndSpitAbyssalDrain : CustomCombo
                     return OriginalHook(DRK.BloodWeapon);
             }
         }
+
+        if (actionID == DRK.CarveAndSpit && level >= DRK.Levels.AbyssalDrain && level < DRK.Levels.CarveAndSpit)
+            return DRK.AbyssalDrain;
+
+        return actionID;
+    }
+}
+
+internal class DarkEdgeFlood : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.DarkSyncEdgeFloodFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == DRK.EdgeOfDarkness && level >= DRK.Levels.FloodOfDarkness && level < DRK.Levels.EdgeOfDarkness)
+            return DRK.FloodOfDarkness;
 
         return actionID;
     }
@@ -234,13 +244,19 @@ internal class DarkLivingShadow : CustomCombo
 
             if (IsEnabled(CustomComboPreset.DarkLivingShadowbringerFeature))
             {
-                if (level >= DRK.Levels.Shadowbringer && gauge.ShadowTimeRemaining > 0 && IsCooldownUsable(DRK.Shadowbringer))
+                if (level >= DRK.Levels.Shadowbringer && gauge.ShadowTimeRemaining > 0 &&
+                    IsCooldownUsable(DRK.Shadowbringer))
                     return DRK.Shadowbringer;
             }
 
             if (IsEnabled(CustomComboPreset.DarkLivingShadowbringerHpFeature))
             {
-                if (level >= DRK.Levels.Shadowbringer && IsCooldownUsable(DRK.Shadowbringer) && !IsCooldownUsable(DRK.LivingShadow))
+                var shadowbringer = GetCooldown(DRK.Shadowbringer);
+                var shadow = GetCooldown(DRK.LivingShadow);
+
+                if (level >= DRK.Levels.Shadowbringer &&
+                    gauge.ShadowTimeRemaining == 0 && shadowbringer.Available &&
+                    shadowbringer.TotalCooldownRemaining < shadow.TotalCooldownRemaining)
                     return DRK.Shadowbringer;
             }
         }

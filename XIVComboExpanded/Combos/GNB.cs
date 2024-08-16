@@ -1,6 +1,6 @@
+using System;
 using System.Data.Common;
 using Dalamud.Game.ClientState.JobGauge.Types;
-using System;
 
 namespace XIVComboExpandedPlugin.Combos;
 
@@ -79,6 +79,7 @@ internal static class GNB
             EnhancedContinuation = 86,
             CartridgeCharge2 = 88,
             DoubleDown = 90,
+            FatedBrand = 96,
             ReignOfBeasts = 100;
     }
 }
@@ -91,37 +92,61 @@ internal class GunbreakerSolidBarrel : CustomCombo
     {
         if (actionID == GNB.SolidBarrel)
         {
-            if (comboTime > 0)
+            var gauge = GetJobGauge<GNBGauge>();
+            var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
+
+            if (lastComboMove == GNB.BrutalShell && level >= GNB.Levels.SolidBarrel)
             {
-                if (lastComboMove == GNB.BrutalShell && level >= GNB.Levels.SolidBarrel)
+                if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeFeature))
                 {
-                    if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeFeature))
+                    if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont))
                     {
-                        var gauge = GetJobGauge<GNBGauge>();
-                        var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
-
-                        if (IsEnabled(CustomComboPreset.GunbreakerDoubleDownFeatureST))
-                        {
-                            if (level >= GNB.Levels.DoubleDown && gauge.Ammo == maxAmmo && IsCooldownUsable(GNB.DoubleDown))
-                                return GNB.DoubleDown;
-                        }
-
-                        if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont))
-                        {
-                            if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
-                                return GNB.Hypervelocity;
-                        }
-
-                        if (level >= GNB.Levels.BurstStrike && gauge.Ammo == maxAmmo)
-                            return GNB.BurstStrike;
+                        if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
+                            return GNB.Hypervelocity;
                     }
 
-                    return GNB.SolidBarrel;
+                    if (IsEnabled(CustomComboPreset.GunbreakerDoubleDownFeatureST))
+                    {
+                        if (level >= GNB.Levels.DoubleDown && gauge.Ammo == maxAmmo && IsCooldownUsable(GNB.DoubleDown))
+                            return GNB.DoubleDown;
+                    }
+
+                    if (IsEnabled(CustomComboPreset.GunbreakerLionHeartSolidBarrelFeature))
+                    {
+                        if (CanUseAction(GNB.ReignOfBeasts) || CanUseAction(GNB.NobleBlood) ||
+                            CanUseAction(GNB.LionHeart))
+                            return OriginalHook(GNB.ReignOfBeasts);
+                    }
+
+                    if (level >= GNB.Levels.BurstStrike)
+                    {
+                        if (IsEnabled(CustomComboPreset.GunbreakerBurstNoMercyFeature) &&
+                            gauge.Ammo > 0 && HasEffect(GNB.Buffs.NoMercy))
+                            return GNB.BurstStrike;
+
+                        if (gauge.Ammo == maxAmmo)
+                            return GNB.BurstStrike;
+                    }
                 }
 
-                if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
-                    return GNB.BrutalShell;
+                return GNB.SolidBarrel;
             }
+
+            if (level >= GNB.Levels.BurstStrike && IsEnabled(CustomComboPreset.GunbreakerBurstNoMercyFeature))
+            {
+                if (IsEnabled(CustomComboPreset.GunbreakerBurstStrikeCont))
+                {
+                    if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToBlast))
+                        return GNB.Hypervelocity;
+                }
+
+                if (IsEnabled(CustomComboPreset.GunbreakerBurstNoMercyFeature) &&
+                    gauge.Ammo > 0 && HasEffect(GNB.Buffs.NoMercy))
+                    return GNB.BurstStrike;
+            }
+
+            if (lastComboMove == GNB.KeenEdge && level >= GNB.Levels.BrutalShell)
+                return GNB.BrutalShell;
 
             return GNB.KeenEdge;
         }
@@ -188,19 +213,29 @@ internal class GunbreakerBurstStrikeFatedCircle : CustomCombo
                          HasEffect(GNB.Buffs.ReadyToTear) ||
                          HasEffect(GNB.Buffs.ReadyToGouge)))
                         return OriginalHook(GNB.Continuation);
+
                     if ((IsCooldownUsable(GNB.GnashingFang) && gauge.Ammo > 0) || !IsOriginal(GNB.GnashingFang))
                         return OriginalHook(GNB.GnashingFang);
-
                 }
+            }
+
+            if (IsEnabled(CustomComboPreset.GunbreakerLionHeartBurstStrikeFeature))
+            {
+                if (CanUseAction(GNB.ReignOfBeasts) || CanUseAction(GNB.NobleBlood) || CanUseAction(GNB.LionHeart))
+                    return OriginalHook(GNB.ReignOfBeasts);
             }
         }
 
         if (actionID == GNB.FatedCircle)
         {
-            if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont))
+            if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont) &&
+                level >= GNB.Levels.FatedBrand && HasEffect(GNB.Buffs.ReadyToFated))
+                return GNB.FatedBrand;
+
+            if (IsEnabled(CustomComboPreset.GunbreakerLionHeartFatedCircleFeature))
             {
-                if (level >= GNB.Levels.EnhancedContinuation && HasEffect(GNB.Buffs.ReadyToFated))
-                    return GNB.FatedBrand;
+                if (CanUseAction(GNB.ReignOfBeasts) || CanUseAction(GNB.NobleBlood) || CanUseAction(GNB.LionHeart))
+                    return OriginalHook(GNB.ReignOfBeasts);
             }
         }
 
@@ -256,30 +291,53 @@ internal class GunbreakerDemonSlaughter : CustomCombo
     {
         if (actionID == GNB.DemonSlaughter)
         {
+            var gauge = GetJobGauge<GNBGauge>();
+            var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
 
-            if (comboTime > 0 && lastComboMove == GNB.DemonSlice && level >= GNB.Levels.DemonSlaughter)
+            if (lastComboMove == GNB.DemonSlice && level >= GNB.Levels.DemonSlaughter)
             {
-                var gauge = GetJobGauge<GNBGauge>();
-                var maxAmmo = level >= GNB.Levels.CartridgeCharge2 ? 3 : 2;
-
                 if (IsEnabled(CustomComboPreset.GunbreakerDoubleDownFeatureAoE))
                 {
                     if (level >= GNB.Levels.DoubleDown && gauge.Ammo == maxAmmo && IsCooldownUsable(GNB.DoubleDown))
                         return GNB.DoubleDown;
                 }
 
+                if (IsEnabled(CustomComboPreset.GunbreakerLionHeartSolidBarrelFeature))
+                {
+                    if (CanUseAction(GNB.ReignOfBeasts) || CanUseAction(GNB.NobleBlood) ||
+                        CanUseAction(GNB.LionHeart))
+                        return OriginalHook(GNB.ReignOfBeasts);
+                }
+
                 if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature))
                 {
-                    if (HasEffect(GNB.Buffs.ReadyToFated) && IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont))
-                    {
+                    if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont) &&
+                        level >= GNB.Levels.FatedBrand && HasEffect(GNB.Buffs.ReadyToFated))
                         return GNB.FatedBrand;
-                    }
 
-                    if (level >= GNB.Levels.FatedCircle && gauge.Ammo == maxAmmo)
-                        return GNB.FatedCircle;
+                    if (level >= GNB.Levels.FatedCircle)
+                    {
+                        if (IsEnabled(CustomComboPreset.GunbreakerFatedNoMercyFeature) &&
+                            gauge.Ammo > 0 && HasEffect(GNB.Buffs.NoMercy))
+                            return GNB.FatedCircle;
+
+                        if (gauge.Ammo == maxAmmo)
+                            return GNB.FatedCircle;
+                    }
                 }
 
                 return GNB.DemonSlaughter;
+            }
+
+            if (level >= GNB.Levels.FatedCircle && IsEnabled(CustomComboPreset.GunbreakerFatedCircleFeature))
+            {
+                if (IsEnabled(CustomComboPreset.GunbreakerFatedCircleCont) &&
+                    level >= GNB.Levels.FatedBrand && HasEffect(GNB.Buffs.ReadyToFated))
+                    return GNB.FatedBrand;
+
+                if (IsEnabled(CustomComboPreset.GunbreakerFatedNoMercyFeature) &&
+                    gauge.Ammo > 0 && HasEffect(GNB.Buffs.NoMercy))
+                    return GNB.FatedCircle;
             }
 
             return GNB.DemonSlice;
@@ -349,39 +407,55 @@ internal class GunbreakerExpandedContinuation : CustomCombo
             var gauge = GetJobGauge<GNBGauge>();
 
             // Default continuation behavior
-            if (HasEffect(GNB.Buffs.ReadyToRip) || HasEffect(GNB.Buffs.ReadyToTear) || HasEffect(GNB.Buffs.ReadyToGouge) || HasEffect(GNB.Buffs.ReadyToBlast) || HasEffect(GNB.Buffs.ReadyToFated))
-                return OriginalHook(GNB.Continuation);
+            var original = OriginalHook(GNB.Continuation);
+            if (original != GNB.Continuation)
+                return original;
 
             // Combo Danger/Blasting zone off Keen Edge
-            if (level >= GNB.Levels.DangerZone && (lastComboMove == GNB.KeenEdge || lastComboMove == GNB.BrutalShell) && IsCooldownUsable(GNB.DangerZone) && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDangerZone))
+            if (level >= GNB.Levels.DangerZone &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDangerZone) &&
+                (lastComboMove == GNB.KeenEdge || lastComboMove == GNB.BrutalShell) &&
+                IsCooldownUsable(GNB.DangerZone))
                 return OriginalHook(GNB.DangerZone);
 
             // Bow Shock off cd, which functionally combos with Trajectory for your intro combo. Similar to PLD entry > Circle of Scorn
-            if (level >= GNB.Levels.BowShock && IsCooldownUsable(GNB.BowShock) && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableBowShock))
+            if (level >= GNB.Levels.BowShock && IsCooldownUsable(GNB.BowShock) &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableBowShock))
                 return GNB.BowShock;
 
             // Combo with No Mercy > Sonic Break
-            if ((HasEffect(GNB.Buffs.ReadyToBreak) && level >= GNB.Levels.SonicBreak && IsCooldownUsable(GNB.SonicBreak)) && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSonicBreak))
+            if ((HasEffect(GNB.Buffs.ReadyToBreak) && level >= GNB.Levels.SonicBreak &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSonicBreak) &&
+                IsCooldownUsable(GNB.SonicBreak)))
                 return GNB.SonicBreak;
 
             // Combo Double Down off either Solid Barrel or Demon Slaughter
-            if (((lastComboMove == GNB.SolidBarrel && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel)) || (lastComboMove == GNB.DemonSlaughter && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDemonSlaughter))) && level >= GNB.Levels.DoubleDown && gauge.Ammo >= 2 && IsCooldownUsable(GNB.DoubleDown))
+            if (((lastComboMove == GNB.SolidBarrel &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel)) ||
+                (lastComboMove == GNB.DemonSlaughter &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDemonSlaughter))) &&
+                level >= GNB.Levels.DoubleDown && gauge.Ammo >= 2 && IsCooldownUsable(GNB.DoubleDown))
                 return OriginalHook(GNB.DoubleDown);
 
             // Combo to prefer Gnashing Fang combo over Burst Strike after Solid Barrel
-            if (((lastComboMove == GNB.SolidBarrel && level >= GNB.Levels.GnashingFang && gauge.Ammo >= 1 && IsCooldownUsable(GNB.GnashingFang)) || !IsOriginal(GNB.GnashingFang) ) && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel))
+            if (((lastComboMove == GNB.SolidBarrel && level >= GNB.Levels.GnashingFang && gauge.Ammo >= 1 &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel) &&
+                IsCooldownUsable(GNB.GnashingFang)) || !IsOriginal(GNB.GnashingFang)))
                 return OriginalHook(GNB.GnashingFang);
 
             // Combo for Burst Strike after Solid Barrel
-            if (lastComboMove == GNB.SolidBarrel && level >= GNB.Levels.BurstStrike && gauge.Ammo >= 1 && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel))
+            if (lastComboMove == GNB.SolidBarrel && level >= GNB.Levels.BurstStrike && gauge.Ammo >= 1 &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableSolidBarrel))
                 return GNB.BurstStrike;
 
             // Combo for Demon Slaughter > Fated Circle
-            if (lastComboMove == GNB.DemonSlaughter && level >= GNB.Levels.FatedCircle && gauge.Ammo >= 1 && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDemonSlaughter))
+            if (lastComboMove == GNB.DemonSlaughter && level >= GNB.Levels.FatedCircle && gauge.Ammo >= 1 &&
+                !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableDemonSlaughter))
                 return GNB.FatedCircle;
 
             // Reign combo, combos off of Bloodfest
-            if (HasEffect(GNB.Buffs.ReadyToReign) || !IsOriginal(GNB.ReignOfBeasts) && !IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableBloodfest))
+            if (!IsEnabled(CustomComboPreset.GunbreakerExpandedContinuationDisableBloodfest) &&
+                (HasEffect(GNB.Buffs.ReadyToReign) || !IsOriginal(GNB.ReignOfBeasts)))
                 return OriginalHook(GNB.ReignOfBeasts);
 
             return OriginalHook(GNB.Continuation);

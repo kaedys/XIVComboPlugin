@@ -152,7 +152,7 @@ internal class DragoonSingleTargetThrust : CustomCombo
                 IsEnabled(CustomComboPreset.DragoonFullThrustCombo) ||
                 IsEnabled(CustomComboPreset.DragoonAllInOneCombo)) &&
                 level >= DRG.Levels.Drakesbane &&
-                (lastComboMove == DRG.WheelingThrust ||  lastComboMove == DRG.FangAndClaw))
+                (lastComboMove == DRG.WheelingThrust || lastComboMove == DRG.FangAndClaw))
                 return DRG.Drakesbane;
 
             if ((IsEnabled(CustomComboPreset.DragoonFullThrustCombo) &&
@@ -206,6 +206,7 @@ internal class DragoonSingleTargetThrust : CustomCombo
                         buffThreshold -= 2.5;
                         dotThreshold -= 2.5;
                     }
+
                     if (level < DRG.Levels.FangAndClaw)
                     {
                         buffThreshold -= 2.5;
@@ -318,10 +319,10 @@ internal class DragoonLanceCharge : CustomCombo
     {
         if (actionID == DRG.LanceCharge)
         {
-            if (!!IsCooldownUsable(DRG.LanceCharge))
+            if (IsCooldownUsable(DRG.LanceCharge))
                 return DRG.LanceCharge;
 
-            if (level >= DRG.Levels.BattleLitany && !!IsCooldownUsable(DRG.BattleLitany))
+            if (level >= DRG.Levels.BattleLitany && IsCooldownUsable(DRG.BattleLitany))
                 return DRG.BattleLitany;
         }
 

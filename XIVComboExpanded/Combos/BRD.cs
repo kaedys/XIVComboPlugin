@@ -233,19 +233,16 @@ internal class BardQuickNock : CustomCombo
                     return BRD.BlastArrow;
             }
 
-            if (IsEnabled(CustomComboPreset.BardShadowbiteFeature))
+            if (IsEnabled(CustomComboPreset.BardShadowbiteFeature) && level >= BRD.Levels.WideVolley)
             {
-                if (level >= BRD.Levels.WideVolley)
+                if (IsEnabled(CustomComboPreset.BardShadowbiteBarrageFeature))
                 {
-                    if (IsEnabled(CustomComboPreset.BardShadowbiteBarrageFeature))
-                    {
-                        if (level >= BRD.Levels.Barrage && IsCooldownUsable(BRD.Barrage))
-                            return BRD.Barrage;
-                    }
-
-                    if (HasEffect(BRD.Buffs.HawksEye) || HasEffect(BRD.Buffs.Barrage))
-                        return OriginalHook(BRD.WideVolley);
+                    if (level >= BRD.Levels.Barrage && IsCooldownUsable(BRD.Barrage))
+                        return BRD.Barrage;
                 }
+
+                if (HasEffect(BRD.Buffs.HawksEye) || HasEffect(BRD.Buffs.Barrage))
+                    return OriginalHook(BRD.WideVolley);
             }
         }
 
@@ -365,6 +362,40 @@ internal class BardSidewinder : CustomCombo
     }
 }
 
+internal class BardApexArrow : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardAutoIronJawsApexFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == BRD.ApexArrow || actionID == BRD.BlastArrow)
+        {
+            if (level >= BRD.Levels.IronJaws)
+            {
+                // Using 5 seconds instead of 2.8s like the other DoT auto-refresh features, because Bard loses a
+                // lot more from letting their DoTs drop, since they have to use two GCDs instead of one to
+                // re-apply them.
+                var dotTimer = 5.0;
+
+                if (IsEnabled(CustomComboPreset.BardShotIronJawsOption)) // option to use 2.8
+                    dotTimer = 2.8;
+
+                // have to explicitly check all variants of the dot for some reason else spaghetti code ensues
+                var venomous = FindTargetEffect(BRD.Debuffs.VenomousBite);
+                var windbite = FindTargetEffect(BRD.Debuffs.Windbite);
+                var stormbite = FindTargetEffect(BRD.Debuffs.Stormbite);
+                var caustic = FindTargetEffect(BRD.Debuffs.CausticBite);
+
+                if (venomous?.RemainingTime < dotTimer || windbite?.RemainingTime < dotTimer ||
+                stormbite?.RemainingTime < dotTimer || caustic?.RemainingTime < dotTimer)
+                    return BRD.IronJaws;
+            }
+        }
+
+        return actionID;
+    }
+}
+
 internal class BardEmpyrealArrow : CustomCombo
 {
     protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardEmpyrealArrowFeature;
@@ -375,6 +406,42 @@ internal class BardEmpyrealArrow : CustomCombo
         {
             if (level >= BRD.Levels.Sidewinder)
                 return CalcBestAction(actionID, BRD.EmpyrealArrow, BRD.Sidewinder);
+        }
+
+        return actionID;
+    }
+}
+
+internal class BardRagingStrikes : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardRagingBarrageFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == BRD.RagingStrikes)
+        {
+            if (level >= BRD.Levels.Barrage && IsCooldownUsable(BRD.Barrage) && !IsCooldownUsable(BRD.RagingStrikes))
+                return OriginalHook(BRD.Barrage);
+        }
+
+        return actionID;
+    }
+}
+
+internal class BardBattleVoice : CustomCombo
+{
+    protected internal override CustomComboPreset Preset { get; } = CustomComboPreset.BardBattleFinaleFeature;
+
+    protected override uint Invoke(uint actionID, uint lastComboMove, float comboTime, byte level)
+    {
+        if (actionID == BRD.BattleVoice)
+        {
+            var finale = IsCooldownUsable(BRD.RadiantFinale);
+            var voice = GetCooldown(BRD.BattleVoice);
+
+            if (level >= BRD.Levels.RadiantFinale && ((GetCooldown(BRD.BattleVoice).CooldownRemaining > 30 &&
+                IsCooldownUsable(BRD.RadiantFinale)) || HasEffect(BRD.Buffs.RadiantEncoreReady)))
+                return OriginalHook(BRD.RadiantFinale);
         }
 
         return actionID;
@@ -417,7 +484,6 @@ internal class BardRadiantFinale : CustomCombo
         return actionID;
     }
 }
-
 
 internal class BardMagesBallad : CustomCombo
 {
